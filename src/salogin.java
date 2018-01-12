@@ -51,10 +51,10 @@ public class salogin
 
 //Login ends
 
-           synchronized (driver)
-           {
+            synchronized (driver)
+            {
             driver.wait(2000);
-           }
+            }
 
 //Check yoda notification page before proceeding to SA
 
