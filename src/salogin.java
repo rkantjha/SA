@@ -32,7 +32,7 @@ public class salogin
 
             synchronized (driver)
             {
-                driver.wait(1000);
+                driver.wait(2000);
             }
 
             List<WebElement> passwordElement = driver.findElements(By.className("inputStyle"));
