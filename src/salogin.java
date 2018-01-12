@@ -12,7 +12,7 @@ public class salogin
     public static void main(String[] args) throws InterruptedException {
 
         WebDriver driver;
-        System.setProperty("webdriver.gecko.driver","/usr/local/bin/geckodriver" ); // Fierfox driver
+        System.setProperty("webdriver.gecko.driver","/usr/local/bin/geckodriver" );   //Fierfox driver
         driver =new FirefoxDriver();
 
         DesiredCapabilities capabilities = DesiredCapabilities.firefox(); // setting the desired capabilities
@@ -20,7 +20,7 @@ public class salogin
 
 
         String url = "http://10.85.52.152/flipkart/";
-
+// Login Starts
             driver.get(url);
             driver.manage().window().maximize();
 
@@ -49,10 +49,16 @@ public class salogin
             driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div[2]/div[2]/button")).click();
             driver.findElement(By.className("loginButton")).click();
 
-            synchronized (driver)
-            {
+//Login ends
+
+        synchronized (driver)
+        {
             driver.wait(2000);
-            }
+        }
+
+//Check yoda notification page before proceeding to SA
+
+
 
             String currentUrl = driver.getCurrentUrl();
             String yoda_page_url = "http://10.85.52.152/flipkart/#/yoda";
