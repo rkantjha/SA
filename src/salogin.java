@@ -4,22 +4,24 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import pom_elements.login_page;
 import java.util.List;
 
 
 public class salogin
 {
-    public static void main(String[] args) throws InterruptedException {
-
-        WebDriver driver;
-        System.setProperty("webdriver.gecko.driver","/usr/local/bin/geckodriver" );   //Fierfox driver
-        driver =new FirefoxDriver();
-
-        DesiredCapabilities capabilities = DesiredCapabilities.firefox(); // setting the desired capabilities
-        capabilities.setCapability("marionette", true); // setting the desired capabilities
+      public static void main(String[] args) throws InterruptedException {
 
 
-        String url = "http://10.85.52.152/flipkart/";
+            WebDriver driver;
+            System.setProperty("webdriver.gecko.driver", "/usr/local/bin/geckodriver");   //Fierfox driver
+            driver = new FirefoxDriver();
+
+            DesiredCapabilities capabilities = DesiredCapabilities.firefox(); // setting the desired capabilities
+            capabilities.setCapability("marionette", true); // setting the desired capabilities
+
+
+            String url = "http://10.85.52.152/flipkart/";
 
 // Login Starts
             driver.get(url);
@@ -124,8 +126,11 @@ public class salogin
         driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/div[1]/div/div[2]/div/div/div/div[3]/div/div[1]/div")).click();
         /* clicking on assign yes button*/
         driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/div[1]/div/div[3]/div[1]/div/div/div[1]")).click();
-        /* clicking on make a call button*/
+        /* clicking on call button*/
         driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/div[1]/div/div[2]/div/div/div/div/div[2]/div[3]/div/div/img")).click();
+        /* clicking on make a call button*/
+        driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/div[1]/div/div[2]/div/div/div/div/div[2]/div[4]/div/div[1]/div/img")).click();
+
 
 
 //
