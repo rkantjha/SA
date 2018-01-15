@@ -76,10 +76,11 @@ public class salogin
 // Yoda notification check ends
 
 // Home page URL validation starts
-        synchronized (driver) {
+        synchronized (driver)
+        {
             driver.wait(2000);
         }
-        
+
         String home_page_url = "http://10.85.52.152/flipkart/#/";
 
         String Current_home_page_url = driver.getCurrentUrl();
@@ -90,13 +91,44 @@ public class salogin
             }
             else
             {
-                System.out.println("user is landed to" + driver.getCurrentUrl());
+                System.out.println("user is landed to  " + driver.getCurrentUrl());
             }
+//Home page URL validation ends
+        synchronized (driver)
+        {
+            driver.wait(2000);
+        }
+
+//browser refresh
+        driver.navigate().refresh();
+            // browser refresh ends
+
+// login to inbound to outbound and make a call to customer and then logout from inbound-to-outbound
+
+         /* clicking on call dropdown*/
+        driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/div[1]/div/div[2]/div/div/div/div[2]/div/div/div/div[1]/div[2]")).click();
+        synchronized (driver)
+        {
+            driver.wait(1000);
+        }
+        /* selecting options*/
+        driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/div[1]/div/div[2]/div/div/div/div[2]/div/div[2]/div[1]/div[1]/div")).click();
+
+        synchronized (driver)
+        {
+            driver.wait(1000);
+        }
+        /* entering extension for inbound to outbound*/
+        driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/div[1]/div/div[2]/div/div/div/input")).sendKeys("3029");
+        /* clicking on login button*/
+        driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/div[1]/div/div[2]/div/div/div/div[3]/div/div[1]/div")).click();
+        /* clicking on assign yes button*/
+        driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/div[1]/div/div[3]/div[1]/div/div/div[1]")).click();
+        /* clicking on make a call button*/
+        driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/div[1]/div/div[2]/div/div/div/div/div[2]/div[3]/div/div/img")).click();
 
 
- // Home page URL validation ends
-
-
+//
 
         }
     }

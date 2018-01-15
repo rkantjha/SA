@@ -108,5 +108,15 @@
         <jarDirectory url="jar://$USER_HOME$/Documents/selenium-java-3.8.1/client-combined-3.8.1.jar!/" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library name="testng">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/testng.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/jcommander.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
