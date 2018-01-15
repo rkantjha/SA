@@ -20,6 +20,7 @@ public class salogin
 
 
         String url = "http://10.85.52.152/flipkart/";
+
 // Login Starts
             driver.get(url);
             driver.manage().window().maximize();
@@ -58,28 +59,46 @@ public class salogin
 
 //Check yoda notification page before proceeding to SA starts
 
-
             String currentUrl = driver.getCurrentUrl();
             String yoda_page_url = "http://10.85.52.152/flipkart/#/yoda";
 
             if (currentUrl == yoda_page_url)
             {
                 String yoda_count = driver.findElement(By.className("client-container-pages-Yoda-Notifications-Notifications_text client-container-pages-Yoda-Notifications-Notifications_staticText")).getText();
-                System.out.println("hello hello hello");
-            }
 
+                System.out.println("Notifications count needs to be checked is" + yoda_count);
+            }
             else
             {
-                System.out.println("No Yoda check required");
+                System.out.println(" Notifications already checked,check not required ");
 
             }
+// Yoda notification check ends
+
+// Home page URL validation starts
+        synchronized (driver) {
+            driver.wait(2000);
+        }
+        
+        String home_page_url = "http://10.85.52.152/flipkart/#/";
+
+        String Current_home_page_url = driver.getCurrentUrl();
+
+            if(Current_home_page_url == home_page_url)
+            {
+               System.out.println("User successfully landed to homepage");
+            }
+            else
+            {
+                System.out.println("user is landed to" + driver.getCurrentUrl());
+            }
+
+
+ // Home page URL validation ends
+
+
 
         }
-// Checking yoda notification ends
-
-
-
-
     }
 
 
