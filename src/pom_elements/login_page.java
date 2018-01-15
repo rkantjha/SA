@@ -32,5 +32,11 @@ public class login_page {
         element=driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/form/div[4]/button[1]"));
         return element;
     }
+    public static WebElement logout_previous(WebDriver driver)
+    {
+        element=driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div[2]/div[2]/button"));
+        return element;
+    }
+
 
 }
