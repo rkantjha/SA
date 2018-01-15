@@ -56,8 +56,7 @@ public class salogin
             driver.wait(2000);
             }
 
-//Check yoda notification page before proceeding to SA
-
+//Check yoda notification page before proceeding to SA starts
 
 
             String currentUrl = driver.getCurrentUrl();
@@ -65,18 +64,18 @@ public class salogin
 
             if (currentUrl == yoda_page_url)
             {
-                driver.findElement(By.className("client-container-pages-Yoda-Notifications-Notifications_text client-container-pages-Yoda-Notifications-Notifications_staticText")).getText();
+                String yoda_count = driver.findElement(By.className("client-container-pages-Yoda-Notifications-Notifications_text client-container-pages-Yoda-Notifications-Notifications_staticText")).getText();
+                System.out.println("hello hello hello");
+            }
 
+            else
+            {
+                System.out.println("No Yoda check required");
 
             }
 
-
-
-
-
-
         }
-
+// Checking yoda notification ends
 
 
 
