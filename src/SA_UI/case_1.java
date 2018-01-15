@@ -22,13 +22,13 @@ public class case_1 {
     }
 
     @Test(priority = 1,alwaysRun = true)
-    public void before_class()
+    public void login()
     {
         driver.get(login_page.sa_url);
         login_page.user_name(driver).sendKeys(username);
         login_page.verify_me(driver).click();
         login_page.password(driver).sendKeys(pass);
         login_page.login_button(driver).click();
-        
+
     }
 }
