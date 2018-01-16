@@ -77,7 +77,7 @@ public class case_1 {
     {
         call_to_customer.call_drop_down(driver).click();
         call_to_customer.select_campaign(driver).click();
-        call_to_customer.enter_extension(driver).sendKeys();
+        call_to_customer.enter_extension(driver).sendKeys(call_to_customer.extension);
         call_to_customer.call_login(driver).click();
         call_to_customer.assign_yes(driver).click();
 

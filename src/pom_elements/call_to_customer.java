@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 public class call_to_customer {
 
     public static WebElement  element =null;
-    public String extension ="3029";
+    public static  String extension ="3029";
 
     public static WebElement call_drop_down(WebDriver driver)
     {
