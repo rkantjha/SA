@@ -56,6 +56,53 @@ public static WebElement yoda_notifications_10(WebDriver driver)
     element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[10]/span"));
     return element;
 }
-
-
+public static WebElement yoda_notifications_11(WebDriver driver)
+{
+    element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[11]/span"));
+    return element;
+}
+public static WebElement yoda_notifictions_12(WebDriver driver)
+{
+    element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[12]/span"));
+    return element;
+}
+public static WebElement yoda_notifications_13(WebDriver driver){
+    element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[13]/span"));
+    return element;
+}
+public static WebElement yoda_notification_14(WebDriver driver)
+{
+    element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[14]/span"));
+    return element;
+}
+public static WebElement yoda_notifications_15(WebDriver driver)
+{
+    element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[15]/span"));
+    return element;
+}
+public static WebElement yoda_notifiocations_16(WebDriver driver)
+{
+    element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[16]/span"));
+    return element;
+}
+public static WebElement yoda_notifications_17(WebDriver driver)
+{
+    element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[17]/span"));
+    return element;
+}
+public static WebElement yoda_notifications_18(WebDriver driver)
+{
+    element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[18]/span"));
+    return element;
+}
+public static WebElement yoda_notifications_19(WebDriver driver)
+{
+    element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[19]/span"));
+    return element;
+}
+public static WebElement yoda_notifications_20(WebDriver driver)
+{
+    element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[20]/span"));
+    return element;
+}
 }
