@@ -1,5 +1,6 @@
 package pom_elements;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ public class home_page {
 public static String yoda_url="http://10.85.52.152/flipkart/#/yoda";
 
 public static WebElement element=null;
+
 
 public static WebElement yoda_notifications_1(WebDriver driver) {
     element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[1]/span"));
@@ -61,7 +63,7 @@ public static WebElement yoda_notifications_11(WebDriver driver)
     element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[11]/span"));
     return element;
 }
-public static WebElement yoda_notifictions_12(WebDriver driver)
+public static WebElement yoda_notifications_12(WebDriver driver)
 {
     element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[12]/span"));
     return element;
@@ -80,7 +82,7 @@ public static WebElement yoda_notifications_15(WebDriver driver)
     element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[15]/span"));
     return element;
 }
-public static WebElement yoda_notifiocations_16(WebDriver driver)
+public static WebElement yoda_notifications_16(WebDriver driver)
 {
     element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[16]/span"));
     return element;
