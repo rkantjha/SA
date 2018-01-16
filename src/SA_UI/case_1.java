@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pom_elements.home_page;
 import pom_elements.login_page;
-
+import pom_elements.call_to_customer;
 import static pom_elements.home_page.yoda_url;
 import static pom_elements.login_page.pass;
 import static pom_elements.login_page.username;
@@ -65,13 +65,25 @@ public class case_1 {
                 home_page.yoda_notifications_18(driver).click();
                 home_page.yoda_notifications_19(driver).click();
                 home_page.yoda_notifications_20(driver).click();
-            }else
+            }
+            else
             {
                 System.out.println("No check for notifications needed");
             }
 
     }
-    
+    @Test(priority = 3,alwaysRun = true)
+    public void call_to_customer()
+    {
+        call_to_customer.call_drop_down(driver).click();
+        call_to_customer.select_campaign(driver).click();
+        call_to_customer.enter_extension(driver).sendKeys();
+        call_to_customer.call_login(driver).click();
+        call_to_customer.assign_yes(driver).click();
+
+
+
+    }
 
 
 
