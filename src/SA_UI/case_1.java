@@ -1,6 +1,5 @@
 package SA_UI;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,10 +18,9 @@ public class case_1 {
     @BeforeTest
     public static void start(){
         System.setProperty("webdriver.gecko.driver","/usr/local/bin/geckodriver");
-
     }
 
-    @Test(priority = 1,alwaysRun = true)
+    @Test(priority=1,alwaysRun = true)
     public void login() throws InterruptedException
     {
         driver.get(login_page.sa_url);
@@ -32,6 +30,11 @@ public class case_1 {
         login_page.login_button(driver).click();
         login_page.logout_previous(driver).click();
         login_page.login_button(driver).click();
+    }
+    @Test(priority=2,alwaysRun = true)
+    public void notification_home_page()throws InterruptedException
+    {
+
     }
 
 
