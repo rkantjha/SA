@@ -29,8 +29,7 @@ public class case_1 {
     }
 
     @Test(priority=1,alwaysRun = true)
-    public void login() throws InterruptedException
-    {
+    public void login() throws InterruptedException {
         driver.get(login_page.sa_url);
         login_page.user_name(driver).sendKeys(username);
         login_page.verify_me(driver).click();
@@ -40,8 +39,7 @@ public class case_1 {
         login_page.login_button(driver).click();
     }
     @Test(priority=2,alwaysRun = true)
-    public void notification_home_page()throws InterruptedException
-    {
+    public void notification_home_page()throws InterruptedException {
             String y_url=driver.getCurrentUrl();
             if(y_url==yoda_url)
             {
@@ -70,8 +68,7 @@ public class case_1 {
             { System.out.println("No check for notifications needed");}
     }
     @Test(priority = 3,alwaysRun = true)
-    public void call_to_customer()throws InterruptedException
-    {
+    public void call_to_customer()throws InterruptedException {
         synchronized (driver){ driver.wait(3000); }
         call_to_customer.new_session(driver).click();
         synchronized (driver){ driver.wait(3000); }
