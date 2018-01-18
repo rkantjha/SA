@@ -67,22 +67,29 @@ public class case_1 {
                 home_page.yoda_notifications_20(driver).click();
             }
             else
-            {
-                System.out.println("No check for notifications needed");
-            }
-
+            { System.out.println("No check for notifications needed");}
     }
     @Test(priority = 3,alwaysRun = true)
-    public void call_to_customer()
+    public void call_to_customer()throws InterruptedException
     {
+        synchronized (driver){ driver.wait(3000); }
+        call_to_customer.new_session(driver).click();
+        synchronized (driver){ driver.wait(3000); }
         call_to_customer.call_drop_down(driver).click();
         call_to_customer.select_campaign(driver).click();
         call_to_customer.enter_extension(driver).sendKeys(call_to_customer.extension);
         call_to_customer.call_login(driver).click();
         call_to_customer.assign_yes(driver).click();
-
-
-
+        System.out.println("hello rahul");
+        System.out.println("hello rahul");
+        synchronized (driver){ driver.wait(3000); }
+        call_to_customer.manual_dial(driver).click();
+        synchronized (driver){ driver.wait(3000); }
+        call_to_customer.make_call(driver).click();
+        call_to_customer.select_number_type(driver).click();
+        call_to_customer.select_customer(driver).click();
+        call_to_customer.enter_phone_number(driver).sendKeys(call_to_customer.phone_number);
+        call_to_customer.click_on_dial(driver).click();
     }
 
 
