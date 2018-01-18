@@ -77,8 +77,6 @@ public class case_1 {
         call_to_customer.enter_extension(driver).sendKeys(call_to_customer.extension);
         call_to_customer.call_login(driver).click();
         call_to_customer.assign_yes(driver).click();
-        System.out.println("hello rahul");
-        System.out.println("hello rahul");
         synchronized (driver){ driver.wait(3000); }
         call_to_customer.manual_dial(driver).click();
         synchronized (driver){ driver.wait(3000); }
