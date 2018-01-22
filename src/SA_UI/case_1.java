@@ -3,6 +3,7 @@ package SA_UI;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -14,7 +15,7 @@ import pom_elements.call_to_customer;
 import static pom_elements.home_page.yoda_url;
 import static pom_elements.login_page.pass;
 import static pom_elements.login_page.username;
-
+import java.util.List;
 
 public class case_1 {
     WebDriver driver = new FirefoxDriver();
@@ -43,29 +44,17 @@ public class case_1 {
             String y_url=driver.getCurrentUrl();
             if(y_url==yoda_url)
             {
-                home_page.yoda_notifications_1(driver).click();
-                home_page.yoda_notification_2(driver).click();
-                home_page.yoda_notifications_3(driver).click();
-                home_page.yoda_notifications_4(driver).click();
-                home_page.yoda_notifications_5(driver).click();
-                home_page.yoda_notifications_6(driver).click();
-                home_page.yoda_notifications_7(driver).click();
-                home_page.yoda_notifications_8(driver).click();
-                home_page.yoda_notifications_9(driver).click();
-                home_page.yoda_notifications_10(driver).click();
-                home_page.yoda_notifications_11(driver).click();
-                home_page.yoda_notifications_12(driver).click();
-                home_page.yoda_notifications_13(driver).click();
-                home_page.yoda_notification_14(driver).click();
-                home_page.yoda_notifications_15(driver).click();
-                home_page.yoda_notifications_16(driver).click();
-                home_page.yoda_notifications_17(driver).click();
-                home_page.yoda_notifications_18(driver).click();
-                home_page.yoda_notifications_19(driver).click();
-                home_page.yoda_notifications_20(driver).click();
+                List<WebElement> elements = home_page.yoda_notifications(driver);
+                for(int i = 0; i <= elements.size();i++){
+                    System.out.println(i);
+                    elements.get(i).click();
+                }
+                home_page.proceed_to_sa(driver).click();
+
+            }else
+            {
+                System.out.println("No check for notifications needed");
             }
-            else
-            { System.out.println("No check for notifications needed");}
     }
     @Test(priority = 3,alwaysRun = true)
     public void call_to_customer()throws InterruptedException {

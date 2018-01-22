@@ -21,7 +21,7 @@ public class salogin
             capabilities.setCapability("marionette", true); // setting the desired capabilities
 
 
-            String url = "http://10.85.52.152/flipkart/";
+            String url = "http://10.85.53.223/flipkart/";
 
 // Login Starts
             driver.get(url);
