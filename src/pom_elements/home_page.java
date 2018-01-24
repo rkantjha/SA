@@ -11,8 +11,19 @@ public class home_page {
     public static WebElement element=null;
 
     public static List<WebElement> yoda_notifications(WebDriver driver) {
-        List<WebElement> elements = driver.findElements(By.xpath("/html/body/div[1]/div/div[5]/div[1]/div[2]/div/div/div[2]"));
+        List<WebElement> elements = driver.findElements(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]"));
         return elements;
+    }
+
+    public static WebElement yoda_noti(WebDriver driver)
+    {
+        element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[3]/div[i]"));
+        return element;
+    }
+    public static WebElement count(WebDriver driver)
+    {
+        element=driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div[2]/div/div/div[2]/div[1]/div[1]/div[2]"));
+        return element;
     }
     public static WebElement proceed_to_sa(WebDriver driver)
     {

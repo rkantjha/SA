@@ -7,22 +7,26 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pom_elements.home_page;
 import pom_elements.login_page;
 import pom_elements.call_to_customer;
+
+import static pom_elements.home_page.count;
+import static pom_elements.home_page.element;
 import static pom_elements.home_page.yoda_url;
 import static pom_elements.login_page.pass;
 import static pom_elements.login_page.username;
 import java.util.List;
+import java.util.SplittableRandom;
 
 public class case_1 {
     WebDriver driver = new FirefoxDriver();
     WebDriverWait wait = new WebDriverWait(driver, 20);
     login_page lp = new login_page();
     Alert alert;
-
 
     @BeforeTest
     public static void start(){
@@ -40,18 +44,27 @@ public class case_1 {
         login_page.login_button(driver).click();
     }
     @Test(priority=2,alwaysRun = true)
-    public void notification_home_page()throws InterruptedException {
-            String y_url=driver.getCurrentUrl();
-            if(y_url==yoda_url)
+    public void  notification_home_page()throws InterruptedException {
+
+            System.out.println(driver.getCurrentUrl() + "URL till here");
+
+            if (driver.getCurrentUrl().equalsIgnoreCase(yoda_url))
             {
+                String notification_count =  home_page.count(driver).getAttribute("innerHTML");
+                System.out.println("total count is  " + notification_count);
+
                 List<WebElement> elements = home_page.yoda_notifications(driver);
-                for(int i = 0; i <= elements.size();i++){
-                    System.out.println(i);
+                int count = Integer.parseInt(notification_count);
+
+                for(int i = 0;i<count;i++)
+                {
+                    System.out.println("Printing Element " + i);
+                    home_page.yoda_noti(driver).click();
                     elements.get(i).click();
                 }
                 home_page.proceed_to_sa(driver).click();
-
-            }else
+            }
+            else
             {
                 System.out.println("No check for notifications needed");
             }
