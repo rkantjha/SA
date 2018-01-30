@@ -14,7 +14,7 @@ public class login_page {
 
     public static WebElement user_name(WebDriver driver)
     {
-        element = driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/form/div[1]/input"));
+        element = driver.findElement(By.xpath("//INPUT[@type='text']"));
         return  element;
     }
     public static WebElement verify_me(WebDriver driver)
@@ -24,7 +24,7 @@ public class login_page {
     }
     public static WebElement password(WebDriver driver)
     {
-        element=driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/form/div[2]/input"));
+        element=driver.findElement(By.xpath("//INPUT[@type='password']"));
         return element;
     }
     public static WebElement login_button(WebDriver driver)
