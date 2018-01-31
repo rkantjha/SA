@@ -68,9 +68,8 @@ public class call_to_customer {
         element=driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/header/div[1]/div/div[2]/div/div/div/div/div[2]/div[4]/div/div[2]/div/div[1]/div[2]/div/div"));
         return element;
     }
-    public static WebElement new_session(WebDriver driver)
-    {
-        element=driver.findElement(By.cssSelector("#root > div > div.client-container-Layout-Layout_pageContent > div.packages-fk-cs-card-Card_card.packages-fk-cs-card-Card_defaultMargin > div > div._-fk-cs-components-packages-sa-widgets-core-SessionsInbox-SessionsInbox_inbox > div._-fk-cs-components-packages-sa-widgets-core-SessionsInbox-SessionsInbox_header > div._-fk-cs-components-packages-sa-widgets-core-SessionsInbox-SessionsInbox_inboxButtons > div:nth-child(2) > div > div > div._-fk-cs-components-packages-sa-widgets-core-node_modules-fk-cs-buttons-Button-Button_buttonRegular._-fk-cs-components-packages-sa-widgets-core-node_modules-fk-cs-buttons-PrimaryButton-PrimaryButton_pButtonStyle._-fk-cs-components-packages-sa-widgets-core-SessionsInbox-SessionsInbox_queryButton"));
+    public static WebElement new_session(WebDriver driver) {
+        element = driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div/div[1]"));
         return element;
     }
 

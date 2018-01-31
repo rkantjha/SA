@@ -12,10 +12,9 @@ import pom_elements.call_to_customer;
 
 public class case_2 {
 
-    WebDriver driver=new ChromeDriver();
+//    WebDriver driver=new ChromeDriver();
     case_1 one=new case_1();
-    call_to_customer c_t_c=new call_to_customer();
-    JavascriptExecutor jse = (JavascriptExecutor)driver;
+
 
 
     @BeforeTest
@@ -26,8 +25,9 @@ public class case_2 {
     @Test(priority=1,enabled=true)
     public void UiDataVerify() throws InterruptedException {
         one.login();
-        synchronized (driver){ driver.wait(3000); }
-        c_t_c.new_session(driver).click();
+        synchronized (one.driver){ one.driver.wait(3000); }
+        call_to_customer.new_session(one.driver).click();
+       // one.logout();
     }
 
     @Test(priority=2,enabled=true)
@@ -44,15 +44,14 @@ public class case_2 {
 
      @Test(priority=4,enabled=true)
     public void address_details()
-     {
-         System.out.println("test");
+     {  System.out.println("test");
      }
-     @AfterTest
+     @AfterTest(enabled = true)
     public void close_and_quit()
      {
          System.out.println("All the tests are over");
-         driver.close();
-         driver.quit();
+         one.driver.close();
+         one.driver.quit();
      }
     }
 

@@ -25,7 +25,7 @@ import java.util.SplittableRandom;
 
 public class case_1 {
 
-    WebDriver driver = new ChromeDriver();
+    final WebDriver driver = new ChromeDriver();
     WebDriverWait wait = new WebDriverWait(driver, 20);
     login_page lp = new login_page();
     Alert alert;
@@ -59,7 +59,7 @@ public class case_1 {
                 List<WebElement> elements = home_page.yoda_notifications(driver);
                 int count = Integer.parseInt(notification_count);
 
-                for(int i = 0;i<count;i++) {
+                for(int i=0;i<count;i++) {
                     System.out.println("Printing Element " + i);
                     home_page.yoda_noti(driver).click();
                     elements.get(i).click();
@@ -88,5 +88,13 @@ public class case_1 {
         call_to_customer.select_customer(driver).click();
         call_to_customer.enter_phone_number(driver).sendKeys(call_to_customer.phone_number);
         call_to_customer.click_on_dial(driver).click();
+    }
+    @Test(priority=4,enabled=true)
+    public void logout()throws InterruptedException
+    {
+        synchronized (driver){ driver.wait(3000); }
+        login_page.profile_menu(driver).click();
+        login_page.click_on_logout(driver).click();
+
     }
 }

@@ -37,6 +37,15 @@ public class login_page {
         element=driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div[2]/div[2]/button"));
         return element;
     }
-
+    public static WebElement profile_menu(WebDriver driver)
+    {
+        element=driver.findElement(By.xpath("(//I[@class='fa fa-caret-down'])[2]"));
+        return element;
+    }
+    public static WebElement click_on_logout(WebDriver driver)
+    {
+        element=driver.findElement(By.xpath("//SPAN[@class='node_modules-fk-cs-dropdown-dropdown_options'][text()='Logout']"));
+        return element;
+    }
 
 }
