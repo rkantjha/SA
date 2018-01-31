@@ -12,11 +12,8 @@ import pom_elements.call_to_customer;
 
 public class case_2 {
 
-//    WebDriver driver=new ChromeDriver();
     case_1 one=new case_1();
-
-
-
+    
     @BeforeTest
     public static void BeforeClass()
     { System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
@@ -27,7 +24,6 @@ public class case_2 {
         one.login();
         synchronized (one.driver){ one.driver.wait(3000); }
         call_to_customer.new_session(one.driver).click();
-       // one.logout();
     }
 
     @Test(priority=2,enabled=true)

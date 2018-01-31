@@ -69,8 +69,9 @@ public class call_to_customer {
         return element;
     }
     public static WebElement new_session(WebDriver driver) {
-        element = driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div/div[1]"));
+        element = driver.findElement(By.xpath("/html/body/div[1]/div/div[4]/div[1]/div/div[1]/div[1]/div[2]/div[2]"));
         return element;
+        ////*[@id="root"]/div/div[4]/div[1]/div/div[1]/div[1]/div[2]/div[2]/div/div/div[1]
     }
 
 }
