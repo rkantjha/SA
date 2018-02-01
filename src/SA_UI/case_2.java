@@ -1,7 +1,6 @@
 package SA_UI;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -19,6 +18,7 @@ public class case_2 {
     { System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
     }
 
+
     @Test(priority=1,enabled=true)
     public void UiDataVerify() throws InterruptedException {
         one.login();
@@ -35,10 +35,30 @@ public class case_2 {
         //Account ID verification
         synchronized (one.driver){ one.driver.wait(4000); }
         String account_id=discovery_and_authentication.account_id(one.driver).getText();
-        System.out.println(account_id + "Is the account ID");
+        System.out.println(account_id + "  Account ID is verified");
         Assert.assertEquals("ACC13518860262177453",account_id);
-
-
+        //email verification
+        String email_id=discovery_and_authentication.email(one.driver).getText();
+        System.out.println(email_id + "  Email id is verified");
+        Assert.assertEquals("vivekkeshri390@gmail.com",email_id);
+        //phone number verification
+        String phone_no=discovery_and_authentication.phone(one.driver).getText();
+        System.out.println(phone_no+"   Phone number is verified");
+        Assert.assertEquals("+917091765088",phone_no);
+        //order id verification
+        String orders_id=discovery_and_authentication.orders_id(one.driver).getText();
+        System.out.println(orders_id+"    Order ID is verified");
+        Assert.assertEquals("OD111401472227234000",orders_id);
+        synchronized (one.driver){ one.driver.wait(3000); }
+        //payment button enable verification
+        boolean payment_button=discovery_and_authentication.payment_button(one.driver).isEnabled();
+        Assert.assertEquals(payment_button,true);
+        //cart button enable verification
+        boolean cart_button=discovery_and_authentication.cart_button(one.driver).isEnabled();
+        Assert.assertEquals(cart_button,true);
+        //complete session enable verification
+        boolean session_complete=discovery_and_authentication.complete_session(one.driver).isEnabled();
+        Assert.assertEquals(session_complete,true);
 
     }
 
@@ -58,13 +78,15 @@ public class case_2 {
     public void address_details()
      {  System.out.println("test");
      }
-     @AfterTest(enabled = false)
-    public void close_and_quit()
-     {
-         System.out.println("All the tests are over");
-         one.driver.close();
-         one.driver.quit();
-     }
+
+
+    @AfterTest(enabled = true)
+    public void close_and_quit() {
+        System.out.println("  All the tests are over Successfully  ");
+        one.driver.close();
+        one.driver.quit();
+    }
+
     }
 
 
