@@ -87,8 +87,35 @@ public class discovery_and_authentication {
         element=driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[1]/header/div[2]/div[2]/div/div/div/div[1]/div/div"));
         return element;
     }
-
-
-
+    public static WebElement show_selector(WebDriver driver)
+    {
+        element=driver.findElement(By.xpath("//SPAN[@class='_-sa-flipkart-src-Components-SelectorPanel-HiddenPanel-HiddenPanel_labelClass'][text()='Show selectors']"));
+        return element;
+    }
+    public static WebElement profile_button(WebDriver driver)
+    {
+        element=driver.findElement(By.xpath("(//I[@class='fa fa-caret-down'])[2]"));
+        return element;
+    }
+    public static WebElement logged_in_user_name(WebDriver driver)
+    {
+        element=driver.findElement(By.xpath("//SPAN[@class='node_modules-fk-cs-dropdown-dropdown_options'][text()='rahul.kant']"));
+        return element;
+    }
+    public static WebElement account(WebDriver driver)
+    {
+        element=driver.findElement(By.xpath("//SPAN[@class='node_modules-fk-cs-dropdown-dropdown_options'][text()='Account']"));
+        return element;
+    }
+    public static WebElement change_password(WebDriver driver)
+    {
+        element=driver.findElement(By.xpath("//SPAN[@class='node_modules-fk-cs-dropdown-dropdown_options'][text()='Change Password']"));
+        return element;
+    }
+    public static WebElement click_on_logout(WebDriver driver)
+    {
+        element=driver.findElement(By.xpath("//SPAN[@class='node_modules-fk-cs-dropdown-dropdown_options'][text()='Logout']"));
+        return element;
+    }
 
 }

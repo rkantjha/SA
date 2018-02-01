@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 
 public class login_page {
 
-
     public static String sa_url = "http://10.85.52.152/flipkart/";
     public static String username="rahul.kant";
     public static String pass="Rahul@12345";

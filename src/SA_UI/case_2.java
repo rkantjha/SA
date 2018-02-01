@@ -76,6 +76,30 @@ public class case_2 {
         //Take a break enable check
         boolean take_break=discovery_and_authentication.take_a_break(one.driver).isEnabled();
         Assert.assertEquals(take_break,true);
+        synchronized (one.driver){ one.driver.wait(3000); }
+        //show selector button enable check
+        boolean show_selector=discovery_and_authentication.show_selector(one.driver).isEnabled();
+        Assert.assertEquals(show_selector,true);
+        //profile button enable check
+        boolean profile=discovery_and_authentication.profile_button(one.driver).isEnabled();
+        Assert.assertEquals(profile,true);
+        //logged in user name enable check
+
+
+        discovery_and_authentication.profile_button(one.driver).click();//open profile menu
+
+
+        boolean logged_in_user=discovery_and_authentication.logged_in_user_name(one.driver).isEnabled();
+        Assert.assertEquals(logged_in_user,true);
+        //account menu button enable check
+        boolean account_info=discovery_and_authentication.account(one.driver).isEnabled();
+        Assert.assertEquals(account_info,true);
+        //change password enable check
+        boolean pass_change=discovery_and_authentication.change_password(one.driver).isEnabled();
+        Assert.assertEquals(pass_change,true);
+        //logout button enable check
+        boolean log_out=discovery_and_authentication.change_password(one.driver).isEnabled();
+        Assert.assertEquals(log_out,true);
 
     }
 
@@ -98,12 +122,9 @@ public class case_2 {
 
     @AfterTest(enabled = false)
     public void close_and_quit() {
-        System.out.println("  All the tests are over Successfully  ");
+        System.out.println("  All tests are over Successfully  ");
         one.driver.close();
         one.driver.quit();
     }
 
     }
-
-
-
