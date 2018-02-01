@@ -12,12 +12,10 @@ import pom_elements.discovery_and_authentication;
 public class case_2 {
 
     case_1 one=new case_1();
-
     @BeforeTest
     public static void BeforeClass()
     { System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
     }
-
 
     @Test(priority=1,enabled=true)
     public void UiDataVerify() throws InterruptedException {
@@ -59,7 +57,25 @@ public class case_2 {
         //close session button enable verification
         boolean session_complete=discovery_and_authentication.complete_session(one.driver).isEnabled();
         Assert.assertEquals(session_complete,true);
-        //
+        synchronized (one.driver){ one.driver.wait(3000); }
+        //Home button enable check
+        boolean home_button=discovery_and_authentication.home(one.driver).isEnabled();
+        Assert.assertEquals(home_button,true);
+        //yoda button enable check
+        boolean yoda_button=discovery_and_authentication.yoda(one.driver).isEnabled();
+        Assert.assertEquals(yoda_button,true);
+        //back to discovery enable check
+        boolean back2_discovery_button=discovery_and_authentication.back_to_discovery(one.driver).isEnabled();
+        Assert.assertEquals(back2_discovery_button,true);
+        //session navigator enable check
+        boolean session_nav=discovery_and_authentication.session_navigator(one.driver).isEnabled();
+        Assert.assertEquals(session_nav,true);
+        // Excalate issue enable check
+        boolean excalate=discovery_and_authentication.excalate_issue(one.driver).isEnabled();
+        Assert.assertEquals(excalate,true);
+        //Take a break enable check
+        boolean take_break=discovery_and_authentication.take_a_break(one.driver).isEnabled();
+        Assert.assertEquals(take_break,true);
 
     }
 
@@ -75,10 +91,9 @@ public class case_2 {
         System.out.println("test");
     }
 
-     @Test(priority=4,enabled=true)
-    public void address_details()
-     {  System.out.println("test");
-     }
+    @Test(priority=4,enabled=true)
+     public void address_details() {  System.out.println("test"); }
+
 
 
     @AfterTest(enabled = false)
