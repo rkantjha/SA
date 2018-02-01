@@ -1,6 +1,5 @@
 package pom_elements;
 
-import com.sun.istack.internal.NotNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
