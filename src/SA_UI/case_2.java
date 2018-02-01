@@ -56,9 +56,10 @@ public class case_2 {
         //cart button enable verification
         boolean cart_button=discovery_and_authentication.cart_button(one.driver).isEnabled();
         Assert.assertEquals(cart_button,true);
-        //complete session enable verification
+        //close session button enable verification
         boolean session_complete=discovery_and_authentication.complete_session(one.driver).isEnabled();
         Assert.assertEquals(session_complete,true);
+        //
 
     }
 
@@ -80,7 +81,7 @@ public class case_2 {
      }
 
 
-    @AfterTest(enabled = true)
+    @AfterTest(enabled = false)
     public void close_and_quit() {
         System.out.println("  All the tests are over Successfully  ");
         one.driver.close();
