@@ -136,10 +136,7 @@ public class case_2 {
         }
 
         //click on assign to no from yes
-
-
-
-
+        discovery_and_authentication.assign_to_no(one.driver).click();
     }
 
     @Test(priority=2,enabled=true)
@@ -159,7 +156,7 @@ public class case_2 {
 
 
 
-    @AfterTest(enabled = false)
+    @AfterTest(enabled = true)
     public void close_and_quit() {
         System.out.println("  All tests are over Successfully  ");
         one.driver.close();

@@ -127,6 +127,10 @@ public class discovery_and_authentication {
         element=driver.findElement(By.xpath("//DIV[@class='client-container-Layout-Header-Header_disabledButton'][text()='Take a break']"));
         return element;
     }
-    
+    public static WebElement assign_to_no(WebDriver driver)
+    {
+        element=driver.findElement(By.xpath("//DIV[@class='node_modules-fk-cs-toggle-switch-ToggleSwitch_text node_modules-fk-cs-toggle-switch-ToggleSwitch_no'][text()='NO']"));
+        return element;
+    }
 
 }
