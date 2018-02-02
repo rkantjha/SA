@@ -117,5 +117,16 @@ public class discovery_and_authentication {
         element=driver.findElement(By.xpath("//SPAN[@class='node_modules-fk-cs-dropdown-dropdown_options'][text()='Logout']"));
         return element;
     }
+    public static WebElement assign_yes(WebDriver driver)
+    {
+        element=driver.findElement(By.xpath("//DIV[@class='node_modules-fk-cs-toggle-switch-ToggleSwitch_text'][text()='YES']"));
+        return element;
+    }
+    public static WebElement break_dis(WebDriver driver)
+    {
+        element=driver.findElement(By.xpath("//DIV[@class='client-container-Layout-Header-Header_disabledButton'][text()='Take a break']"));
+        return element;
+    }
+    
 
 }

@@ -20,18 +20,26 @@ public class case_2 {
     @Test(priority=1,enabled=true)
     public void UiDataVerify() throws InterruptedException {
         one.login();
+
         synchronized (one.driver){ one.driver.wait(3000); }
+
         call_to_customer.new_session(one.driver).click();
+
         synchronized (one.driver){ one.driver.wait(3000); }
+
         discovery_and_authentication.search_box(one.driver).sendKeys(discovery_and_authentication.order_id_1);
         discovery_and_authentication.search_box(one.driver).sendKeys(Keys.RETURN);
-        //name verification
+
         synchronized (one.driver){ one.driver.wait(9000); }
+
+        //name verification
         String user_name= discovery_and_authentication.name(one.driver).getText();
         System.out.println(user_name + "   User name is verified ");
         Assert.assertEquals("Vivek keshri",user_name);
-        //Account ID verification
+
         synchronized (one.driver){ one.driver.wait(4000); }
+
+        //Account ID verification
         String account_id=discovery_and_authentication.account_id(one.driver).getText();
         System.out.println(account_id + "  Account ID is verified");
         Assert.assertEquals("ACC13518860262177453",account_id);
@@ -47,7 +55,9 @@ public class case_2 {
         String orders_id=discovery_and_authentication.orders_id(one.driver).getText();
         System.out.println(orders_id+"    Order ID is verified");
         Assert.assertEquals("OD111401472227234000",orders_id);
+
         synchronized (one.driver){ one.driver.wait(3000); }
+
         //payment button enable verification
         boolean payment_button=discovery_and_authentication.payment_button(one.driver).isEnabled();
         Assert.assertEquals(payment_button,true);
@@ -57,7 +67,9 @@ public class case_2 {
         //close session button enable verification
         boolean session_complete=discovery_and_authentication.complete_session(one.driver).isEnabled();
         Assert.assertEquals(session_complete,true);
+
         synchronized (one.driver){ one.driver.wait(3000); }
+
         //Home button enable check
         boolean home_button=discovery_and_authentication.home(one.driver).isEnabled();
         Assert.assertEquals(home_button,true);
@@ -76,7 +88,9 @@ public class case_2 {
         //Take a break enable check
         boolean take_break=discovery_and_authentication.take_a_break(one.driver).isEnabled();
         Assert.assertEquals(take_break,true);
+
         synchronized (one.driver){ one.driver.wait(3000); }
+
         //show selector button enable check
         boolean show_selector=discovery_and_authentication.show_selector(one.driver).isEnabled();
         Assert.assertEquals(show_selector,true);
@@ -100,6 +114,31 @@ public class case_2 {
         //logout button enable check
         boolean log_out=discovery_and_authentication.change_password(one.driver).isEnabled();
         Assert.assertEquals(log_out,true);
+
+        synchronized (one.driver){ one.driver.wait(3000); }
+
+        //session enable yes-no button enable check
+        boolean assign=discovery_and_authentication.assign_yes(one.driver).isEnabled();
+        Assert.assertEquals(assign,true);
+
+        //When assign is active take a break should be disabled.
+        if(assign==true)
+        { one.driver.navigate().refresh();
+
+          synchronized (one.driver){ one.driver.wait(3000); }
+
+          discovery_and_authentication.assign_yes(one.driver).click();
+
+            synchronized (one.driver){ one.driver.wait(4000); }
+
+            boolean yes_on=discovery_and_authentication.break_dis(one.driver).isEnabled();
+          Assert.assertEquals(yes_on,true);
+        }
+
+        //click on assign to no from yes
+
+
+
 
     }
 
