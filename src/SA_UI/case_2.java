@@ -129,7 +129,7 @@ public class case_2 {
 
           discovery_and_authentication.assign_yes(one.driver).click();
 
-            synchronized (one.driver){ one.driver.wait(4000); }
+             synchronized (one.driver){ one.driver.wait(4000); }
 
             boolean yes_on=discovery_and_authentication.break_dis(one.driver).isEnabled();
           Assert.assertEquals(yes_on,true);
@@ -142,6 +142,7 @@ public class case_2 {
     @Test(priority=2,enabled=true)
     public void order_details()
     {
+
         System.out.println("test");
     }
 
@@ -158,6 +159,7 @@ public class case_2 {
 
     @AfterTest(enabled = true)
     public void close_and_quit() {
+
         System.out.println("  All tests are over Successfully  ");
         one.driver.close();
         one.driver.quit();
