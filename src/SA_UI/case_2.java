@@ -7,11 +7,20 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pom_elements.call_to_customer;
 import pom_elements.discovery_and_authentication;
+import SA_UI.ExcelData;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.IOException;
 
 public class case_2 {
 
     case_1 one=new case_1();
+    ExcelData ExcelData = new ExcelData();
+    XSSFWorkbook wb = ExcelData.bootstrap();
+
+    public case_2() throws IOException {
+    }
+
     @BeforeTest
     public static void BeforeClass()
     { System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
@@ -19,7 +28,7 @@ public class case_2 {
 
     @Test(priority=1,enabled=true)
     public void UiDataVerify() throws InterruptedException {
-        one.login();
+        one.login(wb);
 
         synchronized (one.driver){ one.driver.wait(3000); }
 

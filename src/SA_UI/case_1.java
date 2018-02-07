@@ -18,11 +18,9 @@ import pom_elements.call_to_customer;
 import static pom_elements.home_page.count;
 import static pom_elements.home_page.element;
 import static pom_elements.home_page.yoda_url;
-import static pom_elements.login_page.pass;
-import static pom_elements.login_page.username;
 import java.util.List;
 import java.util.SplittableRandom;
-
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class case_1 {
 
     final WebDriver driver = new ChromeDriver();
@@ -35,13 +33,13 @@ public class case_1 {
         System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
     }
     @Test(priority=1,enabled=true)
-    public void login() throws InterruptedException {
+    public void login(XSSFWorkbook wb) throws InterruptedException {
         driver.get(login_page.sa_url);
         driver.manage().window().maximize();
-        login_page.user_name(driver).sendKeys(username);
+        login_page.user_name(driver).sendKeys(login_page.getUserName(wb));
         login_page.verify_me(driver).click();
         synchronized (driver){ driver.wait(3000); }
-        login_page.password(driver).sendKeys(pass);
+        login_page.password(driver).sendKeys(login_page.getPassword(wb));
         login_page.login_button(driver).click();
         synchronized (driver){ driver.wait(3000); }
         login_page.logout_previous(driver).click();
