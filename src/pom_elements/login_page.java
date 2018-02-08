@@ -11,21 +11,24 @@ public class login_page {
     public static String username="rahul.kant";
     public static String pass="Rahul@12345";
     public static WebElement  element =null;
+    public static XSSFSheet sh;
 
     public static String getUserName(XSSFWorkbook wb){
-        XSSFSheet sh= wb.getSheetAt(0);
+        sh= wb.getSheetAt(0);
         return sh.getRow(1).getCell(0).getStringCellValue();
     }
 
     public static String getPassword(XSSFWorkbook wb){
-        XSSFSheet sh1= wb.getSheetAt(0);
-        return sh1.getRow(1).getCell(1).getStringCellValue();
+        sh= wb.getSheetAt(0);
+        return sh.getRow(1).getCell(1).getStringCellValue();
     }
 
-    public static WebElement user_name(WebDriver driver)
+    public static WebElement user_name(XSSFWorkbook wb,WebDriver driver)
     {
-        element = driver.findElement(By.xpath("//INPUT[@type='text']"));
-        return  element;
+        sh= wb.getSheetAt(2);
+        element=driver.findElement(By.xpath(sh.getRow(1).getCell(1).getStringCellValue()));
+        return element;
+
     }
     public static WebElement verify_me(WebDriver driver)
     {

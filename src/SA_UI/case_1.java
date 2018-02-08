@@ -18,31 +18,50 @@ import pom_elements.call_to_customer;
 import static pom_elements.home_page.count;
 import static pom_elements.home_page.element;
 import static pom_elements.home_page.yoda_url;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.SplittableRandom;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import SA_UI.ExcelData;
+
 public class case_1 {
 
     final WebDriver driver = new ChromeDriver();
     WebDriverWait wait = new WebDriverWait(driver, 20);
-    login_page lp = new login_page();
+    public login_page lp = new login_page();
     Alert alert;
+
+    ExcelData ExcelData = new ExcelData();
+    XSSFWorkbook wb = ExcelData.bootstrap();
+
+    public case_1() throws IOException {
+    }
 
     @BeforeTest
     public static void start(){
         System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
     }
+
     @Test(priority=1,enabled=true)
-    public void login(XSSFWorkbook wb) throws InterruptedException {
+    public void login() throws InterruptedException {
         driver.get(login_page.sa_url);
+
         driver.manage().window().maximize();
-        login_page.user_name(driver).sendKeys(login_page.getUserName(wb));
+        login_page.user_name(wb,driver).sendKeys(login_page.getUserName(wb));
+
         login_page.verify_me(driver).click();
+
         synchronized (driver){ driver.wait(3000); }
+
         login_page.password(driver).sendKeys(login_page.getPassword(wb));
+
         login_page.login_button(driver).click();
+
         synchronized (driver){ driver.wait(3000); }
+
         login_page.logout_previous(driver).click();
+
         login_page.login_button(driver).click();
     }
     @Test(priority=2,enabled=true)

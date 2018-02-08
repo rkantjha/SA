@@ -15,8 +15,6 @@ import java.io.IOException;
 public class case_2 {
 
     case_1 one=new case_1();
-    ExcelData ExcelData = new ExcelData();
-    XSSFWorkbook wb = ExcelData.bootstrap();
 
     public case_2() throws IOException {
     }
@@ -28,7 +26,7 @@ public class case_2 {
 
     @Test(priority=1,enabled=true)
     public void UiDataVerify() throws InterruptedException {
-        one.login(wb);
+        one.login();
 
         synchronized (one.driver){ one.driver.wait(3000); }
 
