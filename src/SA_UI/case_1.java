@@ -15,6 +15,7 @@ import pom_elements.home_page;
 import pom_elements.login_page;
 import pom_elements.call_to_customer;
 
+import static com.sun.tools.corba.se.idl.constExpr.Expression.two;
 import static pom_elements.home_page.count;
 import static pom_elements.home_page.element;
 import static pom_elements.home_page.yoda_url;
@@ -50,19 +51,19 @@ public class case_1 {
         driver.manage().window().maximize();
         login_page.user_name(wb,driver).sendKeys(login_page.getUserName(wb));
 
-        login_page.verify_me(driver).click();
+        login_page.verify_me(wb,driver).click();
 
         synchronized (driver){ driver.wait(3000); }
 
-        login_page.password(driver).sendKeys(login_page.getPassword(wb));
+        login_page.password(wb,driver).sendKeys(login_page.getPassword(wb));
 
-        login_page.login_button(driver).click();
+        login_page.login_button(wb,driver).click();
 
         synchronized (driver){ driver.wait(3000); }
 
-        login_page.logout_previous(driver).click();
+        login_page.logout_previous(wb,driver).click();
 
-        login_page.login_button(driver).click();
+        login_page.login_button(wb,driver).click();
     }
     @Test(priority=2,enabled=true)
     public void  notification_home_page()throws InterruptedException {
@@ -110,8 +111,12 @@ public class case_1 {
     public void logout()throws InterruptedException
     {
         synchronized (driver){ driver.wait(3000); }
-        login_page.profile_menu(driver).click();
-        login_page.click_on_logout(driver).click();
+        login_page.profile_menu(wb,driver).click();
+        synchronized (driver){ driver.wait(3000); }
+        login_page.click_on_logout(wb,driver).click();
+        driver.close();
+        driver.quit();
+
 
     }
 }

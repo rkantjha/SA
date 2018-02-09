@@ -30,34 +30,40 @@ public class login_page {
         return element;
 
     }
-    public static WebElement verify_me(WebDriver driver)
+    public static WebElement verify_me(XSSFWorkbook wb,WebDriver driver)
     {
-        element=driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/form/div[3]/button"));
+        sh= wb.getSheetAt(2);
+        element=driver.findElement(By.xpath(sh.getRow(2).getCell(1).getStringCellValue()));
         return element;
     }
-    public static WebElement password(WebDriver driver)
+    public static WebElement password(XSSFWorkbook wb,WebDriver driver)
     {
-        element=driver.findElement(By.xpath("//INPUT[@type='password']"));
+        sh= wb.getSheetAt(2);
+        element=driver.findElement(By.xpath(sh.getRow(3).getCell(1).getStringCellValue()));
         return element;
     }
-    public static WebElement login_button(WebDriver driver)
+    public static WebElement login_button(XSSFWorkbook wb,WebDriver driver)
     {
-        element=driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/form/div[4]/button[1]"));
+        sh= wb.getSheetAt(2);
+        element=driver.findElement(By.xpath(sh.getRow(4).getCell(1).getStringCellValue()));
         return element;
     }
-    public static WebElement logout_previous(WebDriver driver)
+    public static WebElement logout_previous(XSSFWorkbook wb,WebDriver driver)
     {
-        element=driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div[2]/div[2]/button"));
+        sh= wb.getSheetAt(2);
+        element=driver.findElement(By.xpath(sh.getRow(5).getCell(1).getStringCellValue()));
         return element;
     }
-    public static WebElement profile_menu(WebDriver driver)
+    public static WebElement profile_menu(XSSFWorkbook wb,WebDriver driver)
     {
-        element=driver.findElement(By.xpath("(//I[@class='fa fa-caret-down'])[2]"));
+        sh= wb.getSheetAt(2);
+        element=driver.findElement(By.xpath(sh.getRow(6).getCell(1).getStringCellValue()));
         return element;
     }
-    public static WebElement click_on_logout(WebDriver driver)
+    public static WebElement click_on_logout(XSSFWorkbook wb,WebDriver driver)
     {
-        element=driver.findElement(By.xpath("//SPAN[@class='node_modules-fk-cs-dropdown-dropdown_options'][text()='Logout']"));
+        sh= wb.getSheetAt(2);
+        element=driver.findElement(By.xpath(sh.getRow(7).getCell(1).getStringCellValue()));
         return element;
     }
 

@@ -40,7 +40,7 @@ public class case_2 {
         synchronized (one.driver){ one.driver.wait(9000); }
 
         //name verification
-        String user_name= discovery_and_authentication.name(one.driver).getText();
+        String user_name = discovery_and_authentication.name(one.driver).getText();
         System.out.println(user_name + "   User name is verified ");
         Assert.assertEquals("Vivek keshri",user_name);
 
@@ -165,7 +165,7 @@ public class case_2 {
 
 
     @AfterTest(enabled = true)
-    public void close_and_quit() {
+    public  void close_and_quit() {
 
         System.out.println("  All tests are over Successfully  ");
         one.driver.close();
