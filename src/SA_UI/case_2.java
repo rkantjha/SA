@@ -150,7 +150,6 @@ public class case_2 {
     @Test(priority=2,enabled=true)
     public void order_details()
     {
-
         System.out.println("test");
     }
     @Test(priority=3,enabled=true)
