@@ -28,7 +28,7 @@ import SA_UI.ExcelData;
 
 public class case_1 {
 
-    final WebDriver driver = new ChromeDriver();
+    WebDriver driver = new ChromeDriver();
     WebDriverWait wait = new WebDriverWait(driver, 20);
     public login_page lp = new login_page();
     Alert alert;
@@ -71,7 +71,7 @@ public class case_1 {
             System.out.println(driver.getCurrentUrl() + "URL till here");
 
             if (driver.getCurrentUrl().equalsIgnoreCase(yoda_url)) {
-                String notification_count =  home_page.count(driver).getAttribute("innerHTML");
+                String notification_count =  home_page.count(wb,driver).getAttribute("innerHTML");
                 System.out.println("total count is  " + notification_count);
 
                 List<WebElement> elements = home_page.yoda_notifications(driver);
@@ -79,33 +79,35 @@ public class case_1 {
 
                 for(int i=0;i<count;i++) {
                     System.out.println("Printing Element " + i);
-                    home_page.yoda_noti(driver).click();
+                    home_page.yoda_noti(wb,driver).click();
                     elements.get(i).click();
                 }
-                home_page.proceed_to_sa(driver).click();
+                home_page.proceed_to_sa(wb,driver).click();
             }
             else {
                 System.out.println("No check for notifications needed");
             }
     }
-    @Test(priority = 3,enabled=false)
+    @Test(priority = 3,enabled=false)//enable it true when test is running with voice profile
     public void call_to_customer()throws InterruptedException {
         synchronized (driver){ driver.wait(3000); }
-        call_to_customer.new_session(driver).click();
+        call_to_customer.new_session(wb,driver).click();
         synchronized (driver){ driver.wait(3000); }
-        call_to_customer.call_drop_down(driver).click();
-        call_to_customer.select_campaign(driver).click();
-        call_to_customer.enter_extension(driver).sendKeys(call_to_customer.extension);
-        call_to_customer.call_login(driver).click();
-        call_to_customer.assign_yes(driver).click();
+        call_to_customer.call_drop_down(wb,driver).click();
+        synchronized (driver){ driver.wait(5000); }
+        call_to_customer.select_campaign(wb,driver).click();
+        call_to_customer.enter_extension(wb,driver).sendKeys(call_to_customer.extension);
+        call_to_customer.call_login(wb,driver).click();
+        synchronized (driver){ driver.wait(6000); }
+        call_to_customer.assign_yes(wb,driver).click();
         synchronized (driver){ driver.wait(3000); }
-        call_to_customer.manual_dial(driver).click();
+        call_to_customer.manual_dial(wb,driver).click();
         synchronized (driver){ driver.wait(3000); }
-        call_to_customer.make_call(driver).click();
-        call_to_customer.select_number_type(driver).click();
-        call_to_customer.select_customer(driver).click();
-        call_to_customer.enter_phone_number(driver).sendKeys(call_to_customer.phone_number);
-        call_to_customer.click_on_dial(driver).click();
+        call_to_customer.make_call(wb,driver).click();
+        call_to_customer.select_number_type(wb,driver).click();
+        call_to_customer.select_customer(wb,driver).click();
+        call_to_customer.enter_phone_number(wb,driver).sendKeys(call_to_customer.phone_number);
+        call_to_customer.click_on_dial(wb,driver).click();
     }
     @Test(priority=4,enabled=true)
     public void logout()throws InterruptedException
