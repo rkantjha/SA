@@ -29,19 +29,19 @@ public class order_details {
         element=driver.findElement(By.xpath(sh.getRow(49).getCell(1).getStringCellValue()));
         return element;
     }
-    public static WebElement order_verification(XSSFWorkbook wb,WebDriver driver)
+    public static WebElement order_verification_dt(XSSFWorkbook wb,WebDriver driver)
     {
         sh= wb.getSheetAt(2);
         element=driver.findElement(By.xpath(sh.getRow(50).getCell(1).getStringCellValue()));
         return element;
     }
-    public static WebElement create_incident(XSSFWorkbook wb,WebDriver driver)
+    public static WebElement create_incident_dt(XSSFWorkbook wb,WebDriver driver)
     {
         sh= wb.getSheetAt(2);
         element=driver.findElement(By.xpath(sh.getRow(51).getCell(1).getStringCellValue()));
         return element;
     }
-    public static WebElement price_adjustments(XSSFWorkbook wb,WebDriver driver)
+    public static WebElement price_adjustments_dt(XSSFWorkbook wb,WebDriver driver)
     {
         sh= wb.getSheetAt(2);
         element=driver.findElement(By.xpath(sh.getRow(52).getCell(1).getStringCellValue()));

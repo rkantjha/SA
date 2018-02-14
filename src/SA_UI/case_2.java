@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pom_elements.call_to_customer;
 import pom_elements.discovery_and_authentication;
+import pom_elements.order_details;
 import SA_UI.ExcelData;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -148,9 +149,36 @@ public class case_2 {
         discovery_and_authentication.assign_to_no(wb,one.driver).click();
     }
     @Test(priority=2,enabled=true)
-    public void order_details()
+    public void order_details()throws InterruptedException
     {
-        System.out.println("test");
+        //order date verification
+        String ordered_on=order_details.ordered_on(wb,one.driver).getText();
+        System.out.println(ordered_on+"    date is verified ");
+        Assert.assertEquals("28 Jan 18, 10:43 PM",ordered_on);
+        //total price verification
+        String tp=order_details.total_price(wb,one.driver).getText();
+        System.out.println(tp+"  total price is verified");
+        Assert.assertEquals("14599",tp);
+        //channel verification
+        String cv=order_details.channel(wb,one.driver).getText();
+        System.out.println(cv+"  is the name of the channel");
+        Assert.assertEquals("AndroidApp",cv);
+        //order verification dt enable check (email profile)
+        boolean ov_dt=order_details.order_verification_dt(wb,one.driver).isEnabled();
+        Assert.assertEquals(ov_dt,"false");
+        //create incident dt verification enable check(email profile)
+        boolean ci_dt=order_details.create_incident_dt(wb,one.driver).isEnabled();
+        Assert.assertEquals(ci_dt,"false");
+        //price adjustment dt enable check(email profile)
+        boolean pa_dt=order_details.price_adjustments_dt(wb,one.driver).isEnabled();
+        Assert.assertEquals(pa_dt,"false");
+
+        //cancle dt enable check
+        boolean cdt=order_details.cancel_dt(wb,one.driver).isEnabled();
+        Assert.assertEquals(cdt,"false");
+
+
+
     }
     @Test(priority=3,enabled=true)
     public void payment_details()
@@ -162,9 +190,10 @@ public class case_2 {
      public void address_details() {  System.out.println("test"); }
 
     @AfterTest(enabled = true)
+
     public  void close_and_quit() {
 
-        System.out.println("  All tests are over Successfully  ");
+        System.out.println(" Quitting the session ");
         one.driver.close();
         one.driver.quit();
     }

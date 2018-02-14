@@ -48,7 +48,10 @@ public class case_1 {
     public void login() throws InterruptedException {
         driver.get(login_page.sa_url);
 
+        synchronized (driver){ driver.wait(3000); }
+
         driver.manage().window().maximize();
+
         login_page.user_name(wb,driver).sendKeys(login_page.getUserName(wb));
 
         login_page.verify_me(wb,driver).click();
