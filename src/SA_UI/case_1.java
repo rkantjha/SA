@@ -14,12 +14,10 @@ import org.testng.annotations.Test;
 import pom_elements.home_page;
 import pom_elements.login_page;
 import pom_elements.call_to_customer;
-
 import static com.sun.tools.corba.se.idl.constExpr.Expression.two;
 import static pom_elements.home_page.count;
 import static pom_elements.home_page.element;
 import static pom_elements.home_page.yoda_url;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.SplittableRandom;

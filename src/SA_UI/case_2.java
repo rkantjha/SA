@@ -148,7 +148,7 @@ public class case_2 {
         //click on assign to no from yes
         discovery_and_authentication.assign_to_no(wb,one.driver).click();
     }
-    @Test(priority=2,enabled=true)
+    @Test(priority=2,enabled=false)//logic pending
     public void order_details()throws InterruptedException
     {
         //order date verification
@@ -163,16 +163,18 @@ public class case_2 {
         String cv=order_details.channel(wb,one.driver).getText();
         System.out.println(cv+"  is the name of the channel");
         Assert.assertEquals("AndroidApp",cv);
+
+
         //order verification dt enable check (email profile)
         boolean ov_dt=order_details.order_verification_dt(wb,one.driver).isEnabled();
         Assert.assertEquals(ov_dt,"false");
         //create incident dt verification enable check(email profile)
+
         boolean ci_dt=order_details.create_incident_dt(wb,one.driver).isEnabled();
         Assert.assertEquals(ci_dt,"false");
         //price adjustment dt enable check(email profile)
         boolean pa_dt=order_details.price_adjustments_dt(wb,one.driver).isEnabled();
         Assert.assertEquals(pa_dt,"false");
-
         //cancle dt enable check
         boolean cdt=order_details.cancel_dt(wb,one.driver).isEnabled();
         Assert.assertEquals(cdt,"false");
