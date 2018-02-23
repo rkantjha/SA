@@ -12,6 +12,7 @@ import pom_elements.discovery_and_authentication;
 import pom_elements.order_details;
 import SA_UI.ExcelData;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import pom_elements.payment_details;
 
 import java.io.IOException;
 
@@ -144,7 +145,6 @@ public class case_2 {
             boolean yes_on=discovery_and_authentication.break_dis(wb,one.driver).isEnabled();
           Assert.assertEquals(yes_on,true);
         }
-
         //click on assign to no from yes
         discovery_and_authentication.assign_to_no(wb,one.driver).click();
     }
@@ -163,13 +163,10 @@ public class case_2 {
         String cv=order_details.channel(wb,one.driver).getText();
         System.out.println(cv+"  is the name of the channel");
         Assert.assertEquals("AndroidApp",cv);
-
-
         //order verification dt enable check (email profile)
         boolean ov_dt=order_details.order_verification_dt(wb,one.driver).isEnabled();
         Assert.assertEquals(ov_dt,"false");
         //create incident dt verification enable check(email profile)
-
         boolean ci_dt=order_details.create_incident_dt(wb,one.driver).isEnabled();
         Assert.assertEquals(ci_dt,"false");
         //price adjustment dt enable check(email profile)
@@ -178,14 +175,20 @@ public class case_2 {
         //cancle dt enable check
         boolean cdt=order_details.cancel_dt(wb,one.driver).isEnabled();
         Assert.assertEquals(cdt,"false");
-
-
-
     }
     @Test(priority=3,enabled=true)
-    public void payment_details()
+    public void payment_details()throws InterruptedException
     {
-        System.out.println("test");
+        //selling price verification
+        String s_price=payment_details.selling_price(wb,one.driver).getText();
+        System.out.println(s_price+"    selling price is verified ");
+        Assert.assertEquals("14599",s_price);
+        //download invoice enable check
+        boolean d_invoice=payment_details.download_invoice(wb,one.driver).isEnabled();
+        System.out.println(d_invoice+"  download invoice button is active ");
+
+
+
     }
 
     @Test(priority=4,enabled=true)
