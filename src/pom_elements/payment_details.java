@@ -53,4 +53,10 @@ public class payment_details {
         element=driver.findElement(By.xpath(sh.getRow(61).getCell(0).getStringCellValue()));
         return element;
     }
+    public static WebElement payment_details_tab(XSSFWorkbook wb,WebDriver driver){
+        sh= wb.getSheetAt(2);
+        element=driver.findElement(By.xpath(sh.getRow(62).getCell(0).getStringCellValue()));
+        return element;
+    }
+
 }
