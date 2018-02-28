@@ -14,6 +14,7 @@ import pom_elements.DTActions;
 import SA_UI.ExcelData;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import pom_elements.payment_details;
+import pom_elements.address_detail;
 
 import java.io.IOException;
 import java.util.List;
@@ -227,10 +228,20 @@ public class case_2 {
             Assert.assertEquals(cmat,"Cod");
     }
 
-    @Test(priority=4,enabled=false)
-    public void order_detail()
+    @Test(priority=4,enabled=true)
+    public void  address_details()throws InterruptedException
     {
-        System.out.println("test");
+        synchronized (one.driver) { one.driver.wait(5000); }
+        //click on address details tab
+        address_detail.click_address_details_tab(wb,one.driver).click();
+        synchronized (one.driver) { one.driver.wait(3000); }
+
+        String c_a=address_detail.current_address(wb,one.driver).getText();
+        System.out.println(c_a);
+        Assert.assertEquals(c_a,"Electronic City phase 1 , Konappana agrahara ,nanjuda reddy layout " +
+                "near yellamma temple ,Hosur main road Bangalore");
+
+
     }
     @AfterTest(enabled = true)
     public void close_and_quit() {
