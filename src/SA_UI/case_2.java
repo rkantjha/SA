@@ -209,7 +209,6 @@ public class case_2 {
             //click on payment detail tab
             synchronized (one.driver) { one.driver.wait(4000); }
             payment_details.payment_details_tab(wb, one.driver).click();
-            payment_details.payment_details_tab(wb, one.driver).click();
 
         synchronized (one.driver) { one.driver.wait(4000); }
             //selling price verification
@@ -227,8 +226,6 @@ public class case_2 {
             System.out.println("create incident button is enabled");
             String cmat=payment_details.credit_method_amountType(wb,one.driver).getText();
             Assert.assertEquals(cmat,"Cod");
-
-
     }
 
     @Test(priority=4,enabled=false)
