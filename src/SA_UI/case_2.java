@@ -209,8 +209,7 @@ public class case_2 {
             //click on payment detail tab
             synchronized (one.driver) { one.driver.wait(4000); }
             payment_details.payment_details_tab(wb, one.driver).click();
-
-        synchronized (one.driver) { one.driver.wait(4000); }
+            synchronized (one.driver) { one.driver.wait(4000); }
             //selling price verification
             String s_price = payment_details.selling_price(wb, one.driver).getText();
             System.out.println(s_price + "    selling price is verified ");
