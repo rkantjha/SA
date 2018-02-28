@@ -10,17 +10,19 @@ import org.testng.annotations.Test;
 import pom_elements.call_to_customer;
 import pom_elements.discovery_and_authentication;
 import pom_elements.order_details;
+import pom_elements.DTActions;
 import SA_UI.ExcelData;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import pom_elements.payment_details;
 
 import java.io.IOException;
+import java.util.List;
 
 public class case_2 {
 
     case_1 one = new case_1();
     XSSFWorkbook wb = ExcelData.bootstrap();
-
+    DTActions dtActions = new DTActions();
     public case_2() throws IOException {
     }
 
@@ -34,7 +36,7 @@ public class case_2 {
         one.login();
 
         synchronized (one.driver) {
-            one.driver.wait(3000);
+            one.driver.wait(6000);
         }
 
         call_to_customer.new_session(one.wb, one.driver).click();
@@ -167,7 +169,7 @@ public class case_2 {
         discovery_and_authentication.assign_to_no(wb, one.driver).click();
     }
 
-    @Test(priority = 2, enabled = false)//logic pending
+    @Test(priority = 2, enabled = true)//logic pending
     public void order_details() throws InterruptedException {
 
         //order date verification
@@ -182,40 +184,54 @@ public class case_2 {
         String cv = order_details.channel(wb, one.driver).getText();
         System.out.println(cv + "  is the name of the channel");
         Assert.assertEquals("AndroidApp", cv);
-        //order verification dt enable check (email profile)
-        boolean ov_dt = order_details.order_verification_dt(wb, one.driver).isEnabled();
-        Assert.assertEquals(ov_dt, "false");
-        //create incident dt verification enable check(email profile)
-        boolean ci_dt = order_details.create_incident_dt(wb, one.driver).isEnabled();
-        Assert.assertEquals(ci_dt, "false");
-        //price adjustment dt enable check(email profile)
-        boolean pa_dt = order_details.price_adjustments_dt(wb, one.driver).isEnabled();
-        Assert.assertEquals(pa_dt, "false");
-        //cancle dt enable check
-        boolean cdt = order_details.cancel_dt(wb, one.driver).isEnabled();
-        Assert.assertEquals(cdt, "false");
-    }
 
+//        //Getting DT Actions
+//        List<WebElement> actions = order_details.order_verification_dt(wb, one.driver);
+//
+//        boolean ov_dt = dtActions.findDTElement(actions,one.driver,"Order Verification");
+//        //order verification dt enable check (email profile)
+//        Assert.assertEquals(ov_dt, false);
+//
+//        //create incident dt verification enable check(email profile)
+//        boolean ci_dt =  dtActions.findDTElement(actions,one.driver,"Create Incident");
+//        Assert.assertEquals(ci_dt, false);
+//
+//        //price adjustment dt enable check(email profile)
+//        boolean pa_dt = dtActions.findDTElement(actions,one.driver,"Price Adjustment");
+//        Assert.assertEquals(pa_dt, false);
+//        //cancle dt enable check
+//        boolean cdt = dtActions.findDTElement(actions,one.driver,"Price Adjustment");
+//        Assert.assertEquals(cdt, false);
+    }
     @Test(priority = 3, enabled = true)
     public void payment_details() throws InterruptedException {
 
-        //click on payment detail tab
-        synchronized (one.driver) { one.driver.wait(4000); }
-        payment_details.payment_details_tab(wb, one.driver).click();
+            //click on payment detail tab
+            synchronized (one.driver) { one.driver.wait(4000); }
+            payment_details.payment_details_tab(wb, one.driver).click();
+            payment_details.payment_details_tab(wb, one.driver).click();
+
         synchronized (one.driver) { one.driver.wait(4000); }
             //selling price verification
             String s_price = payment_details.selling_price(wb, one.driver).getText();
             System.out.println(s_price + "    selling price is verified ");
             Assert.assertEquals("14599", s_price);
-            //download invoice enable check (enable for all profile)
-            boolean d_invoice = payment_details.download_invoice(wb, one.driver).isEnabled();
-            System.out.println(d_invoice + "  download invoice button is active ");
-            //payments and refunds DT enable check
-            boolean p_n_r = payment_details.payments_and_refunds(wb, one.driver).isEnabled();
-            System.out.println("payments and refunds button is active");
+          //download invoice enable check (enable for all profile)
+//          boolean d_invoice = payment_details.download_invoice(wb, one.driver).isEnabled();//logic pending
+//          System.out.println(d_invoice + "  download invoice button is active ");
+//        //payments and refunds DT enable check
+//          boolean p_n_r = payment_details.payments_and_refunds(wb, one.driver).isEnabled();
+//          System.out.println("payments and refunds button is active");
+            synchronized (one.driver) { one.driver.wait(4000); }
+            boolean ci=payment_details.create_incidents(wb,one.driver).isEnabled();
+            System.out.println("create incident button is enabled");
+            String cmat=payment_details.credit_method_amountType(wb,one.driver).getText();
+            Assert.assertEquals(cmat,"Cod");
+
+
     }
 
-    @Test(priority=4,enabled=true)
+    @Test(priority=4,enabled=false)
     public void order_detail()
     {
         System.out.println("test");

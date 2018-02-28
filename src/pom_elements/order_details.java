@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class order_details {
 
     public static WebElement element=null;
@@ -29,11 +31,11 @@ public class order_details {
         element=driver.findElement(By.xpath(sh.getRow(49).getCell(1).getStringCellValue()));
         return element;
     }
-    public static WebElement order_verification_dt(XSSFWorkbook wb,WebDriver driver)
+    public static List<WebElement> order_verification_dt(XSSFWorkbook wb, WebDriver driver)
     {
         sh= wb.getSheetAt(2);
-        element=driver.findElement(By.xpath(sh.getRow(50).getCell(1).getStringCellValue()));
-        return element;
+        List<WebElement> elements = driver.findElements(By.xpath(sh.getRow(50).getCell(1).getStringCellValue()));
+        return elements;
     }
     public static WebElement create_incident_dt(XSSFWorkbook wb,WebDriver driver)
     {
