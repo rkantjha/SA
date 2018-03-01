@@ -186,9 +186,14 @@ public class case_2 {
         System.out.println(cv + "  is the name of the channel");
         Assert.assertEquals("AndroidApp", cv);
 
-//        //Getting DT Actions
+
+        String aa=order_details.order_verification_dt(wb,one.driver).getText();
+        System.out.println("this is the text "   +   aa);
+
+
+        //        //Getting DT Actions
 //        List<WebElement> actions = order_details.order_verification_dt(wb, one.driver);
-//
+
 //        boolean ov_dt = dtActions.findDTElement(actions,one.driver,"Order Verification");
 //        //order verification dt enable check (email profile)
 //        Assert.assertEquals(ov_dt, false);
