@@ -11,8 +11,10 @@ public class DTActions {
     public boolean findDTElement(List<WebElement> actions, WebDriver driver, String dtName){
         WebElement element = null;
         Boolean found = false;
+        System.out.println("Actions SIZE "+actions.size());
         for(int i=0; i < actions.size() ;i++) {
             element = actions.get(i);
+            System.out.println(dtName+ " Expected - " +element.getText() + "Status - " +DTActiveStatus(element));
             if(!DTActiveStatus(element)) {
                 if(dtName==element.getText()) {
                     found = true;
@@ -24,9 +26,6 @@ public class DTActions {
     public boolean DTActiveStatus(WebElement element){
         String classes= element.getAttribute("class");
         Optional<String> classFindResult = Arrays.stream(classes.split(" ")).filter(el -> el.equals("_-sa-flipkart-src-Components-DT-DTButton-DTButton_info")).findFirst();
-        if(classFindResult.isPresent()){
-            return false;
-        }
-        return true;
+        return !classFindResult.isPresent();
     }
 }

@@ -186,28 +186,35 @@ public class case_2 {
         System.out.println(cv + "  is the name of the channel");
         Assert.assertEquals("AndroidApp", cv);
 
+        synchronized (one.driver) {
+            one.driver.wait(4000);
+        }
 
-        String aa=order_details.order_verification_dt(wb,one.driver).getText();
-        System.out.println("this is the text "   +   aa);
+
+//        String aa=order_details.order_verification_dt(wb,one.driver).getAttribute("class");
+//        synchronized (one.driver) {
+//            one.driver.wait(8000);
+//        }
+//        System.out.println("this is the text "   +   order_details.order_verification_dt(wb,one.driver).getAttribute("class"));
 
 
         //        //Getting DT Actions
-//        List<WebElement> actions = order_details.order_verification_dt(wb, one.driver);
+         List<WebElement> actions = order_details.order_verification_dt(wb, one.driver);
 
-//        boolean ov_dt = dtActions.findDTElement(actions,one.driver,"Order Verification");
+        boolean ov_dt = dtActions.findDTElement(actions,one.driver,"Order Verification");
 //        //order verification dt enable check (email profile)
-//        Assert.assertEquals(ov_dt, false);
+        Assert.assertEquals(ov_dt, false);
 //
-//        //create incident dt verification enable check(email profile)
-//        boolean ci_dt =  dtActions.findDTElement(actions,one.driver,"Create Incident");
-//        Assert.assertEquals(ci_dt, false);
+        //create incident dt verification enable check(email profile)
+        boolean ci_dt =  dtActions.findDTElement(actions,one.driver,"Create Incident");
+        Assert.assertEquals(ci_dt, false);
 //
 //        //price adjustment dt enable check(email profile)
-//        boolean pa_dt = dtActions.findDTElement(actions,one.driver,"Price Adjustment");
-//        Assert.assertEquals(pa_dt, false);
+        boolean pa_dt = dtActions.findDTElement(actions,one.driver,"Price Adjustment");
+        Assert.assertEquals(pa_dt, false);
 //        //cancle dt enable check
-//        boolean cdt = dtActions.findDTElement(actions,one.driver,"Price Adjustment");
-//        Assert.assertEquals(cdt, false);
+        boolean cdt = dtActions.findDTElement(actions,one.driver,"Price Adjustment");
+        Assert.assertEquals(cdt, false);
     }
     @Test(priority = 3, enabled = true)
     public void payment_details() throws InterruptedException {
