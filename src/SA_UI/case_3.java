@@ -1,21 +1,30 @@
 package SA_UI;
 
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pom_elements.address_detail;
+import pom_elements.call_to_customer;
+import pom_elements.discovery_and_authentication;
 import pom_elements.order_wise;
 
 import java.io.IOException;
 
 
-public class case_3 {
-    case_1 one = new case_1();
-    case_2 two = new case_2();
-    XSSFWorkbook wb = ExcelData.bootstrap();
+public class case_3 extends ExcelData {
+  public case_1 one = new case_1();
+  public case_2 two = new case_2();
+  XSSFWorkbook wb = ExcelData.bootstrap();
+    public static XSSFSheet sh;
+
 
 
     public case_3() throws IOException {
@@ -24,13 +33,28 @@ public class case_3 {
     public static void BeforeClass() {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
     }
-
-    @Test(priority=1,enabled=true)
-    public void  cashback()throws InterruptedException
+    @Test(priority =0,enabled = true)
+    public void login()throws InterruptedException
     {
         one.login();
-        //new session
-        //search
+        synchronized (one.driver) {
+            one.driver.wait(6000);
+        }
+
+    }
+    @Test(priority=1,enabled=true)
+    public void  cashback()  throws InterruptedException
+    {
+
+
+        //click on new session
+        call_to_customer.new_session(wb,one.driver).click();
+        //search for order id
+        synchronized (one.driver) {one.driver.wait(9000);}
+        WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
+        sh= wb.getSheetAt(1);
+        searchBox.sendKeys(sh.getRow(0).getCell(1).getStringCellValue());
+        searchBox.sendKeys(Keys.RETURN);
         //name,phone,email,account id
         //order details
         //payment details

@@ -36,20 +36,17 @@ public class case_2 {
     public void UiDataVerify() throws InterruptedException {
         one.login();
 
-        synchronized (one.driver) {
-            one.driver.wait(6000);
-        }
+        synchronized (one.driver) {one.driver.wait(6000);}
 
         call_to_customer.new_session(one.wb, one.driver).click();
-
         synchronized (one.driver) {
             one.driver.wait(6000);
         }
         WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
         searchBox.sendKeys(discovery_and_authentication.order_id_1);
         searchBox.sendKeys(Keys.RETURN);
-        synchronized (one.driver) { one.driver.wait(9000); }
-        //name verification
+        synchronized (one.driver) {one.driver.wait(9000);}
+        /* name verification */
         String user_name=discovery_and_authentication.name(one.wb, one.driver).getText();
         System.out.println(user_name + "   User name is verified ");
         Assert.assertEquals("Vivek keshri", user_name);
@@ -58,7 +55,7 @@ public class case_2 {
             one.driver.wait(4000);
         }
 
-        //Account ID verification
+        /* Account ID verification */
         String account_id = discovery_and_authentication.account_id(one.wb, one.driver).getText();
         System.out.println(account_id + "  Account ID is verified");
         Assert.assertEquals("ACC13518860262177453", account_id);
@@ -79,7 +76,7 @@ public class case_2 {
             one.driver.wait(3000);
         }
 
-        //payment button enable verification
+        /* payment button enable verification */
         boolean payment_button = discovery_and_authentication.payment_button(one.wb, one.driver).isEnabled();
         Assert.assertEquals(payment_button, true);
         //cart button enable verification

@@ -14,6 +14,8 @@ public class discovery_and_authentication {
     public static String order_id_2="OD111401472227234000";//services
     public static String order_id_3="OD110285698905463000";//refund
     public static String account_id="ACC13518860262177453";//refund
+    public static WebElement search_box;
+
 
     public static WebElement search_box(XSSFWorkbook wb,WebDriver driver)
     {
