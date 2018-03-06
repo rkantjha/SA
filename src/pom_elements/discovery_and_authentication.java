@@ -17,7 +17,7 @@ public class discovery_and_authentication {
     public static WebElement search_box;
 
 
-    public static WebElement search_box(XSSFWorkbook wb,WebDriver driver)
+    public static WebElement search_box(XSSFWorkbook wb,WebDriver driver,int sheet, int row, int column)
     {
         sh= wb.getSheetAt(2);
         element=driver.findElement(By.xpath(sh.getRow(20).getCell(1).getStringCellValue()));
@@ -25,7 +25,6 @@ public class discovery_and_authentication {
     }
     public static WebElement name(XSSFWorkbook wb,WebDriver driver,int sheet, int row, int column)
     {
-//        System.out.println("Sheet - " + sheet +"Row - " + row + "Column - "+ column);
         sh= wb.getSheetAt(sheet);
         element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
@@ -48,10 +47,10 @@ public class discovery_and_authentication {
         element=driver.findElement(By.xpath(sh.getRow(24).getCell(1).getStringCellValue()));
         return element;
     }
-    public static WebElement account_id(XSSFWorkbook wb,WebDriver driver)
+    public static WebElement account_id(XSSFWorkbook wb,WebDriver driver,int sheet, int row, int column)
     {
-        sh= wb.getSheetAt(2);
-        element=driver.findElement(By.xpath(sh.getRow(25).getCell(1).getStringCellValue()));
+        sh= wb.getSheetAt(sheet);
+        element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
     public static WebElement payment_button(XSSFWorkbook wb,WebDriver driver)
@@ -162,4 +161,11 @@ public class discovery_and_authentication {
         element=driver.findElement(By.xpath(sh.getRow(43).getCell(1).getStringCellValue()));
         return element;
     }
+    public static WebElement close_session(XSSFWorkbook wb,WebDriver driver,int sheet, int row, int column)
+    {
+        sh= wb.getSheetAt(sheet);
+        element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
+        return element;
+    }
 }
+
