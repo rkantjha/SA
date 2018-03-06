@@ -21,7 +21,6 @@ import java.io.IOException;
 
 public class case_3 extends ExcelData {
   public case_1 one = new case_1();
-  public case_2 two = new case_2();
   XSSFWorkbook wb = ExcelData.bootstrap();
     public static XSSFSheet sh;
 
@@ -45,17 +44,19 @@ public class case_3 extends ExcelData {
     @Test(priority=1,enabled=true)
     public void  cashback()  throws InterruptedException
     {
-
-
         //click on new session
-        call_to_customer.new_session(wb,one.driver).click();
+        call_to_customer.new_session(one.wb,one.driver).click();
         //search for order id
-        synchronized (one.driver) {one.driver.wait(9000);}
+        synchronized (one.driver) {one.driver.wait(6000);}
         WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
-        sh= wb.getSheetAt(1);
-        searchBox.sendKeys(sh.getRow(0).getCell(1).getStringCellValue());
+        sh= wb.getSheetAt(3);
+        searchBox.sendKeys(sh.getRow(1).getCell(1).getStringCellValue());
         searchBox.sendKeys(Keys.RETURN);
+        synchronized (one.driver) {one.driver.wait(6000);}
         //name,phone,email,account id
+        String user_name=discovery_and_authentication.name(one.wb, one.driver,3,1,2).getText();
+        System.out.println(user_name);
+        Assert.assertEquals("Ramki ",user_name);
         //order details
         //payment details
         //address

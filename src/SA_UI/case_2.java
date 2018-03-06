@@ -47,7 +47,7 @@ public class case_2 {
         searchBox.sendKeys(Keys.RETURN);
         synchronized (one.driver) {one.driver.wait(9000);}
         /* name verification */
-        String user_name=discovery_and_authentication.name(one.wb, one.driver).getText();
+        String user_name=discovery_and_authentication.name(one.wb, one.driver,2,21,1).getText();
         System.out.println(user_name + "   User name is verified ");
         Assert.assertEquals("Vivek keshri", user_name);
 

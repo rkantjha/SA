@@ -23,10 +23,11 @@ public class discovery_and_authentication {
         element=driver.findElement(By.xpath(sh.getRow(20).getCell(1).getStringCellValue()));
         return element;
     }
-    public static WebElement name(XSSFWorkbook wb,WebDriver driver)
+    public static WebElement name(XSSFWorkbook wb,WebDriver driver,int sheet, int row, int column)
     {
-        sh= wb.getSheetAt(2);
-        element=driver.findElement(By.xpath(sh.getRow(21).getCell(1).getStringCellValue()));
+//        System.out.println("Sheet - " + sheet +"Row - " + row + "Column - "+ column);
+        sh= wb.getSheetAt(sheet);
+        element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
     public static WebElement phone(XSSFWorkbook wb,WebDriver driver)
