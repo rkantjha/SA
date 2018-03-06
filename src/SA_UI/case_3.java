@@ -53,10 +53,13 @@ public class case_3 extends ExcelData {
         searchBox.sendKeys(sh.getRow(1).getCell(1).getStringCellValue());
         searchBox.sendKeys(Keys.RETURN);
         synchronized (one.driver) {one.driver.wait(6000);}
-        //name,phone,email,account id
+        //name
         String user_name=discovery_and_authentication.name(one.wb, one.driver,3,1,2).getText();
         System.out.println(user_name);
-        Assert.assertEquals("Ramki ",user_name);
+        Assert.assertEquals("Ramki",user_name);
+        //phone,email,account id
+
+
         //order details
         //payment details
         //address

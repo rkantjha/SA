@@ -30,7 +30,7 @@ public class discovery_and_authentication {
         element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
-    public static WebElement phone(XSSFWorkbook wb,WebDriver driver)
+    public static WebElement phone(XSSFWorkbook wb,WebDriver driver,int sheet, int row, int column)
     {
         sh= wb.getSheetAt(2);
         element=driver.findElement(By.xpath(sh.getRow(22).getCell(1).getStringCellValue()));
