@@ -32,14 +32,14 @@ public class discovery_and_authentication {
     }
     public static WebElement phone(XSSFWorkbook wb,WebDriver driver,int sheet, int row, int column)
     {
-        sh= wb.getSheetAt(2);
-        element=driver.findElement(By.xpath(sh.getRow(22).getCell(1).getStringCellValue()));
+        sh= wb.getSheetAt(sheet);
+        element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
-    public static WebElement email(XSSFWorkbook wb,WebDriver driver)
+    public static WebElement email(XSSFWorkbook wb,WebDriver driver,int sheet, int row, int column)
     {
-        sh= wb.getSheetAt(2);
-        element=driver.findElement(By.xpath(sh.getRow(23).getCell(1).getStringCellValue()));
+        sh= wb.getSheetAt(sheet);
+        element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
     public static WebElement orders_id(XSSFWorkbook wb,WebDriver driver)

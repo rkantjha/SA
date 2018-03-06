@@ -57,7 +57,19 @@ public class case_3 extends ExcelData {
         String user_name=discovery_and_authentication.name(one.wb, one.driver,3,1,2).getText();
         System.out.println(user_name);
         Assert.assertEquals("Ramki",user_name);
-        //phone,email,account id
+        //phone//email,account id
+        String phone_no = discovery_and_authentication.phone(one.wb, one.driver,3,1,3).getText();
+        System.out.println(phone_no +"is the phone number");
+        Assert.assertEquals("+919003276122",phone_no);
+        //email
+        String email_id = discovery_and_authentication.email(one.wb, one.driver,3,1,4).getText();
+        System.out.println(email_id +"is the email id");
+        Assert.assertEquals(email_id,"ramki221994@gmail.com");
+        //account id
+        
+
+
+
 
 
         //order details

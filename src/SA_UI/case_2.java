@@ -60,7 +60,7 @@ public class case_2 {
         System.out.println(account_id + "  Account ID is verified");
         Assert.assertEquals("ACC13518860262177453", account_id);
         //email verification
-        String email_id = discovery_and_authentication.email(one.wb, one.driver).getText();
+        String email_id = discovery_and_authentication.email(one.wb, one.driver,2,23,1).getText();
         System.out.println(email_id + "  Email id is verified");
         Assert.assertEquals("vivekkeshri390@gmail.com", email_id);
         //phone number verification
