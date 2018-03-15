@@ -44,9 +44,12 @@ public class case_3 extends ExcelData {
     {
         //click on new session
         call_to_customer.new_session(one.wb,one.driver).click();
+        synchronized (one.driver) { one.driver.wait(6000); }
+
         //search for order id
-        synchronized (one.driver) {one.driver.wait(3000);}
         WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver,3,1,1);
+        synchronized (one.driver) { one.driver.wait(6000); }
+
         searchBox.sendKeys(Keys.RETURN);
 
         //name
@@ -86,15 +89,17 @@ public class case_3 extends ExcelData {
     {
         //click on new session
         call_to_customer.new_session(one.wb,one.driver).click();
-        //search
-        //name,phone,email,account id
-        //order details
-        //payment details
-        //address
-        //payment history
-        //dt verification
-        //show selectors(incident,return,replacement,refund,service,callback)
-        //hide selectors
+        /*
+        search
+        name,phone,email,account id
+        order details
+        payment details
+        address
+        payment history
+        dt verification
+        show selectors(incident,return,replacement,refund,service,callback)
+        hide selectors
+        */
 
     }
     @Test(priority=3,enabled=false)
@@ -449,7 +454,7 @@ public class case_3 extends ExcelData {
 
     }
 
-    @AfterTest(enabled = true)
+    @AfterTest(enabled = false)
     public void close_and_quit() {
 
         System.out.println("Quitting the session");
