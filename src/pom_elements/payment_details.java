@@ -18,14 +18,16 @@ public class payment_details {
         element=driver.findElement(By.xpath(sh.getRow(54).getCell(1).getStringCellValue()));
         return element;
     }
-    public static WebElement download_invoice(XSSFWorkbook wb,WebDriver driver){
-        sh= wb.getSheetAt(2);
-        element=driver.findElement(By.xpath(sh.getRow(55).getCell(1).getStringCellValue()));
+    public static WebElement download_invoice(XSSFWorkbook wb,WebDriver driver,int sheet, int row, int column)
+    {
+        sh= wb.getSheetAt(sheet);
+        element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
-    public static WebElement payments_and_refunds(XSSFWorkbook wb,WebDriver driver){
-        sh= wb.getSheetAt(2);
-        element=driver.findElement(By.xpath(sh.getRow(56).getCell(1).getStringCellValue()));
+    public static WebElement payments_and_refunds(XSSFWorkbook wb,WebDriver driver,int sheet, int row, int column)
+    {
+        sh= wb.getSheetAt(sheet);
+        element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
     public static WebElement create_incidents(XSSFWorkbook wb,WebDriver driver){

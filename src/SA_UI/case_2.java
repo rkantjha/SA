@@ -15,7 +15,6 @@ import SA_UI.ExcelData;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import pom_elements.payment_details;
 import pom_elements.address_detail;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -160,8 +159,8 @@ public class case_2 {
                 one.driver.wait(4000);
             }
 
-            boolean yes_on = discovery_and_authentication.break_dis(wb, one.driver).isEnabled();
-            Assert.assertEquals(yes_on, true);
+//            boolean yes_on = discovery_and_authentication.break_dis(wb, one.driver).isEnabled();
+//            Assert.assertEquals(yes_on, true);
         }
         //click on assign to no from yes
         discovery_and_authentication.assign_to_no(wb, one.driver).click();
@@ -187,31 +186,23 @@ public class case_2 {
             one.driver.wait(4000);
         }
 
-
-//        String aa=order_details.order_verification_dt(wb,one.driver).getAttribute("class");
-//        synchronized (one.driver) {
-//            one.driver.wait(8000);
-//        }
-//        System.out.println("this is the text "   +   order_details.order_verification_dt(wb,one.driver).getAttribute("class"));
-
-
-        //        //Getting DT Actions
+        //Getting DT Actions
          List<WebElement> actions = order_details.order_verification_dt(wb, one.driver);
 
-        boolean ov_dt = dtActions.findDTElement(actions,one.driver,"Order Verification");
+        boolean ov_dt = dtActions.findDTActiveStatus(actions,one.driver,"Order Verification");
 //        //order verification dt enable check (email profile)
         Assert.assertEquals(ov_dt, false);
 //
         //create incident dt verification enable check(email profile)
-        boolean ci_dt =  dtActions.findDTElement(actions,one.driver,"Create Incident");
+        boolean ci_dt =  dtActions.findDTActiveStatus(actions,one.driver,"Create Incident");
         Assert.assertEquals(ci_dt, false);
 //
 //        //price adjustment dt enable check(email profile)
-        boolean pa_dt = dtActions.findDTElement(actions,one.driver,"Price Adjustment");
+        boolean pa_dt = dtActions.findDTActiveStatus(actions,one.driver,"Price Adjustment");
         Assert.assertEquals(pa_dt, false);
 //        //cancle dt enable check
-        boolean cdt = dtActions.findDTElement(actions,one.driver,"Price Adjustment");
-        Assert.assertEquals(cdt, false);
+//        boolean cdt = dtActions.findDTActiveStatus(actions,one.driver,"Price Adjustment");
+//        Assert.assertEquals(cdt, false);
     }
     @Test(priority = 3, enabled = true)
     public void payment_details() throws InterruptedException {
@@ -224,12 +215,18 @@ public class case_2 {
             String s_price = payment_details.selling_price(wb, one.driver).getText();
             System.out.println(s_price + "    selling price is verified ");
             Assert.assertEquals("14599", s_price);
-          //download invoice enable check (enable for all profile)
-//          boolean d_invoice = payment_details.download_invoice(wb, one.driver).isEnabled();//logic pending
-//          System.out.println(d_invoice + "  download invoice button is active ");
-//        //payments and refunds DT enable check
-//          boolean p_n_r = payment_details.payments_and_refunds(wb, one.driver).isEnabled();
-//          System.out.println("payments and refunds button is active");
+
+            //download invoice enable check (enable for all profile)
+            String d_invoice = payment_details.download_invoice(wb, one.driver,2,55,1).getAttribute("data-error-message");
+            System.out.println("value of the attribute is " + d_invoice);
+            Assert.assertEquals(d_invoice,true);
+            System.out.println(d_invoice + "  download invoice button is active ");
+
+           //payments and refunds DT enable check  "data-error-message"
+            String p_n_r = payment_details.payments_and_refunds(wb, one.driver,2,56,1).getAttribute("data-error-message");
+            System.out.println("value of the attribute is " + p_n_r);
+            Assert.assertEquals(p_n_r,false);
+            System.out.println("payments and refunds button is active");
             synchronized (one.driver) { one.driver.wait(4000); }
             boolean ci=payment_details.create_incidents(wb,one.driver).isEnabled();
             System.out.println("create incident button is enabled");

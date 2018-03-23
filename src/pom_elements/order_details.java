@@ -34,7 +34,8 @@ public class order_details {
     public static List<WebElement> order_verification_dt(XSSFWorkbook wb, WebDriver driver)
     {
         sh= wb.getSheetAt(2);
-        List<WebElement> elements = driver.findElements(By.xpath(sh.getRow(50).getCell(1).getStringCellValue()));
+        WebElement element = driver.findElement(By.xpath(sh.getRow(50).getCell(1).getStringCellValue()));
+        List<WebElement> elements = element.findElements(By.xpath(".//DIV"));
         return elements;
     }
     public static WebElement create_incident_dt(XSSFWorkbook wb,WebDriver driver)

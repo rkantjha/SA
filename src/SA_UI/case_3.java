@@ -37,7 +37,6 @@ public class case_3 extends ExcelData {
     {
         one.login();
         synchronized (one.driver) { one.driver.wait(6000); }
-
     }
     @Test(priority=1,enabled=true)
     public void  cashback()  throws InterruptedException
