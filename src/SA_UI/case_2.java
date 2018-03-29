@@ -159,8 +159,8 @@ public class case_2 {
                 one.driver.wait(4000);
             }
 
-//            boolean yes_on = discovery_and_authentication.break_dis(wb, one.driver).isEnabled();
-//            Assert.assertEquals(yes_on, true);
+            boolean yes_on = discovery_and_authentication.break_dis(wb, one.driver).isEnabled();
+            Assert.assertEquals(yes_on, true);
         }
         //click on assign to no from yes
         discovery_and_authentication.assign_to_no(wb, one.driver).click();
@@ -190,19 +190,17 @@ public class case_2 {
          List<WebElement> actions = order_details.order_verification_dt(wb, one.driver);
 
         boolean ov_dt = dtActions.findDTActiveStatus(actions,one.driver,"Order Verification");
-//        //order verification dt enable check (email profile)
+//        order verification dt enable check (email profile)
         Assert.assertEquals(ov_dt, false);
-//
-        //create incident dt verification enable check(email profile)
+
+//        create incident dt verification enable check(email profile)
         boolean ci_dt =  dtActions.findDTActiveStatus(actions,one.driver,"Create Incident");
         Assert.assertEquals(ci_dt, false);
-//
-//        //price adjustment dt enable check(email profile)
+
+//        Price adjustment dt enable check(email profile)
         boolean pa_dt = dtActions.findDTActiveStatus(actions,one.driver,"Price Adjustment");
         Assert.assertEquals(pa_dt, false);
-//        //cancle dt enable check
-//        boolean cdt = dtActions.findDTActiveStatus(actions,one.driver,"Price Adjustment");
-//        Assert.assertEquals(cdt, false);
+
     }
     @Test(priority = 3, enabled = true)
     public void payment_details() throws InterruptedException {
@@ -211,6 +209,7 @@ public class case_2 {
             synchronized (one.driver) { one.driver.wait(4000); }
             payment_details.payment_details_tab(wb, one.driver).click();
             synchronized (one.driver) { one.driver.wait(4000); }
+
             //selling price verification
             String s_price = payment_details.selling_price(wb, one.driver).getText();
             System.out.println(s_price + "    selling price is verified ");
