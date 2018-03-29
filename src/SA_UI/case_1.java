@@ -89,7 +89,7 @@ public class case_1 {
                 System.out.println("No check for notifications needed");
             }
     }
-    @Test(priority = 3,enabled=true)//enable it true when running test with voice profile
+    @Test(priority = 3,enabled=false)//enable it true when running test with voice profile
     public void call_to_customer()throws InterruptedException {
         synchronized (driver){ driver.wait(3000); }
         call_to_customer.new_session(wb,driver).click();
