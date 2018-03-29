@@ -177,11 +177,12 @@ public class case_2 {
         String tp = order_details.total_price(wb, one.driver).getText();
         System.out.println(tp + "  total price is verified");
         Assert.assertEquals("14599", tp);
-        //channel verification
+        //channel name verification
         String cv = order_details.channel(wb, one.driver).getText();
         System.out.println(cv + "  is the name of the channel");
         Assert.assertEquals("AndroidApp", cv);
 
+        /* Don't remove this wait */
         synchronized (one.driver) {
             one.driver.wait(4000);
         }
@@ -220,12 +221,13 @@ public class case_2 {
             System.out.println("value of the attribute is " + d_invoice);
             Assert.assertEquals(d_invoice,true);
             System.out.println(d_invoice + "  download invoice button is active ");
-           //payments and refunds DT enable check  "data-error-message" 
+           //payments and refunds DT enable check
             String p_n_r = payment_details.payments_and_refunds(wb, one.driver,2,56,1).getAttribute("data-error-message");
             System.out.println("value of the attribute is " + p_n_r);
             Assert.assertEquals(p_n_r,false);
             System.out.println("payments and refunds button is active");
             synchronized (one.driver) { one.driver.wait(4000); }
+            //Create incident button enable check
             boolean ci=payment_details.create_incidents(wb,one.driver).isEnabled();
             System.out.println("create incident button is enabled");
             String cmat=payment_details.credit_method_amountType(wb,one.driver).getText();
