@@ -220,7 +220,7 @@ public class case_2 {
             System.out.println("value of the attribute is " + d_invoice);
             Assert.assertEquals(d_invoice,true);
             System.out.println(d_invoice + "  download invoice button is active ");
-           //payments and refunds DT enable check  "data-error-message"
+           //payments and refunds DT enable check  "data-error-message" 
             String p_n_r = payment_details.payments_and_refunds(wb, one.driver,2,56,1).getAttribute("data-error-message");
             System.out.println("value of the attribute is " + p_n_r);
             Assert.assertEquals(p_n_r,false);
