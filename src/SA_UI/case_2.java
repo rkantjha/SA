@@ -232,7 +232,7 @@ public class case_2 {
             Assert.assertEquals(cre_inc, false);
 
     }
-    @Test(priority=4,enabled=true)
+    @Test(priority=4,enabled=false)
     public void  address_details()throws InterruptedException
     {   synchronized (one.driver) { one.driver.wait(5000); }
         //click on address details tab
