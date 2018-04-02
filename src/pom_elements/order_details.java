@@ -38,22 +38,4 @@ public class order_details {
         List<WebElement> elements = element.findElements(By.xpath(".//DIV"));
         return elements;
     }
-    public static WebElement create_incident_dt(XSSFWorkbook wb,WebDriver driver)
-    {
-        sh= wb.getSheetAt(2);
-        element=driver.findElement(By.xpath(sh.getRow(51).getCell(1).getStringCellValue()));
-        return element;
-    }
-    public static WebElement price_adjustments_dt(XSSFWorkbook wb,WebDriver driver)
-    {
-        sh= wb.getSheetAt(2);
-        element=driver.findElement(By.xpath(sh.getRow(52).getCell(1).getStringCellValue()));
-        return element;
-    }
-    public static WebElement cancel_dt(XSSFWorkbook wb,WebDriver driver)
-    {
-        sh= wb.getSheetAt(2);
-        element=driver.findElement(By.xpath(sh.getRow(53).getCell(1).getStringCellValue()));
-        return element;
-    }
 }

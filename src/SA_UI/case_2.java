@@ -1,8 +1,6 @@
 package SA_UI;
 
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -11,7 +9,6 @@ import pom_elements.call_to_customer;
 import pom_elements.discovery_and_authentication;
 import pom_elements.order_details;
 import pom_elements.DTActions;
-import SA_UI.ExcelData;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import pom_elements.payment_details;
 import pom_elements.address_detail;
@@ -246,7 +243,6 @@ public class case_2 {
         synchronized (one.driver) {one.driver.wait(8000);}
 
         List<WebElement> actions_2 = address_detail.address_verification_dt(wb,one.driver);
-
 
         boolean addr_chan = dtActions.findDTActiveStatus(actions_2,one.driver,"Address Change");
         Assert.assertEquals(addr_chan, true);
