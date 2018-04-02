@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public class DTActions {
 
+    //For order details
     public boolean findDTActiveStatus(List<WebElement> actions, WebDriver driver, String dtName){
         WebElement element = null;
         Boolean found = false;
@@ -23,9 +24,12 @@ public class DTActions {
         }
         return found;
     }
+
+    //for order details
     public boolean DTActiveStatus(WebElement element){
         String classes= element.getAttribute("class");
         Optional<String> classFindResult = Arrays.stream(classes.split(" ")).filter(el -> el.equals("_-sa-flipkart-src-Components-DT-DTButton-DTButton_isDisabled")).findFirst();
         return !classFindResult.isPresent();
     }
+
 }

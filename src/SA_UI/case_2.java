@@ -146,7 +146,7 @@ public class case_2 {
         Assert.assertEquals(assign, true);
 
         //When assign is active take a break should be disabled.
-        if (assign == true) {
+        if  (assign == true) {
             one.driver.navigate().refresh();
 
             synchronized (one.driver) {
@@ -183,27 +183,25 @@ public class case_2 {
         Assert.assertEquals("AndroidApp", cv);
 
         /* Don't remove this wait */
-        synchronized (one.driver) {
-            one.driver.wait(4000);
-        }
+        synchronized (one.driver) {one.driver.wait(4000); }
 
         //Getting DT Actions
          List<WebElement> actions = order_details.order_verification_dt(wb, one.driver);
 
+        //order verification dt enable check (email profile)
         boolean ov_dt = dtActions.findDTActiveStatus(actions,one.driver,"Order Verification");
-//        order verification dt enable check (email profile)
         Assert.assertEquals(ov_dt, false);
 
-//        create incident dt verification enable check(email profile)
+        //create incident dt verification enable check(email profile)
         boolean ci_dt =  dtActions.findDTActiveStatus(actions,one.driver,"Create Incident");
         Assert.assertEquals(ci_dt, false);
 
-//        Price adjustment dt enable check(email profile)
+        //Price adjustment dt enable check(email profile)
         boolean pa_dt = dtActions.findDTActiveStatus(actions,one.driver,"Price Adjustment");
         Assert.assertEquals(pa_dt, false);
-
     }
-    @Test(priority = 3, enabled = true)
+
+    @Test(priority = 3, enabled = true)//logic pending
     public void payment_details() throws InterruptedException {
 
             //click on payment detail tab
@@ -216,49 +214,32 @@ public class case_2 {
             System.out.println(s_price + "    selling price is verified ");
             Assert.assertEquals("14599", s_price);
 
-            //download invoice enable check (enable for all profile)
-            String d_invoice = payment_details.download_invoice(wb, one.driver,2,55,1).getAttribute("data-error-message");
-            System.out.println("value of the attribute is " + d_invoice);
-            Assert.assertEquals(d_invoice,true);
-            System.out.println(d_invoice + "  download invoice button is active ");
-           //payments and refunds DT enable check
-            String p_n_r = payment_details.payments_and_refunds(wb, one.driver,2,56,1).getAttribute("data-error-message");
-            System.out.println("value of the attribute is " + p_n_r);
-            Assert.assertEquals(p_n_r,false);
-            System.out.println("payments and refunds button is active");
-            synchronized (one.driver) { one.driver.wait(4000); }
-            //Create incident button enable check
-            boolean ci=payment_details.create_incidents(wb,one.driver).isEnabled();
-            System.out.println("create incident button is enabled");
-            String cmat=payment_details.credit_method_amountType(wb,one.driver).getText();
-            Assert.assertEquals(cmat,"Cod");
-    }
+            /* Don't remove this wait */
+            synchronized (one.driver) {one.driver.wait(4000);}
 
+            List<WebElement> actions_1 = payment_details.payments_details_all_DT(wb,one.driver);
+
+            boolean payments_and_refunds = dtActions.findDTActiveStatus(actions_1,one.driver,"Payments and Refunds");
+            Assert.assertEquals(payments_and_refunds, true);
+
+    }
     @Test(priority=4,enabled=true)
     public void  address_details()throws InterruptedException
-    {
-        synchronized (one.driver) { one.driver.wait(5000); }
+    {   synchronized (one.driver) { one.driver.wait(5000); }
         //click on address details tab
         address_detail.click_address_details_tab(wb,one.driver).click();
         synchronized (one.driver) { one.driver.wait(3000); }
-
         String c_a=address_detail.current_address(wb,one.driver).getText();
         System.out.println(c_a);
         Assert.assertEquals(c_a,"Electronic City phase 1 , Konappana agrahara ,nanjuda reddy layout " +
                 "near yellamma temple ,Hosur main road Bangalore");
-
-
     }
     @AfterTest(enabled = true)
     public void close_and_quit() {
-
         System.out.println(" Quitting the session ");
         one.driver.close();
         one.driver.quit();
     }
-
-
-
 }
 
 
