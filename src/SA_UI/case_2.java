@@ -215,7 +215,7 @@ public class case_2 {
             Assert.assertEquals("14599", s_price);
 
             /* Don't remove this wait */
-            synchronized (one.driver) {one.driver.wait(4000);}
+            synchronized (one.driver) {one.driver.wait(8000);}
 
             List<WebElement> actions_1 = payment_details.payments_details_all_DT(wb,one.driver);
 
