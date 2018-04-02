@@ -232,7 +232,7 @@ public class case_2 {
             Assert.assertEquals(cre_inc, false);
 
     }
-    @Test(priority=4,enabled=false)
+    @Test(priority=4,enabled=true)
     public void  address_details()throws InterruptedException
     {   synchronized (one.driver) { one.driver.wait(5000); }
         //click on address details tab
@@ -242,6 +242,18 @@ public class case_2 {
         System.out.println(c_a);
         Assert.assertEquals(c_a,"Electronic City phase 1 , Konappana agrahara ,nanjuda reddy layout " +
                 "near yellamma temple ,Hosur main road Bangalore");
+
+        synchronized (one.driver) {one.driver.wait(8000);}
+
+        List<WebElement> actions_2 = address_detail.address_verification_dt(wb,one.driver);
+
+
+        boolean addr_chan = dtActions.findDTActiveStatus(actions_2,one.driver,"Address Change");
+        Assert.assertEquals(addr_chan, true);
+
+        boolean cre_in = dtActions.findDTActiveStatus(actions_2,one.driver,"Create Incident");
+        Assert.assertEquals(addr_chan, false);
+
     }
     @AfterTest(enabled = true)
     public void close_and_quit() {
