@@ -220,7 +220,16 @@ public class case_2 {
             List<WebElement> actions_1 = payment_details.payments_details_all_DT(wb,one.driver);
 
             boolean payments_and_refunds = dtActions.findDTActiveStatus(actions_1,one.driver,"Payments and Refunds");
-            Assert.assertEquals(payments_and_refunds, true);
+            Assert.assertEquals(payments_and_refunds, false);
+
+            boolean down_inv = dtActions.findDTActiveStatus(actions_1,one.driver,"Download Invoice");
+            Assert.assertEquals(down_inv, false);
+
+            boolean inv_req = dtActions.findDTActiveStatus(actions_1,one.driver,"Invoice Request");
+            Assert.assertEquals(inv_req, false);
+
+            boolean cre_inc = dtActions.findDTActiveStatus(actions_1,one.driver,"Create Incident");
+            Assert.assertEquals(cre_inc, false);
 
     }
     @Test(priority=4,enabled=true)
