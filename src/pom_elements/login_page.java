@@ -8,8 +8,8 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 public class login_page {
 
     // public static String sa_url = "http://10.85.52.152/flipkart/";//prod
-     //public static String sa_url="http://10.85.53.223/flipkart/";//pre prod
-    public static String sa_url="http://10.85.162.142:3000/flipkart/login";
+     public static String sa_url="http://10.85.53.223/flipkart/";//pre prod
+    //public static String sa_url="http://10.85.162.142:3000/flipkart/login";
 
 
     //public static String sa_url="http://172.20.48.121:3000/flipkart/";//sathish local

@@ -3,12 +3,14 @@ package SA_UI;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pom_elements.call_to_customer;
 import pom_elements.discovery_and_authentication;
 import pom_elements.order_details;
 
@@ -36,6 +38,20 @@ public class case_4
 
     @Test(priority = 1, enabled = true)
     public void order_details() throws InterruptedException {
+
+
+        one.login();
+
+        synchronized (one.driver) { one.driver.wait(3000); }
+
+        call_to_customer.new_session(wb,one.driver).click();
+
+        synchronized (one.driver) { one.driver.wait(3000); }
+
+
+        WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver,2,20,1);
+        searchBox.sendKeys(discovery_and_authentication.order_id_2);
+        synchronized (one.driver) { one.driver.wait(3000); }
 
         String ordered_on=order_details.ordered_on(wb, one.driver,2,70,1).getText();
         System.out.println(ordered_on+" ordered on details");
@@ -68,7 +84,7 @@ public class case_4
         //undelivered items
     }
 
-    @AfterTest(enabled = true)
+    @AfterTest(enabled = false)
     public void close_and_quit() {
 
         System.out.println("Quitting the session");

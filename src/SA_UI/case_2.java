@@ -152,9 +152,7 @@ public class case_2 {
 
             discovery_and_authentication.assign_yes(wb, one.driver).click();
 
-            synchronized (one.driver) {
-                one.driver.wait(4000);
-            }
+            synchronized (one.driver) { one.driver.wait(4000); }
 
             boolean yes_on = discovery_and_authentication.break_dis(wb, one.driver).isEnabled();
             Assert.assertEquals(yes_on, true);
