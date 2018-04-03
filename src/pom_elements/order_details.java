@@ -13,10 +13,10 @@ public class order_details {
     public static WebElement element=null;
     public static XSSFSheet sh;
 
-    public static WebElement ordered_on(XSSFWorkbook wb,WebDriver driver)
+    public static WebElement ordered_on(XSSFWorkbook wb,WebDriver driver,int sheet, int row, int column)
     {
-        sh= wb.getSheetAt(2);
-        element=driver.findElement(By.xpath(sh.getRow(47).getCell(1).getStringCellValue()));
+        sh= wb.getSheetAt(sheet);
+        element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
     public static WebElement total_price(XSSFWorkbook wb,WebDriver driver)

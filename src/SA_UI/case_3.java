@@ -20,6 +20,7 @@ import java.io.IOException;
 
 
 public class case_3 extends ExcelData {
+
   public case_1 one = new case_1();
   XSSFWorkbook wb = ExcelData.bootstrap();
     public static XSSFSheet sh;
@@ -452,8 +453,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-
-    @AfterTest(enabled = false)
+    @AfterTest(enabled = true)
     public void close_and_quit() {
 
         System.out.println("Quitting the session");

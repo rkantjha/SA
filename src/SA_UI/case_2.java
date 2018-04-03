@@ -167,7 +167,7 @@ public class case_2 {
     public void order_details() throws InterruptedException {
 
         //order date verification
-        String ordered_on = order_details.ordered_on(wb, one.driver).getText();
+        String ordered_on = order_details.ordered_on(wb, one.driver,2,47,1).getText();
         System.out.println(ordered_on + "    date is verified ");
         Assert.assertEquals("28 Jan 18, 10:43 PM", ordered_on);
         //total price verification

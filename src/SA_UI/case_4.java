@@ -1,52 +1,79 @@
 package SA_UI;
 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pom_elements.discovery_and_authentication;
+import pom_elements.order_details;
 
 
 import java.io.IOException;
 
 // Supermart (groceries) test cases
+
 public class case_4
 {
     case_1 one = new case_1();
-    WebDriver driver = new ChromeDriver();
-    WebDriverWait wait = new WebDriverWait(driver, 20);
+    XSSFWorkbook wb = ExcelData.bootstrap();
+
+    WebDriverWait wait = new WebDriverWait(one.driver, 20);
     Alert alert;
+
     public case_4() throws IOException {
     }
 
-    @Test(priority=1)
-    public void order_details() throws InterruptedException {
+    @BeforeTest
+    public static void BeforeClass() {
+        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
     }
 
-    @Test(priority=2)
+
+    @Test(priority = 1, enabled = true)
+    public void order_details() throws InterruptedException {
+
+        String ordered_on=order_details.ordered_on(wb, one.driver,2,70,1).getText();
+        System.out.println(ordered_on+" ordered on details");
+        Assert.assertEquals("01 Sep 17, 12:21 PM",ordered_on);
+
+    }
+
+    @Test(priority=2, enabled = true)
     public void address_details() throws InterruptedException {
     }
 
-    @Test(priority=3)
+    @Test(priority=3, enabled = true)
     public void payment_details() throws InterruptedException {
     }
 
-    @Test(priority=4)
+    @Test(priority=4, enabled = true)
     public void toa_hiostory() throws InterruptedException {
     }
-    
-    @Test(priority=5)
-    public void show_selector() throws InterruptedException {
+
+    @Test(priority=5, enabled = true)
+    public void show_selector_brocery_basket() throws InterruptedException {
     }
 
-    @Test(priority=6)
+    @Test(priority=6, enabled = true)
     public void basket_items() throws InterruptedException {
         //All items
         //Active items
         //cancel items
         //returned items
         //undelivered items
+    }
+
+    @AfterTest(enabled = true)
+    public void close_and_quit() {
+
+        System.out.println("Quitting the session");
+        one.driver.close();
+        one.driver.quit();
     }
 
 
