@@ -220,7 +220,7 @@ public class case_2 {
             Assert.assertEquals(payments_and_refunds, false);
 
             boolean down_inv = dtActions.findDTActiveStatus(actions_1,one.driver,"Download Invoice");
-            Assert.assertEquals(down_inv, false);
+            Assert.assertEquals(down_inv, true);
 
             boolean inv_req = dtActions.findDTActiveStatus(actions_1,one.driver,"Invoice Request");
             Assert.assertEquals(inv_req, false);
@@ -245,7 +245,7 @@ public class case_2 {
         List<WebElement> actions_2 = address_detail.address_verification_dt(wb,one.driver);
 
         boolean addr_chan = dtActions.findDTActiveStatus(actions_2,one.driver,"Address Change");
-        Assert.assertEquals(addr_chan, true);
+        Assert.assertEquals(addr_chan, false);
 
         boolean cre_in = dtActions.findDTActiveStatus(actions_2,one.driver,"Create Incident");
         Assert.assertEquals(addr_chan, false);
