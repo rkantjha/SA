@@ -2,6 +2,7 @@ package SA_UI;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -29,34 +30,28 @@ public class case_4
 
     public case_4() throws IOException {
     }
-
     @BeforeTest
     public static void BeforeClass() {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
     }
-
-
     @Test(priority = 1, enabled = true)
     public void order_details() throws InterruptedException {
 
-
         one.login();
 
-        synchronized (one.driver) { one.driver.wait(3000); }
+        synchronized (one.driver) {one.driver.wait(6000);}
 
-        call_to_customer.new_session(wb,one.driver).click();
+        call_to_customer.new_session(one.wb, one.driver).click();
 
-        synchronized (one.driver) { one.driver.wait(3000); }
+        synchronized (one.driver) { one.driver.wait(6000);}
 
-
-        WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver,2,20,1);
+        WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
         searchBox.sendKeys(discovery_and_authentication.order_id_2);
-        synchronized (one.driver) { one.driver.wait(3000); }
+        searchBox.sendKeys(Keys.RETURN);
 
         String ordered_on=order_details.ordered_on(wb, one.driver,2,70,1).getText();
         System.out.println(ordered_on+" ordered on details");
         Assert.assertEquals("01 Sep 17, 12:21 PM",ordered_on);
-
     }
 
     @Test(priority=2, enabled = true)

@@ -47,7 +47,7 @@ public class case_3 extends ExcelData {
         synchronized (one.driver) { one.driver.wait(6000); }
 
         //search for order id
-        WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver,3,1,1);
+        WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
         synchronized (one.driver) { one.driver.wait(6000); }
 
         searchBox.sendKeys(Keys.RETURN);
