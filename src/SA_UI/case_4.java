@@ -18,7 +18,7 @@ import pom_elements.order_details;
 
 import java.io.IOException;
 
-// Supermart (groceries) test cases
+// Supermart (groceries) complete test cases
 
 public class case_4
 {
@@ -50,7 +50,12 @@ public class case_4
         String ordered_on=order_details.ordered_on(wb, one.driver,2,70,1).getText();
         System.out.println(ordered_on);
         System.out.println(ordered_on+" ordered on details");
-        Assert.assertEquals("28 Jan 18, 10:43 PM",ordered_on);
+        Assert.assertEquals("04 Sep 17, 08:39 PM",ordered_on);
+
+        // Active,Delivered,Cancelled,Returned,Undelivered count test
+        
+
+
 
 
 
