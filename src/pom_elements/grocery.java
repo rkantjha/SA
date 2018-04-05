@@ -11,10 +11,10 @@ public class grocery {
     public static WebElement  element =null;
     public static XSSFSheet sh;
 
-    public static WebElement s(XSSFWorkbook wb, WebDriver driver, int sheet, int row, int column)
+    public static WebElement grocery_items(XSSFWorkbook wb, WebDriver driver, int sheet, int row, int column)
     {
         sh= wb.getSheetAt(sheet);
-        element=driver.findElement(By.xpath(sh.getRow(20).getCell(1).getStringCellValue()));
+        element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
 

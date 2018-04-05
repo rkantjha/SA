@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pom_elements.call_to_customer;
 import pom_elements.discovery_and_authentication;
+import pom_elements.grocery;
 import pom_elements.order_details;
 
 
@@ -53,13 +54,43 @@ public class case_4
         Assert.assertEquals("04 Sep 17, 08:39 PM",ordered_on);
 
         // Active,Delivered,Cancelled,Returned,Undelivered count test
-        
 
+        String active_count= grocery.grocery_items(one.wb, one.driver,2,71,1).getText();
+        Assert.assertEquals(active_count,"0 Active");
+        System.out.println(active_count);
 
+        String delivered_count=grocery.grocery_items(one.wb,one.driver,2,72,1).getText();
+        Assert.assertEquals(delivered_count,"5 Delivered");
+        System.out.println(delivered_count);
 
+        String cancelled_count=grocery.grocery_items(one.wb,one.driver,2,73,1).getText();
+        Assert.assertEquals(cancelled_count,"0 Cancelled");
+        System.out.println(cancelled_count);
 
+        String returned_count=grocery.grocery_items(one.wb,one.driver,2,74,1).getText();
+        Assert.assertEquals(returned_count,"0 Returned");
+        System.out.println(returned_count);
 
+        String undelivered_count=grocery.grocery_items(one.wb,one.driver,2,75,1).getText();
+        Assert.assertEquals(undelivered_count,"0 Undelivered");
+        System.out.println(undelivered_count);
 
+        // Active,Delivered,Cancelled,Returned,Undelivered count test
+
+        // Basket price
+        String basket_price=grocery.grocery_items(one.wb,one.driver,2,76,1).getText();
+        Assert.assertEquals(basket_price,"Basket price ₹ 623");
+        System.out.println(basket_price);
+
+        //delivery charge
+        String delivery_charge=grocery.grocery_items(one.wb,one.driver,2,77,1).getText();
+        Assert.assertEquals(delivery_charge,"Delivery charge ₹ 50");
+        System.out.println(delivery_charge);
+
+        //total savings
+        String total_savings=grocery.grocery_items(one.wb,one.driver,2,78,1).getText();
+        Assert.assertEquals(total_savings," Total savings ");
+        System.out.println(total_savings);
 
     }
     @Test(priority=2, enabled = true)
