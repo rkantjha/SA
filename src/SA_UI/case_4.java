@@ -89,7 +89,7 @@ public class case_4
 
         //total savings
         String total_savings=grocery.grocery_items(one.wb,one.driver,2,78,1).getText();
-        Assert.assertEquals(total_savings," Total savings ");
+        Assert.assertEquals(total_savings,"Total savings ₹ -130");
         System.out.println(total_savings);
 
     }
