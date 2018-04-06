@@ -90,8 +90,27 @@ public class case_4
         Assert.assertEquals(total_savings,"Total savings ₹ -130");
         System.out.println(total_savings);
 
-        //All item , Active Item , cancelled item , returned item and undelivered item
 
+
+    }
+    @Test(priority=2, enabled = true)
+    public void address_details() throws InterruptedException {
+    }
+    @Test(priority=3, enabled = true)
+    public void payment_details() throws InterruptedException {
+
+    }
+    //Enable for all except email profile
+    @Test(priority=4, enabled = false)
+    public void toa_history() throws InterruptedException {
+    }
+    @Test(priority=5, enabled = true)
+    public void show_selector_grocery_basket() throws InterruptedException {
+    }
+    @Test(priority=6, enabled = true)
+    public void basket_items() throws InterruptedException {
+
+        //All item , Active Item , cancelled item , returned item and undelivered item
         String all_item_count=grocery.basket_status_tab(one.wb,one.driver,2,79,1).getText();
         Assert.assertEquals(all_item_count,"All items (5)");
         System.out.println(all_item_count);
@@ -111,29 +130,6 @@ public class case_4
         String undelivered_item_count=grocery.basket_status_tab(one.wb,one.driver,2,83,1).getText();
         Assert.assertEquals(undelivered_item_count,"Undelivered items (0)");
         System.out.println(undelivered_item_count);
-
-    }
-    @Test(priority=2, enabled = true)
-    public void address_details() throws InterruptedException {
-    }
-    @Test(priority=3, enabled = true)
-    public void payment_details() throws InterruptedException {
-    }
-    @Test(priority=4, enabled = true)
-    public void toa_history() throws InterruptedException {
-    }
-
-    @Test(priority=5, enabled = true)
-    public void show_selector_grocery_basket() throws InterruptedException {
-    }
-
-    @Test(priority=6, enabled = true)
-    public void basket_items() throws InterruptedException {
-        //All items
-        //Active items
-        //cancel items
-        //returned items
-        //undelivered items
     }
 
     @AfterTest(enabled = false)
