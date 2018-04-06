@@ -1,10 +1,7 @@
 package SA_UI;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -31,6 +28,7 @@ public class case_4
 
     public case_4() throws IOException {
     }
+
     @BeforeTest
     public static void BeforeClass() {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
@@ -91,6 +89,28 @@ public class case_4
         String total_savings=grocery.grocery_items(one.wb,one.driver,2,78,1).getText();
         Assert.assertEquals(total_savings,"Total savings ₹ -130");
         System.out.println(total_savings);
+
+        //All item , Active Item , cancelled item , returned item and undelivered item
+
+        String all_item_count=grocery.basket_status_tab(one.wb,one.driver,2,79,1).getText();
+        Assert.assertEquals(all_item_count,"All items (5)");
+        System.out.println(all_item_count);
+
+        String active_item_count=grocery.basket_status_tab(one.wb,one.driver,2,80,1).getText();
+        Assert.assertEquals(active_item_count,"Active items (5)");
+        System.out.println(active_item_count);
+
+        String cancelled_item_count=grocery.basket_status_tab(one.wb,one.driver,2,81,1).getText();
+        Assert.assertEquals(cancelled_item_count,"Cancelled items (0)");
+        System.out.println(cancelled_item_count);
+
+        String returned_item_count=grocery.basket_status_tab(one.wb,one.driver,2,82,1).getText();
+        Assert.assertEquals(returned_item_count,"Returned items (0)");
+        System.out.println(returned_item_count);
+
+        String undelivered_item_count=grocery.basket_status_tab(one.wb,one.driver,2,83,1).getText();
+        Assert.assertEquals(undelivered_item_count,"Undelivered items (0)");
+        System.out.println(undelivered_item_count);
 
     }
     @Test(priority=2, enabled = true)

@@ -17,5 +17,16 @@ public class grocery {
         element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
+    public static WebElement basket_status_tab(XSSFWorkbook wb, WebDriver driver, int sheet, int row, int column)
+    {
+        sh= wb.getSheetAt(sheet);
+        element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
+        return element;
+    }
+
+
+
+
+
 
 }
