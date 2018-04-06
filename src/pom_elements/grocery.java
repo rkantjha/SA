@@ -23,10 +23,4 @@ public class grocery {
         element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
-
-
-
-
-
-
 }
