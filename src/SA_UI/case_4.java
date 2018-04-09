@@ -12,8 +12,6 @@ import pom_elements.call_to_customer;
 import pom_elements.discovery_and_authentication;
 import pom_elements.grocery;
 import pom_elements.order_details;
-
-
 import java.io.IOException;
 
 // Supermart (groceries) complete test cases
@@ -26,13 +24,14 @@ public class case_4
     WebDriverWait wait = new WebDriverWait(one.driver, 20);
     Alert alert;
 
-    public case_4() throws IOException {
-    }
+    //method to handle exception
+    public case_4() throws IOException { }
 
     @BeforeTest
     public static void BeforeClass() {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
     }
+
     @Test(priority = 1, enabled = true,groups="one")
     public void order_details() throws InterruptedException {
 
@@ -93,20 +92,24 @@ public class case_4
 
 
     }
+
     @Test(priority=2, enabled = true,groups="four")
     public void address_details() throws InterruptedException {
     }
+
     @Test(priority=3, enabled = true,groups="four")
     public void payment_details() throws InterruptedException {
-
     }
+
     //Enable for all except email profile
-    @Test(priority=4, enabled = true,groups="four")
+    @Test(priority=4, enabled =false,groups="four")
     public void toa_history() throws InterruptedException {
     }
+
     @Test(priority=5, enabled = true,groups="four")
     public void show_selector_grocery_basket() throws InterruptedException {
     }
+
     @Test(priority=6, enabled = true,groups="four")
     public void basket_items() throws InterruptedException {
 
