@@ -28,7 +28,7 @@ public class case_2 {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
     }
 
-    @Test(priority = 1, enabled = true)
+    @Test(priority = 1, enabled = true,groups="two")
     public void UiDataVerify() throws InterruptedException {
         one.login();
 
@@ -161,7 +161,7 @@ public class case_2 {
         discovery_and_authentication.assign_to_no(wb, one.driver).click();
     }
 
-    @Test(priority = 2, enabled = true)
+    @Test(priority = 2, enabled = true,groups="two")
     public void order_details() throws InterruptedException {
 
         //order date verification
@@ -196,7 +196,7 @@ public class case_2 {
         Assert.assertEquals(pa_dt, false);
     }
 
-    @Test(priority = 3, enabled = true)//logic pending
+    @Test(priority = 3, enabled = true,groups="two")//logic pending
     public void payment_details() throws InterruptedException {
 
             //click on payment detail tab
@@ -227,7 +227,7 @@ public class case_2 {
             Assert.assertEquals(cre_inc, false);
 
     }
-    @Test(priority=4,enabled=true)
+    @Test(priority=4,enabled=true,groups="two")
     public void  address_details()throws InterruptedException
     {   synchronized (one.driver) { one.driver.wait(5000); }
         //click on address details tab
@@ -249,7 +249,7 @@ public class case_2 {
         Assert.assertEquals(addr_chan, false);
 
     }
-    @AfterTest(enabled = true)
+    @AfterTest(enabled = true,groups="two")
     public void close_and_quit() {
         System.out.println(" Quitting the session ");
         one.driver.close();

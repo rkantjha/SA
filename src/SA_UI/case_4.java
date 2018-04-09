@@ -33,7 +33,7 @@ public class case_4
     public static void BeforeClass() {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
     }
-    @Test(priority = 1, enabled = true)
+    @Test(priority = 1, enabled = true,groups="one")
     public void order_details() throws InterruptedException {
 
         one.login();
@@ -93,21 +93,21 @@ public class case_4
 
 
     }
-    @Test(priority=2, enabled = true)
+    @Test(priority=2, enabled = true,groups="four")
     public void address_details() throws InterruptedException {
     }
-    @Test(priority=3, enabled = true)
+    @Test(priority=3, enabled = true,groups="four")
     public void payment_details() throws InterruptedException {
 
     }
     //Enable for all except email profile
-    @Test(priority=4, enabled = false)
+    @Test(priority=4, enabled = true,groups="four")
     public void toa_history() throws InterruptedException {
     }
-    @Test(priority=5, enabled = true)
+    @Test(priority=5, enabled = true,groups="four")
     public void show_selector_grocery_basket() throws InterruptedException {
     }
-    @Test(priority=6, enabled = true)
+    @Test(priority=6, enabled = true,groups="four")
     public void basket_items() throws InterruptedException {
 
         //All item , Active Item , cancelled item , returned item and undelivered item
@@ -132,16 +132,11 @@ public class case_4
         System.out.println(undelivered_item_count);
     }
 
-    @AfterTest(enabled = false)
+    @AfterTest(enabled = true,groups="four")
     public void close_and_quit() {
 
         System.out.println("Quitting the session");
         one.driver.close();
         one.driver.quit();
     }
-
-
-
-
-
 }

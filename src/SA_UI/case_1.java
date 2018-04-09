@@ -41,7 +41,7 @@ public class case_1 {
         System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
     }
 
-    @Test(priority=1,enabled=true)
+    @Test(priority=1,enabled=true,groups="one")
     public void login() throws InterruptedException {
         driver.get(login_page.sa_url);
 
@@ -65,7 +65,7 @@ public class case_1 {
 
         login_page.login_button(wb,driver).click();
     }
-    @Test(priority=2,enabled=true)
+    @Test(priority=2,enabled=true,groups="one")
     public void  notification_home_page()throws InterruptedException {
 
             System.out.println(driver.getCurrentUrl() + "URL till here");
@@ -88,7 +88,7 @@ public class case_1 {
                 System.out.println("No check for notifications needed");
             }
     }
-    @Test(priority = 3,enabled=false)//enable it true when running test with voice profile
+    @Test(priority = 3,enabled=false,groups="one")//enable it true when running test with voice profile
     public void call_to_customer()throws InterruptedException {
         synchronized (driver){ driver.wait(3000); }
         call_to_customer.new_session(wb,driver).click();
@@ -109,7 +109,7 @@ public class case_1 {
         call_to_customer.enter_phone_number(wb,driver).sendKeys(call_to_customer.phone_number);
         call_to_customer.click_on_dial(wb,driver).click();
     }
-    @Test(priority=4,enabled=true)
+    @Test(priority=4,enabled=true,groups="one")
     public void logout()throws InterruptedException
     {
         synchronized (driver){ driver.wait(3000); }

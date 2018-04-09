@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="sanity suite for SA 2.0">
+    
+    <test name="one" enabled="true">
+        <classes>
+            <class name="SA_UI.case_1" />
+        </classes>
+    </test>
+    <test name="two" enabled="true">
+        <classes>
+            <class name="SA_UI.case_2" />
+        </classes>
+    </test>
+    <test name="three" enabled="true">
+        <classes>
+            <class name="SA_UI.case_3" />
+        </classes>
+    </test>
+    <test name="four" enabled="true">
+        <classes>
+            <class name="SA_UI.case_4" />
+        </classes>
+    </test>
+</suite>
