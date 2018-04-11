@@ -48,7 +48,7 @@ public class case_2 {
         Assert.assertEquals("Vivek keshri", user_name);
 
         synchronized (one.driver) {
-            one.driver.wait(4000);
+            one.driver.wait(5000);
         }
 
         /* Account ID verification */
@@ -69,7 +69,7 @@ public class case_2 {
         Assert.assertEquals("OD111401472227234000", orders_id);
 
         synchronized (one.driver) {
-            one.driver.wait(3000);
+            one.driver.wait(5000);
         }
 
         /* payment button enable verification */
@@ -83,7 +83,7 @@ public class case_2 {
         Assert.assertEquals(session_complete, true);
 
         synchronized (one.driver) {
-            one.driver.wait(3000);
+            one.driver.wait(5000);
         }
 
         //Home button enable check
@@ -103,13 +103,13 @@ public class case_2 {
         Assert.assertEquals(excalate, true);
         //Take a break enable check
         synchronized (one.driver) {
-            one.driver.wait(3000);
+            one.driver.wait(5000);
         }
         boolean take_break = discovery_and_authentication.take_a_break(wb, one.driver).isEnabled();
         Assert.assertEquals(take_break, true);
 
         synchronized (one.driver) {
-            one.driver.wait(3000);
+            one.driver.wait(5000);
         }
 
         //show selector button enable check
@@ -135,7 +135,7 @@ public class case_2 {
         Assert.assertEquals(log_out, true);
 
         synchronized (one.driver) {
-            one.driver.wait(3000);
+            one.driver.wait(5000);
         }
 
         //session enable yes-no button enable check
@@ -147,12 +147,12 @@ public class case_2 {
             one.driver.navigate().refresh();
 
             synchronized (one.driver) {
-                one.driver.wait(3000);
+                one.driver.wait(5000);
             }
 
             discovery_and_authentication.assign_yes(wb, one.driver).click();
 
-            synchronized (one.driver) { one.driver.wait(4000); }
+            synchronized (one.driver) { one.driver.wait(5000); }
 
             boolean yes_on = discovery_and_authentication.break_dis(wb, one.driver).isEnabled();
             Assert.assertEquals(yes_on, true);
@@ -178,7 +178,7 @@ public class case_2 {
         Assert.assertEquals("AndroidApp", cv);
 
         /* Don't remove this wait */
-        synchronized (one.driver) {one.driver.wait(4000); }
+        synchronized (one.driver) {one.driver.wait(5000); }
 
         //Getting DT Actions
          List<WebElement> actions = order_details.order_verification_dt(wb, one.driver);
@@ -200,9 +200,9 @@ public class case_2 {
     public void payment_details() throws InterruptedException {
 
             //click on payment detail tab
-            synchronized (one.driver) { one.driver.wait(4000); }
+            synchronized (one.driver) { one.driver.wait(5000); }
             payment_details.payment_details_tab(wb, one.driver).click();
-            synchronized (one.driver) { one.driver.wait(4000); }
+            synchronized (one.driver) { one.driver.wait(5000); }
 
             //selling price verification
             String s_price = payment_details.selling_price(wb, one.driver).getText();
@@ -232,7 +232,7 @@ public class case_2 {
     {   synchronized (one.driver) { one.driver.wait(5000); }
         //click on address details tab
         address_detail.click_address_details_tab(wb,one.driver).click();
-        synchronized (one.driver) { one.driver.wait(3000); }
+        synchronized (one.driver) { one.driver.wait(5000); }
         String c_a=address_detail.current_address(wb,one.driver).getText();
         System.out.println(c_a);
         Assert.assertEquals(c_a,"Electronic City phase 1 , Konappana agrahara ,nanjuda reddy layout " +

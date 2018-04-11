@@ -102,23 +102,8 @@ public class case_3 extends ExcelData {
         */
 
     }
-    @Test(priority=3,enabled=false,groups="three")
-    public void  ndr_large()throws InterruptedException
-    {
-        System.out.println("ndr_large test passed ");
-        //new session
-        //search
-        //name,phone,email,account id
-        //order details
-        //payment details
-        //address
-        //payment history
-        //dt verification
-        //show selectors(incident,return,replacement,refund,service,callback)
-        //hide selectors
 
-    }
-    @Test(priority=4,enabled=false,groups="three")
+    @Test(priority=4,enabled=true,groups="three")
     public void  grocerry()throws InterruptedException
     {
         System.out.println("grocerry test passed ");
@@ -134,7 +119,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=5,enabled=false,groups="three")
+    @Test(priority=5,enabled=true,groups="three")
     public void  mps()throws InterruptedException
     {
         System.out.println("mps test passed ");
@@ -150,7 +135,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=6,enabled=false,groups="three")
+    @Test(priority=6,enabled=true,groups="three")
     public void  doorship()throws InterruptedException
     {
         System.out.println("doorship test passed ");
@@ -166,7 +151,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=7,enabled=false,groups="three")
+    @Test(priority=7,enabled=true,groups="three")
     public void  delivery_installation()throws InterruptedException
     {
         System.out.println("delivery_installation test passed ");
@@ -181,7 +166,7 @@ public class case_3 extends ExcelData {
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
     }
-    @Test(priority=8,enabled=false,groups="three")
+    @Test(priority=8,enabled=true,groups="three")
     public void  blacklisted()throws InterruptedException
     {
         System.out.println("blacklisted test passed ");
@@ -197,7 +182,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=9,enabled=false,groups="three")
+    @Test(priority=9,enabled=true,groups="three")
     public void  abb()throws InterruptedException
     {
         System.out.println("abb test passed ");
@@ -213,7 +198,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=10,enabled=false,groups="three")
+    @Test(priority=10,enabled=true,groups="three")
     public void  ecode()throws InterruptedException
     {
         System.out.println("ecode test passed ");
@@ -229,7 +214,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=11,enabled=false,groups="three")
+    @Test(priority=11,enabled=true,groups="three")
     public void  adld()throws InterruptedException
     {
         System.out.println("adld test passed ");
@@ -245,7 +230,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=12,enabled=false,groups="three")
+    @Test(priority=12,enabled=true,groups="three")
     public void  egv()throws InterruptedException
     {
         System.out.println("egv test passed ");
@@ -261,7 +246,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=13,enabled=false,groups="three")
+    @Test(priority=13,enabled=true,groups="three")
     public void  non()throws InterruptedException
     {
         System.out.println("non test passed ");
@@ -277,7 +262,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=14,enabled=false,groups="three")
+    @Test(priority=14,enabled=true,groups="three")
     public void  associate()throws InterruptedException
     {
         System.out.println("associate test passed ");
@@ -293,7 +278,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=15,enabled=false,groups="three")
+    @Test(priority=15,enabled=true,groups="three")
     public void  priority()throws InterruptedException
     {
         System.out.println("priority test passed ");
@@ -309,7 +294,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=16,enabled=false,groups="three")
+    @Test(priority=16,enabled=true,groups="three")
     public void  f_first()throws InterruptedException
     {
         System.out.println("f_first test passed ");
@@ -325,7 +310,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=17,enabled=false,groups="three")
+    @Test(priority=17,enabled=true,groups="three")
     public void  ac()throws InterruptedException
     {
         System.out.println("ac test passed ");
@@ -341,7 +326,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=18,enabled=false,groups="three")
+    @Test(priority=18,enabled=true,groups="three")
     public void  ndd()throws InterruptedException
     {
         System.out.println("ndd test passed ");
@@ -357,7 +342,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=19,enabled=false,groups="three")
+    @Test(priority=19,enabled=true,groups="three")
     public void  bnpl()throws InterruptedException
     {
         System.out.println("bnpl test passed ");
@@ -373,7 +358,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=20,enabled=false,groups="three")
+    @Test(priority=20,enabled=true,groups="three")
     public void  multi_ps()throws InterruptedException
     {
         System.out.println("multi_ps test passed ");
@@ -389,7 +374,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=21,enabled=false,groups="three")
+    @Test(priority=21,enabled=true,groups="three")
     public void  no_range()throws InterruptedException
     {
         System.out.println("no_range test passed ");
@@ -405,7 +390,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=22,enabled=false,groups="three")
+    @Test(priority=22,enabled=true,groups="three")
     public void  service_commands()throws InterruptedException
     {
         System.out.println("service_commands test passed ");
@@ -421,7 +406,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=23,enabled=false,groups="three")
+    @Test(priority=23,enabled=true,groups="three")
     public void  cashback_detail()throws InterruptedException
     {
         System.out.println("cashback_detail test passed ");
@@ -437,7 +422,7 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=24,enabled=false,groups="three")
+    @Test(priority=24,enabled=true,groups="three")
     public void  doorship_and_mps()throws InterruptedException
     {
         System.out.println("doorship_and_mps test passed ");

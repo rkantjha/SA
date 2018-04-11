@@ -45,7 +45,7 @@ public class case_1 {
     public void login() throws InterruptedException {
         driver.get(login_page.sa_url);
 
-        synchronized (driver){ driver.wait(3000); }
+        synchronized (driver){ driver.wait(5000); }
 
         driver.manage().window().maximize();
 
@@ -53,13 +53,13 @@ public class case_1 {
 
         login_page.verify_me(wb,driver).click();
 
-        synchronized (driver){ driver.wait(3000); }
+        synchronized (driver){ driver.wait(5000); }
 
         login_page.password(wb,driver).sendKeys(login_page.getPassword(wb));
 
         login_page.login_button(wb,driver).click();
 
-        synchronized (driver){ driver.wait(3000); }
+        synchronized (driver){ driver.wait(5000); }
 
         login_page.logout_previous(wb,driver).click();
 
@@ -68,7 +68,7 @@ public class case_1 {
     @Test(priority=2,enabled=true,groups="one")
     public void  notification_home_page()throws InterruptedException {
 
-            System.out.println(driver.getCurrentUrl() + "URL till here");
+        System.out.println(driver.getCurrentUrl() + "URL till here");
 
             if (driver.getCurrentUrl().equalsIgnoreCase(yoda_url)) {
                 String notification_count =  home_page.count(wb,driver).getAttribute("innerHTML");
@@ -84,15 +84,16 @@ public class case_1 {
                 }
                 home_page.proceed_to_sa(wb,driver).click();
             }
-            else {
+            else
+            {
                 System.out.println("No check for notifications needed");
             }
     }
     @Test(priority = 3,enabled=false,groups="one")//enable it true when running test with voice profile
     public void call_to_customer()throws InterruptedException {
-        synchronized (driver){ driver.wait(3000); }
+        synchronized (driver){ driver.wait(5000); }
         call_to_customer.new_session(wb,driver).click();
-        synchronized (driver){ driver.wait(3000); }
+        synchronized (driver){ driver.wait(5000); }
         call_to_customer.call_drop_down(wb,driver).click();
         synchronized (driver){ driver.wait(5000); }
         call_to_customer.select_campaign(wb,driver).click();
@@ -100,9 +101,9 @@ public class case_1 {
         call_to_customer.call_login(wb,driver).click();
         synchronized (driver){ driver.wait(6000); }
         call_to_customer.assign_yes(wb,driver).click();
-        synchronized (driver){ driver.wait(3000); }
+        synchronized (driver){ driver.wait(5000); }
         call_to_customer.manual_dial(wb,driver).click();
-        synchronized (driver){ driver.wait(3000); }
+        synchronized (driver){ driver.wait(5000); }
         call_to_customer.make_call(wb,driver).click();
         call_to_customer.select_number_type(wb,driver).click();
         call_to_customer.select_customer(wb,driver).click();
@@ -112,9 +113,9 @@ public class case_1 {
     @Test(priority=4,enabled=true,groups="one")
     public void logout()throws InterruptedException
     {
-        synchronized (driver){ driver.wait(3000); }
+        synchronized (driver){ driver.wait(5000); }
         login_page.profile_menu(wb,driver).click();
-        synchronized (driver){ driver.wait(3000); }
+        synchronized (driver){ driver.wait(5000); }
         login_page.click_on_logout(wb,driver).click();
         driver.close();
         driver.quit();
