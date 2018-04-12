@@ -40,7 +40,7 @@ public class case_3 extends ExcelData {
     public void login()throws InterruptedException
     {
         one.login();
-        synchronized (one.driver) { one.driver.wait(6000); }
+        synchronized (one.driver) { one.driver.wait(4000); }
     }
 
     @Test(priority=1,enabled=true,groups="three")
@@ -48,15 +48,17 @@ public class case_3 extends ExcelData {
     {
             //click on new session
             call_to_customer.new_session(one.wb,one.driver).click();
-            synchronized (one.driver) { one.driver.wait(6000); }
+            synchronized (one.driver) { one.driver.wait(4000); }
 
             //search for order id
             WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
             synchronized (one.driver) { one.driver.wait(6000); }
+            searchBox.sendKeys(discovery_and_authentication.order_id_2);
 
             searchBox.sendKeys(Keys.RETURN);
+            synchronized (one.driver) { one.driver.wait(6000); }
 
-           //name
+            //name
             String user_name = discovery_and_authentication.name(one.wb, one.driver, 3, 1, 2).getText();
             System.out.println(user_name);
             Assert.assertEquals("Ramki", user_name);
@@ -74,6 +76,7 @@ public class case_3 extends ExcelData {
             System.out.println(account_id + "account id is verified");
             Assert.assertEquals(account_id, "ACC14074063501296331");
             //order details
+
             //payment details
             //address
             //payment history
@@ -113,7 +116,6 @@ public class case_3 extends ExcelData {
         //dt verification
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
-
     }
     @Test(priority=4,enabled=true,groups="three")
     public void  Refund()throws InterruptedException
@@ -327,7 +329,7 @@ public class case_3 extends ExcelData {
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
     }
-    @AfterTest(enabled = true,groups="three")
+    @AfterTest(enabled = false,groups="three")
     public void close_and_quit() {
 
         System.out.println("Quitting the session");
