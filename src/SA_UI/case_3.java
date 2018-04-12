@@ -11,22 +11,21 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pom_elements.address_detail;
-import pom_elements.call_to_customer;
-import pom_elements.discovery_and_authentication;
-import pom_elements.order_wise;
+import pom_elements.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 
 public class case_3 extends ExcelData {
 
-  public case_1 one = new case_1();
-  XSSFWorkbook wb = ExcelData.bootstrap();
+      public case_1 one = new case_1();
+      XSSFWorkbook wb = ExcelData.bootstrap();
+      DTActions dtActions = new DTActions();
     public static XSSFSheet sh;
 
     public case_3() throws IOException {
@@ -53,7 +52,7 @@ public class case_3 extends ExcelData {
             //search for order id
             WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
             synchronized (one.driver) { one.driver.wait(6000); }
-            searchBox.sendKeys(discovery_and_authentication.order_id_2);
+            searchBox.sendKeys(discovery_and_authentication.order_id_3);
 
             searchBox.sendKeys(Keys.RETURN);
             synchronized (one.driver) { one.driver.wait(6000); }
@@ -75,9 +74,42 @@ public class case_3 extends ExcelData {
             String account_id = discovery_and_authentication.account_id(one.wb, one.driver, 3, 1, 5).getText();
             System.out.println(account_id + "account id is verified");
             Assert.assertEquals(account_id, "ACC14074063501296331");
-            //order details
+        
+            //order details verification
+
+        //order date verification
+        String ordered_on = order_details.ordered_on(wb, one.driver,3,1,6).getText();
+        System.out.println(ordered_on + "    date is verified ");
+        Assert.assertEquals("13 Jun 17, 11:01 PM", ordered_on);
+        //total price verification
+        String tp = order_details.total_price(wb, one.driver,3,1,7).getText();
+        System.out.println(tp + "  total price is verified");
+        Assert.assertEquals("699", tp);
+        //channel name verification
+        String cv = order_details.channel(wb, one.driver,3,1,8).getText();
+        System.out.println(cv + "  is the name of the channel");
+        Assert.assertEquals("AndroidApp", cv);
+
+        /* Don't remove this wait */
+        synchronized (one.driver) {one.driver.wait(5000); }
+
+        //Getting DT Actions
+        List<WebElement> actions = order_details.order_verification_dt(wb, one.driver);
+
+        //order verification dt enable check (email profile)
+        boolean ov_dt = dtActions.findDTActiveStatus(actions,one.driver,"Order Verification");
+        Assert.assertEquals(ov_dt, false);
+
+        //create incident dt verification enable check(email profile)
+        boolean ci_dt =  dtActions.findDTActiveStatus(actions,one.driver,"Create Incident");
+        Assert.assertEquals(ci_dt, false);
+
+        //Price adjustment dt enable check(email profile)
+        boolean pa_dt = dtActions.findDTActiveStatus(actions,one.driver,"Price Adjustment");
+        Assert.assertEquals(pa_dt, false);
 
             //payment details
+
             //address
             //payment history
             //dt verification

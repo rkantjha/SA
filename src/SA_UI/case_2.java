@@ -147,7 +147,7 @@ public class case_2 {
             one.driver.navigate().refresh();
 
             synchronized (one.driver) {
-                one.driver.wait(5000);
+                one.driver.wait(6000);
             }
 
             discovery_and_authentication.assign_yes(wb, one.driver).click();
@@ -162,18 +162,19 @@ public class case_2 {
     }
 
     @Test(priority = 2, enabled = true,groups="two")
-    public void order_details() throws InterruptedException {
+    public void order_details() throws InterruptedException
+    {
 
         //order date verification
         String ordered_on = order_details.ordered_on(wb, one.driver,2,47,1).getText();
         System.out.println(ordered_on + "    date is verified ");
         Assert.assertEquals("28 Jan 18, 10:43 PM", ordered_on);
         //total price verification
-        String tp = order_details.total_price(wb, one.driver).getText();
+        String tp = order_details.total_price(wb, one.driver,2,48,1).getText();
         System.out.println(tp + "  total price is verified");
         Assert.assertEquals("14599", tp);
         //channel name verification
-        String cv = order_details.channel(wb, one.driver).getText();
+        String cv = order_details.channel(wb, one.driver,2,49,1).getText();
         System.out.println(cv + "  is the name of the channel");
         Assert.assertEquals("AndroidApp", cv);
 
