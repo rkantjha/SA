@@ -7,12 +7,12 @@
         <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
     </listeners>
     
-    <test name="one" enabled="true">
+    <test name="one" enabled="false">
         <classes>
             <class name="SA_UI.case_1" />
         </classes>
     </test>
-    <test name="two" enabled="true">
+    <test name="two" enabled="false">
         <classes>
             <class name="SA_UI.case_2" />
         </classes>
@@ -22,9 +22,11 @@
             <class name="SA_UI.case_3" />
         </classes>
     </test>
-    <test name="four" enabled="true">
+    <test name="four" enabled="false">
         <classes>
             <class name="SA_UI.case_4" />
         </classes>
     </test>
 </suite>
+
+
