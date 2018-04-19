@@ -88,13 +88,11 @@ public class case_4
         String total_savings=grocery.grocery_items(one.wb,one.driver,2,78,1).getText();
         Assert.assertEquals(total_savings,"Total savings ₹ -130");
         System.out.println(total_savings);
-
-
-
     }
 
     @Test(priority=2, enabled = true,groups="four")
     public void address_details() throws InterruptedException {
+        
     }
 
     @Test(priority=3, enabled = true,groups="four")

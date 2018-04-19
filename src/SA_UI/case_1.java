@@ -44,25 +44,15 @@ public class case_1 {
     @Test(priority=1,enabled=true,groups="one")
     public void login() throws InterruptedException {
         driver.get(login_page.sa_url);
-
         synchronized (driver){ driver.wait(5000); }
-
         driver.manage().window().maximize();
-
         login_page.user_name(wb,driver).sendKeys(login_page.getUserName(wb));
-
         login_page.verify_me(wb,driver).click();
-
         synchronized (driver){ driver.wait(5000); }
-
         login_page.password(wb,driver).sendKeys(login_page.getPassword(wb));
-
         login_page.login_button(wb,driver).click();
-
         synchronized (driver){ driver.wait(5000); }
-
         login_page.logout_previous(wb,driver).click();
-
         login_page.login_button(wb,driver).click();
     }
     @Test(priority=2,enabled=true,groups="one")
@@ -119,7 +109,5 @@ public class case_1 {
         login_page.click_on_logout(wb,driver).click();
         driver.close();
         driver.quit();
-
-
     }
 }

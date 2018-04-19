@@ -2,23 +2,16 @@ package SA_UI;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pom_elements.*;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 
 public class case_3 extends ExcelData {
@@ -32,9 +25,8 @@ public class case_3 extends ExcelData {
     }
     @BeforeTest
     public static void BeforeClass() {
-        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+        System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
     }
-
     @Test(priority =0,enabled = true,groups="three")
     public void login()throws InterruptedException
     {
@@ -74,7 +66,7 @@ public class case_3 extends ExcelData {
             String account_id = discovery_and_authentication.account_id(one.wb, one.driver, 3, 1, 5).getText();
             System.out.println(account_id + "account id is verified");
             Assert.assertEquals(account_id, "ACC14074063501296331");
-        
+
             //order details verification
 
         //order date verification
