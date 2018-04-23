@@ -28,15 +28,14 @@ public class case_4
     //method to handle exception
     public case_4() throws IOException {
     }
-    
+
     @BeforeTest
     public static void BeforeClass() {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
     }
 
     @Test(priority=1,enabled=true,groups="one")
-    public void order_details() throws InterruptedException {
-
+    public void order_details()throws InterruptedException {
         one.login();
         synchronized (one.driver) {one.driver.wait(6000);}
 
@@ -92,7 +91,7 @@ public class case_4
         System.out.println(total_savings);
     }
     @Test(priority=2,enabled=true,groups="four")
-    public void basket_items() throws InterruptedException {
+    public void basket_items()throws InterruptedException {
 
         //All item , Active Item , cancelled item , returned item and undelivered item
         String all_item_count=grocery.basket_status_tab(one.wb,one.driver,2,79,1).getText();
@@ -116,17 +115,17 @@ public class case_4
         System.out.println(undelivered_item_count);
     }
     @Test(priority=3,enabled=true,groups="four")
-    public void payment_details() throws InterruptedException {
+    public void payment_details()throws InterruptedException {
 
         /* click on payment detail */
         synchronized (one.driver) { one.driver.wait(6000); }
         payment_details.payment_details_tab(wb, one.driver).click();
-        synchronized (one.driver) { one.driver.wait(5000); }
+        synchronized (one.driver) { one.driver.wait(8000); }
 
         //selling price verification
-        String s_price = payment_details.selling_price(wb, one.driver).getText();
+        String s_price = payment_details.selling_price(wb, one.driver,2,84,1).getText();
         System.out.println(s_price + "    selling price is verified ");
-        Assert.assertEquals("14599", s_price);
+        Assert.assertEquals("623", s_price);
 
             /* Don't remove this wait */
         synchronized (one.driver) {one.driver.wait(6000);}
@@ -146,19 +145,33 @@ public class case_4
         Assert.assertEquals(cre_inc, false);
     }
     @Test(priority=4,enabled=true,groups="four")
-    public void address_details() throws InterruptedException {
+    public void address_details()throws InterruptedException {
+        synchronized (one.driver) { one.driver.wait(5000); }
+        //click on address details tab
+        address_detail.click_address_details_tab(wb,one.driver).click();
+        synchronized (one.driver) { one.driver.wait(5000); }
+        synchronized (one.driver) {one.driver.wait(8000);}
+
+        List<WebElement> actions_2 = address_detail.address_verification_dt(wb,one.driver);
+
+        boolean addr_chan = dtActions.findDTActiveStatus(actions_2,one.driver,"Address Change");
+        Assert.assertEquals(addr_chan, false);
+
+        boolean cre_in = dtActions.findDTActiveStatus(actions_2,one.driver,"Create Incident");
+        Assert.assertEquals(addr_chan, false);
     }
 
-    //Enable for all except email profile
-    @Test(priority=4,enabled=false,groups="four")
-    public void toa_history() throws InterruptedException {
+    //Enable for all profiles, except email
+    @Test(priority=4,enabled=true,groups="four")
+    public void toa_history()throws InterruptedException {
+        System.out.println("Skip for email profile");
     }
 
     @Test(priority=5,enabled=true,groups="four")
-    public void show_selector_grocery_basket() throws InterruptedException {
+    public void show_selector_grocery_basket()throws InterruptedException {
     }
 
-    @AfterTest(enabled=true,groups="four")
+    @AfterTest(enabled=false,groups="four")
     public void close_and_quit() {
 
         System.out.println("Quitting the session");

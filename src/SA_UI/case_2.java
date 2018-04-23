@@ -206,7 +206,7 @@ public class case_2 {
             synchronized (one.driver) { one.driver.wait(5000); }
 
             //selling price verification
-            String s_price = payment_details.selling_price(wb, one.driver).getText();
+            String s_price = payment_details.selling_price(wb, one.driver,2,54,1).getText();
             System.out.println(s_price + "    selling price is verified ");
             Assert.assertEquals("14599", s_price);
 
