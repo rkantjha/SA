@@ -47,7 +47,7 @@ public class case_3 extends ExcelData {
             searchBox.sendKeys(discovery_and_authentication.order_id_3);
 
             searchBox.sendKeys(Keys.RETURN);
-            synchronized (one.driver) { one.driver.wait(6000); }
+            synchronized (one.driver) { one.driver.wait(8000); }
 
             //name
             String user_name = discovery_and_authentication.name(one.wb, one.driver, 3, 1, 2).getText();

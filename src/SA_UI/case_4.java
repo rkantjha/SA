@@ -8,31 +8,33 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pom_elements.call_to_customer;
-import pom_elements.discovery_and_authentication;
-import pom_elements.grocery;
-import pom_elements.order_details;
+import pom_elements.*;
+
 import java.io.IOException;
+import java.util.List;
 
 // Supermart (groceries) complete test cases
+// OD110139291489831000
 
 public class case_4
 {
     case_1 one = new case_1();
     XSSFWorkbook wb = ExcelData.bootstrap();
+    DTActions dtActions = new DTActions();
 
-    WebDriverWait wait = new WebDriverWait(one.driver, 20);
+    WebDriverWait wait = new WebDriverWait(one.driver, 10);
     Alert alert;
 
     //method to handle exception
-    public case_4() throws IOException { }
-
+    public case_4() throws IOException {
+    }
+    
     @BeforeTest
     public static void BeforeClass() {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
     }
 
-    @Test(priority = 1, enabled = true,groups="one")
+    @Test(priority=1,enabled=true,groups="one")
     public void order_details() throws InterruptedException {
 
         one.login();
@@ -89,26 +91,7 @@ public class case_4
         Assert.assertEquals(total_savings,"Total savings ₹ -130");
         System.out.println(total_savings);
     }
-
-    @Test(priority=2, enabled = true,groups="four")
-    public void address_details() throws InterruptedException {
-        
-    }
-
-    @Test(priority=3, enabled = true,groups="four")
-    public void payment_details() throws InterruptedException {
-    }
-
-    //Enable for all except email profile
-    @Test(priority=4, enabled =false,groups="four")
-    public void toa_history() throws InterruptedException {
-    }
-
-    @Test(priority=5, enabled = true,groups="four")
-    public void show_selector_grocery_basket() throws InterruptedException {
-    }
-
-    @Test(priority=6, enabled = true,groups="four")
+    @Test(priority=2,enabled=true,groups="four")
     public void basket_items() throws InterruptedException {
 
         //All item , Active Item , cancelled item , returned item and undelivered item
@@ -132,8 +115,50 @@ public class case_4
         Assert.assertEquals(undelivered_item_count,"Undelivered items (0)");
         System.out.println(undelivered_item_count);
     }
+    @Test(priority=3,enabled=true,groups="four")
+    public void payment_details() throws InterruptedException {
 
-    @AfterTest(enabled = true,groups="four")
+        /* click on payment detail */
+        synchronized (one.driver) { one.driver.wait(6000); }
+        payment_details.payment_details_tab(wb, one.driver).click();
+        synchronized (one.driver) { one.driver.wait(5000); }
+
+        //selling price verification
+        String s_price = payment_details.selling_price(wb, one.driver).getText();
+        System.out.println(s_price + "    selling price is verified ");
+        Assert.assertEquals("14599", s_price);
+
+            /* Don't remove this wait */
+        synchronized (one.driver) {one.driver.wait(6000);}
+
+        List<WebElement> actions_2 = payment_details.payments_details_all_DT(wb,one.driver);
+
+        boolean down_inv = dtActions.findDTActiveStatus(actions_2,one.driver,"Download Invoice");
+        Assert.assertEquals(down_inv, true);
+
+        boolean payments_and_refunds = dtActions.findDTActiveStatus(actions_2,one.driver,"Payments and Refunds");
+        Assert.assertEquals(payments_and_refunds, false);
+
+        boolean inv_req = dtActions.findDTActiveStatus(actions_2,one.driver,"Invoice Request");
+        Assert.assertEquals(inv_req, false);
+
+        boolean cre_inc = dtActions.findDTActiveStatus(actions_2,one.driver,"Create Incident");
+        Assert.assertEquals(cre_inc, false);
+    }
+    @Test(priority=4,enabled=true,groups="four")
+    public void address_details() throws InterruptedException {
+    }
+
+    //Enable for all except email profile
+    @Test(priority=4,enabled=false,groups="four")
+    public void toa_history() throws InterruptedException {
+    }
+
+    @Test(priority=5,enabled=true,groups="four")
+    public void show_selector_grocery_basket() throws InterruptedException {
+    }
+
+    @AfterTest(enabled=true,groups="four")
     public void close_and_quit() {
 
         System.out.println("Quitting the session");
