@@ -177,8 +177,9 @@ public class case_4
         grocery.show_selectors(one.wb, one.driver,2,85,1).click();
     }
     @AfterTest(enabled=false,groups="four")
-    public void close_and_quit() {
-        System.out.println("Quitting the session");
+    public void close_and_quit()throws InterruptedException {
+        synchronized (one.driver) {one.driver.wait(8000);}
+        discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
         one.driver.close();
         one.driver.quit();
     }

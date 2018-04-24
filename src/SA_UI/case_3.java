@@ -19,7 +19,7 @@ public class case_3 extends ExcelData {
       public case_1 one = new case_1();
       XSSFWorkbook wb = ExcelData.bootstrap();
       DTActions dtActions = new DTActions();
-    public static XSSFSheet sh;
+      public static XSSFSheet sh;
 
     public case_3() throws IOException {
     }
@@ -27,7 +27,7 @@ public class case_3 extends ExcelData {
     public static void BeforeClass() {
         System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
     }
-    @Test(priority =0,enabled = true,groups="three")
+    @Test(priority=0,enabled=true,groups="three")
     public void login()throws InterruptedException
     {
         one.login();
@@ -69,18 +69,18 @@ public class case_3 extends ExcelData {
 
             //order details verification
 
-        //order date verification
-        String ordered_on = order_details.ordered_on(wb, one.driver,3,1,6).getText();
-        System.out.println(ordered_on + "    date is verified ");
-        Assert.assertEquals("13 Jun 17, 11:01 PM", ordered_on);
-        //total price verification
-        String tp = order_details.total_price(wb, one.driver,3,1,7).getText();
-        System.out.println(tp + "  total price is verified");
-        Assert.assertEquals("699", tp);
-        //channel name verification
-        String cv = order_details.channel(wb, one.driver,3,1,8).getText();
-        System.out.println(cv + "  is the name of the channel");
-        Assert.assertEquals("AndroidApp", cv);
+            //order date verification
+            String ordered_on = order_details.ordered_on(wb, one.driver,3,1,6).getText();
+            System.out.println(ordered_on + "    date is verified ");
+            Assert.assertEquals("13 Jun 17, 11:01 PM", ordered_on);
+             //total price verification
+            String tp = order_details.total_price(wb, one.driver,3,1,7).getText();
+            System.out.println(tp + "  total price is verified");
+            Assert.assertEquals("699", tp);
+             //channel name verification
+            String cv = order_details.channel(wb, one.driver,3,1,8).getText();
+            System.out.println(cv + "  is the name of the channel");
+            Assert.assertEquals("AndroidApp", cv);
 
         /* Don't remove this wait */
         synchronized (one.driver) {one.driver.wait(5000); }
@@ -108,12 +108,14 @@ public class case_3 extends ExcelData {
             //show selectors(incident,return,replacement,refund,service,callback)
             //hide selectors
             //close session
-            discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
+        synchronized (one.driver) {one.driver.wait(8000);}
+        discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
     }
     @Test(priority=2,enabled=true,groups="three")
     public void  ndr()throws InterruptedException,IOException {
 
         //click on new session
+
         /*
         search
         name,phone,email,account id
@@ -324,7 +326,7 @@ public class case_3 extends ExcelData {
     }
 
     @Test(priority=16,enabled=true,groups="three")
-    public void  cashback_detail()throws InterruptedException
+    public void  cash_back_detail()throws InterruptedException
     {
         System.out.println("cashback_detail test passed ");
         //new session
