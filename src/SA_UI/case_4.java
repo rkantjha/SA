@@ -183,8 +183,11 @@ public class case_4
     public void email_widget()throws InterruptedException {
        // click on home button
         discovery_and_authentication.home(one.wb,one.driver,2,29,1).click();
+        synchronized (one.driver) {one.driver.wait(5000);}
 
-
+        //click on open details
+        email_widget.click_on_openDetails(one.wb,one.driver,2,88,1).click();
+        synchronized (one.driver) {one.driver.wait(5000);}
 
         Boolean email_btn;
        if (pom_elements.email_widget.email_button(one.wb, one.driver, 2,86,1).isEnabled() ) email_btn =true;
@@ -200,8 +203,15 @@ public class case_4
         if (email_widget.email_reply(one.wb, one.driver, 2,87,1).isEnabled()) email_rply=true;
         else System.out.println("email reply button is not working");
     }
-    @AfterTest(enabled=false,groups="four")
+    @AfterTest(enabled=true,groups="four")
     public void close_and_quit()throws InterruptedException {
+        String cURL=one.driver.getCurrentUrl();
+        String exp_URL= email_widget.current_url_assigned_session(one.wb, one.driver, 2,89,1).getText();
+        synchronized (one.driver) {one.driver.wait(4000);}
+
+        if (cURL==exp_URL)
+        { System.out.println("No session close required"); }
+        else
         synchronized (one.driver) {one.driver.wait(8000);}
         discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
         one.driver.close();
