@@ -160,7 +160,6 @@ public class case_4
         boolean cre_in = dtActions.findDTActiveStatus(actions_2,one.driver,"Create Incident");
         Assert.assertEquals(addr_chan, false);
     }
-
     //Enable for all profiles, except email
     @Test(priority=4,enabled=true,groups="four")
     public void toa_history()throws InterruptedException {
@@ -169,8 +168,12 @@ public class case_4
 
     @Test(priority=5,enabled=true,groups="four")
     public void show_selector_grocery_basket()throws InterruptedException {
+        boolean ss;
+        if (grocery.show_selectors(one.wb, one.driver, 2, 85, 1).isEnabled()) ss = true;
+        else {
+            ss = false;
+        }
     }
-
     @AfterTest(enabled=false,groups="four")
     public void close_and_quit() {
 
