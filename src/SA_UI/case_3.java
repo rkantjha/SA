@@ -355,9 +355,8 @@ public class case_3 extends ExcelData {
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
     }
-    @AfterTest(enabled = false,groups="three")
-    public void close_and_quit() {
-
+    @AfterTest(enabled=true,groups="three")
+    public void close_and_quit()throws InterruptedException {
         System.out.println("Quitting the session");
         one.driver.close();
         one.driver.quit();

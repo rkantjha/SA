@@ -87,7 +87,7 @@ public class case_2 {
         }
 
         //Home button enable check
-        boolean home_button = discovery_and_authentication.home(wb, one.driver).isEnabled();
+        boolean home_button = discovery_and_authentication.home(wb, one.driver,2,29,1).isEnabled();
         Assert.assertEquals(home_button, true);
         //yoda button enable check
         boolean yoda_button = discovery_and_authentication.yoda(wb, one.driver).isEnabled();

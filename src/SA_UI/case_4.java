@@ -1,5 +1,6 @@
 package SA_UI;
 
+import javafx.scene.layout.Priority;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,10 +11,12 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pom_elements.*;
 
+
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-// Supermart (groceries) complete test cases
+// Supermart (groceries) complete test cases  // Complete email widget
 // OD110139291489831000
 
 public class case_4
@@ -37,15 +40,15 @@ public class case_4
     @Test(priority=1,enabled=true,groups="one")
     public void order_details()throws InterruptedException {
         one.login();
-        synchronized (one.driver) {one.driver.wait(6000);}
+        synchronized (one.driver) {one.driver.wait(10000);}
 
         call_to_customer.new_session(one.wb, one.driver).click();
-        synchronized (one.driver) { one.driver.wait(6000);}
+        synchronized (one.driver) { one.driver.wait(10000);}
 
         WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
         searchBox.sendKeys(discovery_and_authentication.order_id_2);
         searchBox.sendKeys(Keys.RETURN);
-        synchronized (one.driver) { one.driver.wait(6000);}
+        synchronized (one.driver) { one.driver.wait(10000);}
         String ordered_on=order_details.ordered_on(wb, one.driver,2,70,1).getText();
         System.out.println(ordered_on);
         System.out.println(ordered_on+" ordered on details");
@@ -118,9 +121,9 @@ public class case_4
     public void payment_details()throws InterruptedException {
 
         /* click on payment detail */
-        synchronized (one.driver) { one.driver.wait(6000); }
+        synchronized (one.driver) { one.driver.wait(10000); }
         payment_details.payment_details_tab(wb, one.driver).click();
-        synchronized (one.driver) { one.driver.wait(8000); }
+        synchronized (one.driver) { one.driver.wait(10000); }
 
         //selling price verification
         String s_price = payment_details.selling_price(wb, one.driver,2,84,1).getText();
@@ -128,7 +131,7 @@ public class case_4
         Assert.assertEquals("623", s_price);
 
             /* Don't remove this wait */
-        synchronized (one.driver) {one.driver.wait(6000);}
+        synchronized (one.driver) {one.driver.wait(10000);}
 
         List<WebElement> actions_2 = payment_details.payments_details_all_DT(wb,one.driver);
 
@@ -146,11 +149,11 @@ public class case_4
     }
     @Test(priority=4,enabled=true,groups="four")
     public void address_details()throws InterruptedException {
-        synchronized (one.driver) { one.driver.wait(5000); }
+        synchronized (one.driver) { one.driver.wait(10000); }
         //click on address details tab
         address_detail.click_address_details_tab(wb,one.driver).click();
-        synchronized (one.driver) { one.driver.wait(5000); }
-        synchronized (one.driver) {one.driver.wait(8000);}
+        synchronized (one.driver) { one.driver.wait(10000); }
+        synchronized (one.driver) {one.driver.wait(10000);}
 
         List<WebElement> actions_2 = address_detail.address_verification_dt(wb,one.driver);
 
@@ -168,13 +171,34 @@ public class case_4
     @Test(priority=5,enabled=true,groups="four")
     public void show_selector_grocery_basket()throws InterruptedException {
         boolean show_selector;
-        if (grocery.show_selectors(one.wb, one.driver, 2, 85, 1).isEnabled()) show_selector = true;
-        else {
+        if (grocery.show_selectors(one.wb, one.driver, 2, 85, 1).isEnabled()) show_selector=true;
+        else{
             show_selector = false;
             System.out.println("Show selector button isn't active");
         }
-        synchronized (one.driver) {one.driver.wait(6000);}
+        synchronized (one.driver) {one.driver.wait(10000);}
         grocery.show_selectors(one.wb, one.driver,2,85,1).click();
+    }
+    @Test(priority=6,enabled=true,groups="four")
+    public void email_widget()throws InterruptedException {
+       // click on home button
+        discovery_and_authentication.home(one.wb,one.driver,2,29,1).click();
+
+
+
+        Boolean email_btn;
+       if (pom_elements.email_widget.email_button(one.wb, one.driver, 2,86,1).isEnabled() ) email_btn =true;
+       else System.out.println("Email button is not enabled for this profile");
+
+       //click on email button
+        synchronized (one.driver) {one.driver.wait(10000);}
+        email_widget.email_button(one.wb, one.driver, 2,86,1).click();
+        //email reply button enable check
+        synchronized (one.driver) {one.driver.wait(4000);}
+        boolean email_rply;
+        synchronized (one.driver) {one.driver.wait(5000);}
+        if (email_widget.email_reply(one.wb, one.driver, 2,87,1).isEnabled()) email_rply=true;
+        else System.out.println("email reply button is not working");
     }
     @AfterTest(enabled=false,groups="four")
     public void close_and_quit()throws InterruptedException {
@@ -184,4 +208,3 @@ public class case_4
         one.driver.quit();
     }
 }
-

@@ -5,7 +5,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import java.util.List;
 
 public class order_details {
@@ -38,5 +37,4 @@ public class order_details {
         List<WebElement> elements = element.findElements(By.xpath(".//DIV"));
         return elements;
     }
-
 }
