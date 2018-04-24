@@ -73,7 +73,7 @@ public class case_4
         Assert.assertEquals(undelivered_count,"0 Undelivered");
         System.out.println(undelivered_count);
 
-        // Active,Delivered,Cancelled,Returned,Undelivered count test
+        /* Active,Delivered,Cancelled,Returned,Undelivered count test*/
 
         // Basket price
         String basket_price=grocery.grocery_items(one.wb,one.driver,2,76,1).getText();
@@ -165,7 +165,6 @@ public class case_4
     public void toa_history()throws InterruptedException {
         System.out.println("Skip for email profile");
     }
-
     @Test(priority=5,enabled=true,groups="four")
     public void show_selector_grocery_basket()throws InterruptedException {
         boolean show_selector;
@@ -174,8 +173,10 @@ public class case_4
             show_selector = false;
             System.out.println("Show selector button isn't active");
         }
+        synchronized (one.driver) {one.driver.wait(6000);}
+        grocery.show_selectors(one.wb, one.driver,2,85,1).click();
     }
-    @AfterTest(enabled=true,groups="four")
+    @AfterTest(enabled=false,groups="four")
     public void close_and_quit() {
         System.out.println("Quitting the session");
         one.driver.close();

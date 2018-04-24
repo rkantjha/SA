@@ -250,7 +250,10 @@ public class case_2 {
         Assert.assertEquals(addr_chan, false);
     }
     @AfterTest(enabled = true,groups="two")
-    public void close_and_quit() {
+    public void close_and_quit()throws InterruptedException
+    {
+        synchronized (one.driver) {one.driver.wait(8000);}
+        discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
         System.out.println(" Quitting the session ");
         one.driver.close();
         one.driver.quit();
