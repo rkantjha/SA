@@ -168,17 +168,18 @@ public class case_4
 
     @Test(priority=5,enabled=true,groups="four")
     public void show_selector_grocery_basket()throws InterruptedException {
-        boolean ss;
-        if (grocery.show_selectors(one.wb, one.driver, 2, 85, 1).isEnabled()) ss = true;
+        boolean show_selector;
+        if (grocery.show_selectors(one.wb, one.driver, 2, 85, 1).isEnabled()) show_selector = true;
         else {
-            ss = false;
+            show_selector = false;
+            System.out.println("Show selector button isn't active");
         }
     }
-    @AfterTest(enabled=false,groups="four")
+    @AfterTest(enabled=true,groups="four")
     public void close_and_quit() {
-
         System.out.println("Quitting the session");
         one.driver.close();
         one.driver.quit();
     }
 }
+
