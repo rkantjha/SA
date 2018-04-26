@@ -13,6 +13,8 @@ import pom_elements.*;
 
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -24,6 +26,7 @@ public class case_4
     case_1 one = new case_1();
     XSSFWorkbook wb = ExcelData.bootstrap();
     DTActions dtActions = new DTActions();
+    email_widget ew=new email_widget();
 
     WebDriverWait wait = new WebDriverWait(one.driver, 10);
     Alert alert;
@@ -202,19 +205,50 @@ public class case_4
         synchronized (one.driver) {one.driver.wait(5000);}
         if (email_widget.email_reply(one.wb, one.driver, 2,87,1).isEnabled()) email_rply=true;
         else System.out.println("email reply button is not working");
+
+        // enable disable check for update incident button
+      boolean Update_incident =  email_widget.update_incident_button(one.wb, one.driver, 2,90,1).isEnabled();
+      if(Update_incident==true) System.out.println("Update incident button is active");
+      else System.out.println("Update incident button isn't active");
+
+
+        // To match the current URL needed for close session action
+        String cURL=one.driver.getCurrentUrl();
+        System.out.println(cURL);
+        synchronized (one.driver) { one.driver.wait(6000);}
+        String exp_URL="http://10.85.52.152//flipkart/#/session/SES152360189149755199/nonOrder/IN1708021438531717419";
+
+        if(cURL.equalsIgnoreCase(exp_URL))
+        { System.out.println("NO session close is required"); }
+
+        else if(cURL!=exp_URL)
+        {
+            synchronized (one.driver) { one.driver.wait(8000);}
+            discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
+        }
+        synchronized (one.driver) { one.driver.wait(10000);}
+
+
+        // Send SMS feature//
+
+        //click to open the popup.
+        email_widget.update_incident_button(one.wb, one.driver, 2,90,1).click();
+        synchronized (one.driver) { one.driver.wait(8000);}
+
+        //
+
+
+        //Matching popup order ID
+       String pop_up_OR_ID= email_widget.order_id_popup(one.wb,one.driver,2,91,1).getText();
+        if(pop_up_OR_ID=="OD211730518182154000") System.out.println("popup order id matched");
+        else System.out.println("Order Id not matched");
+
+
     }
     @AfterTest(enabled=true,groups="four")
     public void close_and_quit()throws InterruptedException {
-        String cURL=one.driver.getCurrentUrl();
-        String exp_URL= email_widget.current_url_assigned_session(one.wb, one.driver, 2,89,1).getText();
-        synchronized (one.driver) {one.driver.wait(4000);}
 
-        if (cURL==exp_URL)
-        { System.out.println("No session close required"); }
-        else
-        synchronized (one.driver) {one.driver.wait(8000);}
-        discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
         one.driver.close();
         one.driver.quit();
+        }
     }
-}

@@ -30,12 +30,17 @@ public class email_widget {
         element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
-    public static WebElement current_url_assigned_session(XSSFWorkbook wb,WebDriver driver,int sheet, int row, int column)
+    public static WebElement update_incident_button(XSSFWorkbook wb,WebDriver driver,int sheet, int row, int column)
     {
         sh= wb.getSheetAt(sheet);
         element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
-
+    public static WebElement order_id_popup(XSSFWorkbook wb,WebDriver driver,int sheet, int row, int column)
+    {
+        sh= wb.getSheetAt(sheet);
+        element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
+        return element;
+    }
 
 }
