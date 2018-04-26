@@ -224,9 +224,7 @@ public class case_4
                 synchronized (one.driver) { one.driver.wait(8000);}
                 discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
             }
-
-            synchronized (one.driver) { one.driver.wait(8000);}
-
+        synchronized (one.driver) { one.driver.wait(8000);}
     }
     @Test(priority=7,enabled=true,groups="four")
     public void send_sms()throws InterruptedException
@@ -242,21 +240,40 @@ public class case_4
         email_widget.send_sms_button(one.wb, one.driver, 2, 89, 1).click();
         synchronized (one.driver) { one.driver.wait(8000);}
 
-        //Matching popup order ID
-        String pop_up_OR_ID= email_widget.order_id_popup(one.wb,one.driver,2,91,1).getText();
-        if(pop_up_OR_ID=="OD211730518182154000") System.out.println("popup order id matched");
-        else System.out.println("Order Id not matched");
+//        //Matching popup order ID
+//        String pop_up_OR_ID= email_widget.order_id_popup(one.wb,one.driver,2,91,1).getText();
+//        System.out.println(pop_up_OR_ID);
+//        if(pop_up_OR_ID=="OD211730518182154000") System.out.println("popup order id matched");
+//        else System.out.println("Order Id not matched");
 
         //match popup phone number
         String popup_PHONE_no=email_widget.popup_phone_number(one.wb,one.driver,2,92,1).getText();
         Assert.assertEquals(popup_PHONE_no,"+918095985455");
 
-        
+        // select phone number radio button enable check
+        boolean radio_enable=email_widget.radio_button_phone(one.wb,one.driver,2,93,1).isEnabled();
+        Assert.assertEquals(radio_enable,true);
+        System.out.println("Popup radio button is enabled on popup");
 
+        //click on the radio button
+        email_widget.radio_button_phone(one.wb,one.driver,2,93,1).click();
+        synchronized (one.driver) { one.driver.wait(8000);}
 
+        // popup submit button enable check after selecting phone number
+        boolean submit_btn=  email_widget.popup_submit(one.wb,one.driver,2,94,1).isEnabled();
+        Assert.assertEquals(submit_btn,true);
+        System.out.println("Submit button is active");
+
+        //popup close button is active
+        boolean popup_Close=email_widget.popup_close(one.wb,one.driver,2,95,1).isEnabled();
+        Assert.assertEquals(popup_Close,true);
+        System.out.println("popup close button is active");
+
+        // click on the close button to close the send sms popup
+        synchronized (one.driver) { one.driver.wait(5000);}
+        email_widget.popup_close(one.wb,one.driver,2,95,1).click();
     }
-
-    @AfterTest(enabled=false,groups="four")
+    @AfterTest(enabled=true,groups="four")
     public void close_and_quit()throws InterruptedException {
         one.driver.close();
         one.driver.quit();

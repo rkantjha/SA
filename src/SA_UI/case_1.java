@@ -78,6 +78,9 @@ public class case_1 {
             {
                 System.out.println("No check for notifications needed");
             }
+
+
+            
     }
     @Test(priority = 3,enabled=false,groups="one")//enable it true when running test with voice profile
     public void call_to_customer()throws InterruptedException {
