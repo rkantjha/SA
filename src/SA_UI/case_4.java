@@ -1,5 +1,6 @@
 package SA_UI;
 
+import com.google.common.base.Verify;
 import javafx.scene.layout.Priority;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.*;
@@ -217,38 +218,44 @@ public class case_4
         System.out.println(cURL);
         synchronized (one.driver) { one.driver.wait(6000);}
         String exp_URL="http://10.85.52.152//flipkart/#/session/SES152360189149755199/nonOrder/IN1708021438531717419";
+            if (cURL.equalsIgnoreCase(exp_URL)) System.out.println("NO session close is required");
+            else if(cURL!=exp_URL)
+            {
+                synchronized (one.driver) { one.driver.wait(8000);}
+                discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
+            }
 
-        if(cURL.equalsIgnoreCase(exp_URL)) System.out.println("NO session close is required");
-
-        else if(cURL!=exp_URL)
-        {
             synchronized (one.driver) { one.driver.wait(8000);}
-            discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
-        }
-        synchronized (one.driver) { one.driver.wait(10000);}
 
+    }
+    @Test(priority=7,enabled=true,groups="four")
+    public void send_sms()throws InterruptedException
+    {
         // Send SMS feature //
 
         //send sms button enable check
-         boolean send_SMS=  email_widget.send_sms_button(one.wb, one.driver, 2, 89, 1).isEnabled();
-         if (send_SMS==true) System.out.println("Send SMS button is active");
-         else System.out.println("Send SMS button isn't active");
+        boolean send_SMS=  email_widget.send_sms_button(one.wb, one.driver, 2, 89, 1).isEnabled();
+        if (send_SMS==true) System.out.println("Send SMS button is active");
+        else System.out.println("Send SMS button isn't active");
 
         //click to open the popup.
         email_widget.send_sms_button(one.wb, one.driver, 2, 89, 1).click();
         synchronized (one.driver) { one.driver.wait(8000);}
-        
-
-
-        synchronized (one.driver) { one.driver.wait(8000);}
-
-        //
 
         //Matching popup order ID
         String pop_up_OR_ID= email_widget.order_id_popup(one.wb,one.driver,2,91,1).getText();
         if(pop_up_OR_ID=="OD211730518182154000") System.out.println("popup order id matched");
         else System.out.println("Order Id not matched");
+
+        //match popup phone number
+        String popup_PHONE_no=email_widget.popup_phone_number(one.wb,one.driver,2,92,1).getText();
+        Assert.assertEquals(popup_PHONE_no,"+918095985455");
+
+        
+
+
     }
+
     @AfterTest(enabled=false,groups="four")
     public void close_and_quit()throws InterruptedException {
         one.driver.close();
