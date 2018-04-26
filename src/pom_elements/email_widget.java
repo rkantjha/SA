@@ -42,5 +42,11 @@ public class email_widget {
         element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
+    public static WebElement send_sms_button(XSSFWorkbook wb,WebDriver driver,int sheet, int row, int column)
+    {
+        sh= wb.getSheetAt(sheet);
+        element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
+        return element;
+    }
 
 }

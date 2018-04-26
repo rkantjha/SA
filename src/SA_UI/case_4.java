@@ -218,8 +218,7 @@ public class case_4
         synchronized (one.driver) { one.driver.wait(6000);}
         String exp_URL="http://10.85.52.152//flipkart/#/session/SES152360189149755199/nonOrder/IN1708021438531717419";
 
-        if(cURL.equalsIgnoreCase(exp_URL))
-        { System.out.println("NO session close is required"); }
+        if(cURL.equalsIgnoreCase(exp_URL)) System.out.println("NO session close is required");
 
         else if(cURL!=exp_URL)
         {
@@ -228,26 +227,30 @@ public class case_4
         }
         synchronized (one.driver) { one.driver.wait(10000);}
 
+        // Send SMS feature //
 
-        // Send SMS feature//
+        //send sms button enable check
+         boolean send_SMS=  email_widget.send_sms_button(one.wb, one.driver, 2, 89, 1).isEnabled();
+         if (send_SMS==true) System.out.println("Send SMS button is active");
+         else System.out.println("Send SMS button isn't active");
 
         //click to open the popup.
-        email_widget.update_incident_button(one.wb, one.driver, 2,90,1).click();
+        email_widget.send_sms_button(one.wb, one.driver, 2, 89, 1).click();
+        synchronized (one.driver) { one.driver.wait(8000);}
+        
+
+
         synchronized (one.driver) { one.driver.wait(8000);}
 
         //
 
-
         //Matching popup order ID
-       String pop_up_OR_ID= email_widget.order_id_popup(one.wb,one.driver,2,91,1).getText();
+        String pop_up_OR_ID= email_widget.order_id_popup(one.wb,one.driver,2,91,1).getText();
         if(pop_up_OR_ID=="OD211730518182154000") System.out.println("popup order id matched");
         else System.out.println("Order Id not matched");
-
-
     }
-    @AfterTest(enabled=true,groups="four")
+    @AfterTest(enabled=false,groups="four")
     public void close_and_quit()throws InterruptedException {
-
         one.driver.close();
         one.driver.quit();
         }
