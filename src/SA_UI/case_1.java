@@ -1,6 +1,7 @@
 package SA_UI;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -35,7 +36,6 @@ public class case_1 {
 
     public case_1() throws IOException {
     }
-
     @BeforeTest
     public static void start(){
         System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
@@ -58,29 +58,49 @@ public class case_1 {
     @Test(priority=2,enabled=true,groups="one")
     public void  notification_home_page()throws InterruptedException {
 
+        synchronized (driver){ driver.wait(5000); }
+
+        String yoda_URL="http://10.85.52.152/flipkart/#/yoda";
+        String c_url=driver.getCurrentUrl();
+
+        if (c_url.equalsIgnoreCase(yoda_URL))
+        {
         System.out.println(driver.getCurrentUrl() + "URL till here");
 
-            if (driver.getCurrentUrl().equalsIgnoreCase(yoda_url)) {
-                String notification_count =  home_page.count(wb,driver).getAttribute("innerHTML");
-                System.out.println("total count is  " + notification_count);
+        synchronized (driver){ driver.wait(3000); }
 
-                List<WebElement> elements = home_page.yoda_notifications(driver);
-                int count = Integer.parseInt(notification_count);
+        String yoda_class="client-container-pages-Yoda-Notifications-Notifications_notifyList";
+        String xpath="//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[2]";
 
-                for(int i=0;i<count;i++) {
-                    System.out.println("Printing Element " + i);
-                    home_page.yoda_noti(wb,driver).click();
-                    elements.get(i).click();
+        WebElement element = driver.findElement(By.xpath(xpath));
+        List<WebElement> elements = element.findElements(By.xpath(".//DIV"));
+
+        int notifySize = elements.size();
+        System.out.println(notifySize);
+          String child_xpath= "//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[2]/div[1]";
+
+          for(int i=1;i<=notifySize;i++)
+        {
+            synchronized (driver){ driver.wait(4000); }
+            driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[3]/div["+i+"]")).click();
+            synchronized (driver){ driver.wait(2000); }
+            try {
+                WebElement modalElement = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[4]/div[1]/div[3]/div[1]"));
+                if (modalElement.isEnabled() == true) {
+                    driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[4]/div[1]/div[3]/div[1]/div[1]/span")).click();
+                    synchronized (driver) {
+                        driver.wait(3000);
+                    }
                 }
-                home_page.proceed_to_sa(wb,driver).click();
+            } catch (Exception e){
+                System.out.println("Should throw exception");
             }
-            else
-            {
-                System.out.println("No check for notifications needed");
-            }
-
-
-            
+        }
+//            driver.wait(3000);
+            String proceed_to_sa="//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[2]/div[2]/div";
+            driver.findElement(By.xpath(proceed_to_sa)).click();
+        }
+        else System.out.println("NO yoda check required");
     }
     @Test(priority = 3,enabled=false,groups="one")//enable it true when running test with voice profile
     public void call_to_customer()throws InterruptedException {
@@ -106,10 +126,12 @@ public class case_1 {
     @Test(priority=4,enabled=true,groups="one")
     public void logout()throws InterruptedException
     {
-        synchronized (driver){ driver.wait(5000); }
+        synchronized (driver){ driver.wait(3000); }
         login_page.profile_menu(wb,driver).click();
-        synchronized (driver){ driver.wait(5000); }
+        synchronized (driver){ driver.wait(8000); }
+
         login_page.click_on_logout(wb,driver).click();
+
         driver.close();
         driver.quit();
     }
