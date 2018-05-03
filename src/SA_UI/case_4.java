@@ -1,10 +1,9 @@
 package SA_UI;
 
-import com.google.common.base.Verify;
-import javafx.scene.layout.Priority;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -12,12 +11,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pom_elements.*;
 
-
 import java.io.IOException;
-import java.net.URI;
-import java.net.URL;
+import java.text.ParseException;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 // Supermart (groceries) complete test cases  // Complete email widget
 // OD110139291489831000
@@ -44,6 +40,7 @@ public class case_4
     @Test(priority=1,enabled=true,groups="one")
     public void order_details()throws InterruptedException {
         one.login();
+
         synchronized (one.driver) {one.driver.wait(10000);}
 
         call_to_customer.new_session(one.wb, one.driver).click();
@@ -212,29 +209,33 @@ public class case_4
       if(Update_incident==true) System.out.println("Update incident button is active");
       else System.out.println("Update incident button isn't active");
 
-
-        // To match the current URL needed for close session action
+        // To match the current URL, needed for close session action
         String cURL=one.driver.getCurrentUrl();
         System.out.println(cURL);
         synchronized (one.driver) { one.driver.wait(6000);}
+
         String exp_URL="http://10.85.52.152//flipkart/#/session/SES152360189149755199/nonOrder/IN1708021438531717419";
             if (cURL.equalsIgnoreCase(exp_URL)) System.out.println("NO session close is required");
             else if(cURL!=exp_URL)
             {
                 synchronized (one.driver) { one.driver.wait(8000);}
+
                 discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
             }
         synchronized (one.driver) { one.driver.wait(8000);}
     }
-    @Test(priority=7,enabled=true,groups="four")
-    public void send_sms()throws InterruptedException
-    {
+
+    //If this test case fails between 9 pm to 9 am consider it as pass
+    @Test(priority=7,enabled=true,groups="four") // This feature is only for email profile please disable it for all profile.
+    public void send_sms() throws InterruptedException, ParseException {
         // Send SMS feature //
+
 
         //send sms button enable check
         boolean send_SMS=  email_widget.send_sms_button(one.wb, one.driver, 2, 89, 1).isEnabled();
-        if (send_SMS==true) System.out.println("Send SMS button is active");
+        if (send_SMS==true ) System.out.println("Send SMS button is active");
         else System.out.println("Send SMS button isn't active");
+
 
         //click to open the popup.
         email_widget.send_sms_button(one.wb, one.driver, 2, 89, 1).click();

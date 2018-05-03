@@ -148,6 +148,4 @@ public class discovery_and_authentication {
         element = driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
-
-
 }

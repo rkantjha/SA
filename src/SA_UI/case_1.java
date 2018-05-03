@@ -1,28 +1,19 @@
 package SA_UI;
 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pom_elements.home_page;
-import pom_elements.login_page;
 import pom_elements.call_to_customer;
-import static com.sun.tools.corba.se.idl.constExpr.Expression.two;
-import static pom_elements.home_page.count;
-import static pom_elements.home_page.element;
-import static pom_elements.home_page.yoda_url;
+import pom_elements.login_page;
+
 import java.io.IOException;
 import java.util.List;
-import java.util.SplittableRandom;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import SA_UI.ExcelData;
 
 public class case_1 {
 
@@ -44,21 +35,24 @@ public class case_1 {
     @Test(priority=1,enabled=true,groups="one")
     public void login() throws InterruptedException {
         driver.get(login_page.sa_url);
-        synchronized (driver){ driver.wait(5000); }
+
+        synchronized (driver){ driver.wait(6000); }
         driver.manage().window().maximize();
         login_page.user_name(wb,driver).sendKeys(login_page.getUserName(wb));
         login_page.verify_me(wb,driver).click();
-        synchronized (driver){ driver.wait(5000); }
+
+        synchronized (driver){ driver.wait(6000); }
         login_page.password(wb,driver).sendKeys(login_page.getPassword(wb));
         login_page.login_button(wb,driver).click();
-        synchronized (driver){ driver.wait(5000); }
+
+        synchronized (driver){ driver.wait(6000); }
         login_page.logout_previous(wb,driver).click();
         login_page.login_button(wb,driver).click();
     }
     @Test(priority=2,enabled=true,groups="one")
     public void  notification_home_page()throws InterruptedException {
 
-        synchronized (driver){ driver.wait(5000); }
+        synchronized (driver){ driver.wait(6000); }
 
         String yoda_URL="http://10.85.52.152/flipkart/#/yoda";
         String c_url=driver.getCurrentUrl();
@@ -66,18 +60,15 @@ public class case_1 {
         if (c_url.equalsIgnoreCase(yoda_URL))
         {
         System.out.println(driver.getCurrentUrl() + "URL till here");
-
         synchronized (driver){ driver.wait(3000); }
-
         String yoda_class="client-container-pages-Yoda-Notifications-Notifications_notifyList";
         String xpath="//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[2]";
-
         WebElement element = driver.findElement(By.xpath(xpath));
         List<WebElement> elements = element.findElements(By.xpath(".//DIV"));
 
         int notifySize = elements.size();
         System.out.println(notifySize);
-          String child_xpath= "//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[2]/div[1]";
+            String child_xpath= "//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[2]/div[1]";
 
           for(int i=1;i<=notifySize;i++)
         {
@@ -126,7 +117,7 @@ public class case_1 {
     @Test(priority=4,enabled=true,groups="one")
     public void logout()throws InterruptedException
     {
-        synchronized (driver){ driver.wait(3000); }
+        synchronized (driver){ driver.wait(10000); }
         login_page.profile_menu(wb,driver).click();
         synchronized (driver){ driver.wait(8000); }
 

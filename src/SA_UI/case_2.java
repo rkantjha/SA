@@ -32,24 +32,24 @@ public class case_2 {
     public void UiDataVerify() throws InterruptedException {
         one.login();
 
-        synchronized (one.driver) {one.driver.wait(6000);}
+        synchronized (one.driver) {one.driver.wait(10000);}
 
         call_to_customer.new_session(one.wb, one.driver).click();
-        synchronized (one.driver) {
-            one.driver.wait(6000);
-        }
+
+        synchronized (one.driver) { one.driver.wait(6000); }
+
         WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
         searchBox.sendKeys(discovery_and_authentication.order_id_1);
         searchBox.sendKeys(Keys.RETURN);
-        synchronized (one.driver) {one.driver.wait(9000);}
-        /* name verification */
+
+        synchronized (one.driver) {one.driver.wait(10000);}
+
+        /* Name Verification */
         String user_name=discovery_and_authentication.name(one.wb, one.driver,2,21,1).getText();
         System.out.println(user_name + "   User name is verified ");
-        Assert.assertEquals("Vivek keshri", user_name);
+        Assert.assertEquals("Vivek Keshri", user_name);
 
-        synchronized (one.driver) {
-            one.driver.wait(5000);
-        }
+        synchronized (one.driver) { one.driver.wait(5000); }
 
         /* Account ID verification */
         String account_id = discovery_and_authentication.account_id(one.wb, one.driver,2,25,1).getText();
@@ -68,9 +68,7 @@ public class case_2 {
         System.out.println(orders_id + "    Order ID is verified");
         Assert.assertEquals("OD111401472227234000", orders_id);
 
-        synchronized (one.driver) {
-            one.driver.wait(5000);
-        }
+        synchronized (one.driver) { one.driver.wait(5000); }
 
         /* payment button enable verification */
         boolean payment_button = discovery_and_authentication.payment_button(one.wb, one.driver).isEnabled();
@@ -82,9 +80,7 @@ public class case_2 {
         boolean session_complete = discovery_and_authentication.complete_session(wb, one.driver).isEnabled();
         Assert.assertEquals(session_complete, true);
 
-        synchronized (one.driver) {
-            one.driver.wait(5000);
-        }
+        synchronized (one.driver) { one.driver.wait(5000); }
 
         //Home button enable check
         boolean home_button = discovery_and_authentication.home(wb, one.driver,2,29,1).isEnabled();
@@ -102,15 +98,13 @@ public class case_2 {
         boolean excalate = discovery_and_authentication.excalate_issue(wb, one.driver).isEnabled();
         Assert.assertEquals(excalate, true);
         //Take a break enable check
-        synchronized (one.driver) {
-            one.driver.wait(5000);
-        }
+
+        synchronized (one.driver) { one.driver.wait(5000); }
+
         boolean take_break = discovery_and_authentication.take_a_break(wb, one.driver).isEnabled();
         Assert.assertEquals(take_break, true);
 
-        synchronized (one.driver) {
-            one.driver.wait(5000);
-        }
+        synchronized (one.driver) { one.driver.wait(5000); }
 
         //show selector button enable check
         boolean show_selector = discovery_and_authentication.show_selector(wb, one.driver).isEnabled();
@@ -134,9 +128,7 @@ public class case_2 {
         boolean log_out = discovery_and_authentication.change_password(wb, one.driver).isEnabled();
         Assert.assertEquals(log_out, true);
 
-        synchronized (one.driver) {
-            one.driver.wait(5000);
-        }
+        synchronized (one.driver) { one.driver.wait(5000); }
 
         //session enable yes-no button enable check
         boolean assign = discovery_and_authentication.assign_yes(wb, one.driver).isEnabled();
@@ -146,9 +138,7 @@ public class case_2 {
         if  (assign == true) {
             one.driver.navigate().refresh();
 
-            synchronized (one.driver) {
-                one.driver.wait(6000);
-            }
+            synchronized (one.driver) { one.driver.wait(6000); }
 
             discovery_and_authentication.assign_yes(wb, one.driver).click();
 
@@ -202,7 +192,9 @@ public class case_2 {
 
             //click on payment detail tab
             synchronized (one.driver) { one.driver.wait(5000); }
+
             payment_details.payment_details_tab(wb, one.driver).click();
+
             synchronized (one.driver) { one.driver.wait(5000); }
 
             //selling price verification
@@ -249,10 +241,11 @@ public class case_2 {
         boolean cre_in = dtActions.findDTActiveStatus(actions_2,one.driver,"Create Incident");
         Assert.assertEquals(addr_chan, false);
     }
-    @AfterTest(enabled = true,groups="two")
+    @AfterTest(enabled = false,groups="two")
     public void close_and_quit()throws InterruptedException
     {
         synchronized (one.driver) {one.driver.wait(8000);}
+
         discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
         System.out.println(" Quitting the session ");
         one.driver.close();
