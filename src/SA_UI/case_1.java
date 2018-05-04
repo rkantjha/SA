@@ -54,7 +54,8 @@ public class case_1 {
 
         synchronized (driver){ driver.wait(6000); }
 
-        String yoda_URL="http://10.85.52.152/flipkart/#/yoda";
+        //String yoda_URL="http://10.85.52.152/flipkart/#/yoda";
+        String yoda_URL="http://10.85.53.223/flipkart/#/yoda";
         String c_url=driver.getCurrentUrl();
 
         if (c_url.equalsIgnoreCase(yoda_URL))
@@ -119,10 +120,8 @@ public class case_1 {
     {
         synchronized (driver){ driver.wait(10000); }
         login_page.profile_menu(wb,driver).click();
-        synchronized (driver){ driver.wait(8000); }
-
+        synchronized (driver){ driver.wait(10000); }
         login_page.click_on_logout(wb,driver).click();
-
         driver.close();
         driver.quit();
     }

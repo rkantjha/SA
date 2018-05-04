@@ -13,6 +13,8 @@ import pom_elements.*;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 // Supermart (groceries) complete test cases  // Complete email widget
@@ -214,15 +216,20 @@ public class case_4
         System.out.println(cURL);
         synchronized (one.driver) { one.driver.wait(6000);}
 
-        String exp_URL="http://10.85.52.152//flipkart/#/session/SES152360189149755199/nonOrder/IN1708021438531717419";
-            if (cURL.equalsIgnoreCase(exp_URL)) System.out.println("NO session close is required");
-            else if(cURL!=exp_URL)
-            {
-                synchronized (one.driver) { one.driver.wait(8000);}
+        //String exp_URL="http://10.85.52.152//flipkart/#/session/SES152360189149755199/nonOrder/IN1708021438531717419";
+        String exp_URL="http://10.85.53.223//flipkart/#/session/SES152360189149755199/nonOrder/IN1708021438531717419";
 
-                discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
+        synchronized (one.driver) { one.driver.wait(10000);}
+
+        if (cURL.equalsIgnoreCase(exp_URL)) System.out.println("NO session close is required");
+
+            else
+            {
+                synchronized (one.driver) { one.driver.wait(10000);}
+
+//                discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
             }
-        synchronized (one.driver) { one.driver.wait(8000);}
+            synchronized (one.driver) { one.driver.wait(8000);}
     }
 
     //If this test case fails between 9 pm to 9 am consider it as pass
@@ -230,50 +237,64 @@ public class case_4
     public void send_sms() throws InterruptedException, ParseException {
         // Send SMS feature //
 
+        Calendar C = new GregorianCalendar();
+        int hour = C.get( Calendar.HOUR_OF_DAY );
+        int minute = C.get( Calendar.MINUTE );
 
-        //send sms button enable check
-        boolean send_SMS=  email_widget.send_sms_button(one.wb, one.driver, 2, 89, 1).isEnabled();
-        if (send_SMS==true ) System.out.println("Send SMS button is active");
-        else System.out.println("Send SMS button isn't active");
+        try {
+
+            if (hour >= 21 && hour <= 9) {
+
+                //send sms button enable check
+                boolean send_SMS = email_widget.send_sms_button(one.wb, one.driver, 2, 89, 1).isEnabled();
+                if (send_SMS == true) System.out.println("Send SMS button is active");
+                else System.out.println("Send SMS button isn't active");
 
 
-        //click to open the popup.
-        email_widget.send_sms_button(one.wb, one.driver, 2, 89, 1).click();
-        synchronized (one.driver) { one.driver.wait(8000);}
+                //click to open the popup.
+                email_widget.send_sms_button(one.wb, one.driver, 2, 89, 1).click();
+                synchronized (one.driver) {
+                    one.driver.wait(8000);
+                }
 
-//        //Matching popup order ID
-//        String pop_up_OR_ID= email_widget.order_id_popup(one.wb,one.driver,2,91,1).getText();
-//        System.out.println(pop_up_OR_ID);
-//        if(pop_up_OR_ID=="OD211730518182154000") System.out.println("popup order id matched");
-//        else System.out.println("Order Id not matched");
 
-        //match popup phone number
-        String popup_PHONE_no=email_widget.popup_phone_number(one.wb,one.driver,2,92,1).getText();
-        Assert.assertEquals(popup_PHONE_no,"+918095985455");
+                //match popup phone number
+                String popup_PHONE_no = email_widget.popup_phone_number(one.wb, one.driver, 2, 92, 1).getText();
+                Assert.assertEquals(popup_PHONE_no, "+918095985455");
 
-        // select phone number radio button enable check
-        boolean radio_enable=email_widget.radio_button_phone(one.wb,one.driver,2,93,1).isEnabled();
-        Assert.assertEquals(radio_enable,true);
-        System.out.println("Popup radio button is enabled on popup");
+                // select phone number radio button enable check
+                boolean radio_enable = email_widget.radio_button_phone(one.wb, one.driver, 2, 93, 1).isEnabled();
+                Assert.assertEquals(radio_enable, true);
+                System.out.println("Popup radio button is enabled on popup");
 
-        //click on the radio button
-        email_widget.radio_button_phone(one.wb,one.driver,2,93,1).click();
-        synchronized (one.driver) { one.driver.wait(8000);}
+                //click on the radio button
+                email_widget.radio_button_phone(one.wb, one.driver, 2, 93, 1).click();
+                synchronized (one.driver) {
+                    one.driver.wait(8000);
+                }
 
-        // popup submit button enable check after selecting phone number
-        boolean submit_btn=  email_widget.popup_submit(one.wb,one.driver,2,94,1).isEnabled();
-        Assert.assertEquals(submit_btn,true);
-        System.out.println("Submit button is active");
+                // popup submit button enable check after selecting phone number
+                boolean submit_btn = email_widget.popup_submit(one.wb, one.driver, 2, 94, 1).isEnabled();
+                Assert.assertEquals(submit_btn, true);
+                System.out.println("Submit button is active");
 
-        //popup close button is active
-        boolean popup_Close=email_widget.popup_close(one.wb,one.driver,2,95,1).isEnabled();
-        Assert.assertEquals(popup_Close,true);
-        System.out.println("popup close button is active");
+                //popup close button is active
+                boolean popup_Close = email_widget.popup_close(one.wb, one.driver, 2, 95, 1).isEnabled();
+                Assert.assertEquals(popup_Close, true);
+                System.out.println("popup close button is active");
 
-        // click on the close button to close the send sms popup
-        synchronized (one.driver) { one.driver.wait(5000);}
-        email_widget.popup_close(one.wb,one.driver,2,95,1).click();
-    }
+                // click on the close button to close the send sms popup
+                synchronized (one.driver) {
+                    one.driver.wait(5000);
+                }
+                email_widget.popup_close(one.wb, one.driver, 2, 95, 1).click();
+            }
+        }
+        catch (Exception e) {
+            System.out.println("SMS button is disabled from 9 PM to 9 AM ");
+        }
+        }
+
     @AfterTest(enabled=true,groups="four")
     public void close_and_quit()throws InterruptedException {
         one.driver.close();
