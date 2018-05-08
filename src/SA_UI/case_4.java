@@ -150,6 +150,7 @@ public class case_4
         boolean cre_inc = dtActions.findDTActiveStatus(actions_2,one.driver,"Create Incident");
         Assert.assertEquals(cre_inc, false);
     }
+    //Address details test condition
     @Test(priority=4,enabled=true,groups="four")
     public void address_details()throws InterruptedException {
         synchronized (one.driver) { one.driver.wait(10000); }
@@ -166,6 +167,7 @@ public class case_4
         boolean cre_in = dtActions.findDTActiveStatus(actions_2,one.driver,"Create Incident");
         Assert.assertEquals(addr_chan, false);
     }
+
     //Enable for all profiles, except email
     @Test(priority=4,enabled=true,groups="four")
     public void toa_history()throws InterruptedException {
@@ -221,13 +223,14 @@ public class case_4
 
         synchronized (one.driver) { one.driver.wait(10000);}
 
-        if (cURL.equalsIgnoreCase(exp_URL)) System.out.println("NO session close is required");
+        //if (cURL.equalsIgnoreCase(exp_URL)) System.out.println("NO session close is required");
+        if(cURL.equals(exp_URL))System.out.println("NO session close is required");
 
             else
             {
                 synchronized (one.driver) { one.driver.wait(10000);}
 
-//                discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
+               discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
             }
             synchronized (one.driver) { one.driver.wait(8000);}
     }
@@ -242,21 +245,15 @@ public class case_4
         int minute = C.get( Calendar.MINUTE );
 
         try {
-
             if (hour >= 21 && hour <= 9) {
-
                 //send sms button enable check
                 boolean send_SMS = email_widget.send_sms_button(one.wb, one.driver, 2, 89, 1).isEnabled();
                 if (send_SMS == true) System.out.println("Send SMS button is active");
                 else System.out.println("Send SMS button isn't active");
 
-
                 //click to open the popup.
                 email_widget.send_sms_button(one.wb, one.driver, 2, 89, 1).click();
-                synchronized (one.driver) {
-                    one.driver.wait(8000);
-                }
-
+                synchronized (one.driver) { one.driver.wait(8000); }
 
                 //match popup phone number
                 String popup_PHONE_no = email_widget.popup_phone_number(one.wb, one.driver, 2, 92, 1).getText();
@@ -269,9 +266,7 @@ public class case_4
 
                 //click on the radio button
                 email_widget.radio_button_phone(one.wb, one.driver, 2, 93, 1).click();
-                synchronized (one.driver) {
-                    one.driver.wait(8000);
-                }
+                synchronized (one.driver) { one.driver.wait(8000); }
 
                 // popup submit button enable check after selecting phone number
                 boolean submit_btn = email_widget.popup_submit(one.wb, one.driver, 2, 94, 1).isEnabled();
@@ -284,9 +279,7 @@ public class case_4
                 System.out.println("popup close button is active");
 
                 // click on the close button to close the send sms popup
-                synchronized (one.driver) {
-                    one.driver.wait(5000);
-                }
+                synchronized (one.driver) { one.driver.wait(5000); }
                 email_widget.popup_close(one.wb, one.driver, 2, 95, 1).click();
             }
         }
