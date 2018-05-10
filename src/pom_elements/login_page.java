@@ -19,9 +19,7 @@ public class login_page {
 
      public static String username="rahul.kant";
      public static String pass="Rahul@12345";
-
-    //public static String username="vidya.reddy";
-    //public static String pass="Flipkart@123";
+    
 
     public static WebElement  element =null;
     public static XSSFSheet sh;
