@@ -9,7 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 public class login_page {
 
   //  public static String sa_url = "http://10.85.52.152/flipkart/";//prod
-     public static String sa_url="http://10.85.53.223/flipkart/";//pre prod
+      public static String sa_url="http://10.85.53.223/flipkart/";//pre prod
     //http://10.85.53.223/flipkartEmail
     //public static String sa_url="http://10.85.53.223/flipkartEmail";//flipkart email
 
@@ -19,7 +19,7 @@ public class login_page {
 
      public static String username="rahul.kant";
      public static String pass="Rahul@12345";
-    
+
 
     public static WebElement  element =null;
     public static XSSFSheet sh;
