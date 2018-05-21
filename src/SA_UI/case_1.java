@@ -54,45 +54,52 @@ public class case_1 {
 
         synchronized (driver){ driver.wait(6000); }
 
-        String yoda_URL="http://10.85.52.152/flipkart/#/yoda";
-        //String yoda_URL="http://10.85.53.223/flipkart/#/yoda";
+       // String yoda_URL="http://10.85.52.152/flipkart/#/yoda";
+        String yoda_URL="http://10.85.53.223/flipkart/#/yoda";
         String c_url=driver.getCurrentUrl();
 
         if (c_url.equalsIgnoreCase(yoda_URL))
         {
-        System.out.println(driver.getCurrentUrl() + "URL till here");
-        synchronized (driver){ driver.wait(3000); }
-        String yoda_class="client-container-pages-Yoda-Notifications-Notifications_notifyList";
-        String xpath="//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[2]";
-        WebElement element = driver.findElement(By.xpath(xpath));
-        List<WebElement> elements = element.findElements(By.xpath(".//DIV"));
+            System.out.println(driver.getCurrentUrl() + "URL till here");
+            synchronized (driver){ driver.wait(3000); }
+            String yoda_class="client-container-pages-Yoda-Notifications-Notifications_notifyList";
+            String xpath="//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[2]";
+            WebElement element = driver.findElement(By.xpath(xpath));
+            List<WebElement> elements = element.findElements(By.xpath(".//DIV"));
+                synchronized (driver){ driver.wait(4000); }
+                int notifySize = elements.size();
 
-        int notifySize = elements.size();
-        System.out.println(notifySize);
-            String child_xpath= "//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[2]/div[1]";
+//                int number =notifySize;
+//                String numberAsString = new Integer(number).toString();
+//                int length_of_notifications= numberAsString.length();
+//                System.out.println(length_of_notifications);
 
-          for(int i=1;i<=notifySize;i++)
-        {
-            synchronized (driver){ driver.wait(4000); }
-            driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[3]/div["+i+"]")).click();
-            synchronized (driver){ driver.wait(2000); }
-            try {
-                WebElement modalElement = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[4]/div[1]/div[3]/div[1]"));
-                if (modalElement.isEnabled() == true) {
-                    driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[4]/div[1]/div[3]/div[1]/div[1]/span")).click();
-                    synchronized (driver) {
-                        driver.wait(3000);
+                System.out.println(notifySize+" notifications to be checked");
+
+              //  String child_xpath= "//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[2]/div[1]";
+
+              for(int i=1;i<=notifySize;i++)
+            {
+                synchronized (driver){ driver.wait(4000); }
+                driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[3]/div["+i+"]")).click();
+                synchronized (driver){ driver.wait(2000); }
+                try {
+                    WebElement modalElement = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[4]/div[1]/div[3]/div[1]"));
+                    if (modalElement.isEnabled() == true) {
+                        driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[4]/div[1]/div[3]/div[1]/div[1]/span")).click();
+                        synchronized (driver) {
+                            driver.wait(4000);
+                        }
                     }
+                } catch (Exception e){
+                    System.out.println("Notification checked succesfully");
                 }
-            } catch (Exception e){
-                System.out.println("Should throw exception");
             }
+    //            driver.wait(3000);
+                String proceed_to_sa="//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[2]/div[2]/div";
+                driver.findElement(By.xpath(proceed_to_sa)).click();
         }
-//            driver.wait(3000);
-            String proceed_to_sa="//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[2]/div[2]/div";
-            driver.findElement(By.xpath(proceed_to_sa)).click();
-        }
-        else System.out.println("NO yoda check required");
+        else System.out.println("NO yoda checks required");
     }
     @Test(priority = 3,enabled=false,groups="one")//enable it true when running test with voice profile
     public void call_to_customer()throws InterruptedException {
@@ -115,6 +122,7 @@ public class case_1 {
         call_to_customer.enter_phone_number(wb,driver).sendKeys(call_to_customer.phone_number);
         call_to_customer.click_on_dial(wb,driver).click();
     }
+
     @Test(priority=4,enabled=true,groups="one")
     public void logout()throws InterruptedException
     {
