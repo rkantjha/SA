@@ -143,12 +143,9 @@ public class case_3 extends ExcelData {
 
         synchronized (one.driver) {one.driver.wait(3000);}
 
-
-            //payment history
-
-            //dt verification
-
             //show selectors(incident,return,replacement,refund,service,callback)
+
+
 
             //hide selectors
 
