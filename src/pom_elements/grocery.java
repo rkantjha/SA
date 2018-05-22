@@ -23,10 +23,10 @@ public class grocery {
         element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
-    public static WebElement show_selectors(XSSFWorkbook wb, WebDriver driver, int sheet, int row, int column)
-    {
-        sh= wb.getSheetAt(sheet);
-        element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
-        return element;
-    }
+//    public static WebElement show_selectors(XSSFWorkbook wb, WebDriver driver, int sheet, int row, int column)
+//    {
+//        sh= wb.getSheetAt(sheet);
+//        element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
+//        return element;
+//    }
 }

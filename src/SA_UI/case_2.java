@@ -226,7 +226,7 @@ public class case_2 {
         //click on address details tab
         address_detail.click_address_details_tab(wb,one.driver).click();
         synchronized (one.driver) { one.driver.wait(5000); }
-        String c_a=address_detail.current_address(wb,one.driver).getText();
+        String c_a=address_detail.current_address(wb,one.driver,2,63,1).getText();
         System.out.println(c_a);
         Assert.assertEquals(c_a,"Electronic City phase 1 , Konappana agrahara ,nanjuda reddy layout " +
                 "near yellamma temple ,Hosur main road Bangalore");

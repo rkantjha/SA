@@ -19,10 +19,10 @@ public class address_detail {
         List<WebElement> elements = element.findElements(By.xpath(".//DIV"));
         return elements;
     }
-
-    public static WebElement current_address(XSSFWorkbook wb, WebDriver driver){
-        sh= wb.getSheetAt(2);
-        element=driver.findElement(By.xpath(sh.getRow(63).getCell(1).getStringCellValue()));
+    public static WebElement current_address(XSSFWorkbook wb, WebDriver driver,int sheet, int row, int column)
+    {
+        sh= wb.getSheetAt(sheet);
+        element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
         return element;
     }
 

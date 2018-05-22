@@ -23,10 +23,12 @@ public class case_3 extends ExcelData {
 
     public case_3() throws IOException {
     }
+
     @BeforeTest
     public static void BeforeClass() {
         System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
     }
+
     @Test(priority=0,enabled=true,groups="three")
     public void login()throws InterruptedException
     {
@@ -62,6 +64,7 @@ public class case_3 extends ExcelData {
             String email_id = discovery_and_authentication.email(one.wb, one.driver, 3, 1, 4).getText();
             System.out.println(email_id + "is the email id");
             Assert.assertEquals(email_id, "ramki221994@gmail.com");
+
             //account id
             String account_id = discovery_and_authentication.account_id(one.wb, one.driver, 3, 1, 5).getText();
             System.out.println(account_id + "account id is verified");
@@ -100,18 +103,60 @@ public class case_3 extends ExcelData {
         boolean pa_dt = dtActions.findDTActiveStatus(actions,one.driver,"Price Adjustment");
         Assert.assertEquals(pa_dt, false);
 
-            //payment details
 
-            //address
+//payment details tab verification
+
+        //Click on payment details tab
+        synchronized (one.driver) {one.driver.wait(8000);}
+        payment_details.payment_details_tab(wb,one.driver).click();
+        //Selling price verification
+        String s_price = payment_details.selling_price(wb, one.driver,3,1,9).getText();
+        Assert.assertEquals("699", s_price);
+
+        /* Don't remove this wait */
+        synchronized (one.driver) {one.driver.wait(8000);}
+
+        List<WebElement> actions_1 = payment_details.payments_details_all_DT(wb,one.driver);
+
+        boolean payments_and_refunds = dtActions.findDTActiveStatus(actions_1,one.driver,"Payments and Refunds");
+        Assert.assertEquals(payments_and_refunds, false);
+
+        boolean down_inv = dtActions.findDTActiveStatus(actions_1,one.driver,"Download Invoice");
+        Assert.assertEquals(down_inv, true);
+
+        boolean inv_req = dtActions.findDTActiveStatus(actions_1,one.driver,"Invoice Request");
+        Assert.assertEquals(inv_req, false);
+
+        boolean cre_inc = dtActions.findDTActiveStatus(actions_1,one.driver,"Create Incident");
+        Assert.assertEquals(cre_inc, false);
+
+//address verification and validation
+
+        synchronized (one.driver) { one.driver.wait(4000); }
+
+        address_detail.click_address_details_tab(wb,one.driver).click();
+
+        synchronized (one.driver) { one.driver.wait(3000); }
+        String c_a=address_detail.current_address(wb,one.driver,3,1,10).getText();
+        System.out.println(c_a);
+        Assert.assertEquals(c_a,"NO. 2, 1ST FLOOR, PLOT NO 10, LAKSHMI STREET, UMA NAGAR, NEW PERUNGALATHUR, CHENNAI");
+
+        synchronized (one.driver) {one.driver.wait(3000);}
+
+
             //payment history
+
             //dt verification
+
             //show selectors(incident,return,replacement,refund,service,callback)
+
             //hide selectors
+
             //close session
         synchronized (one.driver) {one.driver.wait(8000);}
         discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
     }
-    @Test(priority=2,enabled=true,groups="three")
+    @Test(priority=2,enabled=false,groups="three")
     public void  ndr()throws InterruptedException,IOException {
 
         //click on new session
@@ -129,22 +174,8 @@ public class case_3 extends ExcelData {
         */
     }
 
-    @Test(priority=3,enabled=true,groups="three")
-    public void  grocery()throws InterruptedException
-    {
-        //new session
-        //search
-        //name,phone,email,account id
-        //order details
-        //payment details
-        //address
-        //payment history
-        //dt verification
-        //show selectors(incident,return,replacement,refund,service,callback)
-        //hide selectors
-    }
-    @Test(priority=4,enabled=true,groups="three")
-    public void  Refund()throws InterruptedException
+    @Test(priority=3,enabled=false,groups="three")
+    public void  r_efund()throws InterruptedException
     {
         System.out.println("mps test passed ");
         //new session
@@ -159,23 +190,8 @@ public class case_3 extends ExcelData {
         //hide selectors
 
     }
-    @Test(priority=5,enabled=true,groups="three")
-    public void  Blacklisted()throws InterruptedException
-    {
-        System.out.println("doorship test passed ");
-        //new session
-        //search
-        //name,phone,email,account id
-        //order details
-        //payment details
-        //address
-        //payment history
-        //dt verification
-        //show selectors(incident,return,replacement,refund,service,callback)
-        //hide selectors
-    }
-    @Test(priority=6,enabled=true,groups="three")
-    public void  ABB()throws InterruptedException
+    @Test(priority=4,enabled=false,groups="three")
+    public void  a_BB()throws InterruptedException
     {
         System.out.println("delivery_installation test passed ");
         //new session
@@ -189,8 +205,8 @@ public class case_3 extends ExcelData {
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
     }
-    @Test(priority=7,enabled=true,groups="three")
-    public void  Ecode()throws InterruptedException
+    @Test(priority=5,enabled=false,groups="three")
+    public void  e_code()throws InterruptedException
     {
         System.out.println("blacklisted test passed ");
         //new session
@@ -204,8 +220,8 @@ public class case_3 extends ExcelData {
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
     }
-    @Test(priority=8,enabled=true,groups="three")
-    public void  ADLD()throws InterruptedException
+    @Test(priority=6,enabled=false,groups="three")
+    public void  a_DLD()throws InterruptedException
     {
         System.out.println("abb test passed ");
         //new session
@@ -219,7 +235,7 @@ public class case_3 extends ExcelData {
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
     }
-    @Test(priority=9,enabled=true,groups="three")
+    @Test(priority=7,enabled=false,groups="three")
     public void  EGV()throws InterruptedException
     {
         System.out.println("ecode test passed ");
@@ -234,7 +250,7 @@ public class case_3 extends ExcelData {
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
     }
-    @Test(priority=10,enabled=true,groups="three")
+    @Test(priority=8,enabled=false,groups="three")
     public void  BNPL()throws InterruptedException
     {
         System.out.println("adld test passed ");
@@ -249,7 +265,7 @@ public class case_3 extends ExcelData {
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
     }
-    @Test(priority=11,enabled=true,groups="three")
+    @Test(priority=9,enabled=false,groups="three")
     public void  MPS()throws InterruptedException
     {
         System.out.println("egv test passed ");
@@ -264,22 +280,7 @@ public class case_3 extends ExcelData {
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
     }
-    @Test(priority=12,enabled=true,groups="three")
-    public void  Large_Order()throws InterruptedException
-    {
-        System.out.println("non test passed ");
-        //new session
-        //search
-        //name,phone,email,account id
-        //order details
-        //payment details
-        //address
-        //payment history
-        //dt verification
-        //show selectors(incident,return,replacement,refund,service,callback)
-        //hide selectors
-    }
-    @Test(priority=13,enabled=true,groups="three")
+    @Test(priority=10,enabled=false,groups="three")
     public void  Replacement_back_from_return()throws InterruptedException
     {
         System.out.println("associate test passed ");
@@ -294,8 +295,8 @@ public class case_3 extends ExcelData {
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
     }
-    @Test(priority=14,enabled=true,groups="three")
-    public void  Dropship()throws InterruptedException
+    @Test(priority=11,enabled=false,groups="three")
+    public void  Drop_ship()throws InterruptedException
     {
         System.out.println("priority test passed ");
         //new session
@@ -309,7 +310,7 @@ public class case_3 extends ExcelData {
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
     }
-    @Test(priority=15,enabled=true,groups="three")
+    @Test(priority=12,enabled=false,groups="three")
     public void  Large()throws InterruptedException
     {
         System.out.println("f_first test passed ");
@@ -325,37 +326,7 @@ public class case_3 extends ExcelData {
         //hide selectors
     }
 
-    @Test(priority=16,enabled=true,groups="three")
-    public void  cash_back_detail()throws InterruptedException
-    {
-        System.out.println("cashback_detail test passed ");
-        //new session
-        //search
-        //name,phone,email,account id
-        //order details
-        //payment details
-        //address
-        //payment history
-        //dt verification
-        //show selectors(incident,return,replacement,refund,service,callback)
-        //hide selectors
-    }
-    @Test(priority=17,enabled=true,groups="three")
-    public void  door_ship_and_mps()throws InterruptedException
-    {
-        System.out.println("doorship_and_mps test passed ");
-        //new session
-        //search
-        //name,phone,email,account id
-        //order details
-        //payment details
-        //address
-        //payment history
-        //dt verification
-        //show selectors(incident,return,replacement,refund,service,callback)
-        //hide selectors
-    }
-    @AfterTest(enabled=true,groups="three")
+    @AfterTest(enabled=false,groups="three")
     public void close_and_quit()throws InterruptedException {
         System.out.println("Quitting the session");
         one.driver.close();

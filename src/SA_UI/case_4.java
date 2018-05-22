@@ -176,13 +176,13 @@ public class case_4
     @Test(priority=5,enabled=true,groups="four")
     public void show_selector_grocery_basket()throws InterruptedException {
         boolean show_selector;
-        if (grocery.show_selectors(one.wb, one.driver, 2, 85, 1).isEnabled()) show_selector=true;
+        if (selector_Order_non_0rder_related.show_selectors(one.wb, one.driver, 2, 85, 1).isEnabled()) show_selector=true;
         else{
             show_selector = false;
             System.out.println("Show selector button isn't active");
         }
         synchronized (one.driver) {one.driver.wait(10000);}
-        grocery.show_selectors(one.wb, one.driver,2,85,1).click();
+        selector_Order_non_0rder_related.show_selectors(one.wb, one.driver,2,85,1).click();
     }
     @Test(priority=6,enabled=true,groups="four")
     public void email_widget()throws InterruptedException {
