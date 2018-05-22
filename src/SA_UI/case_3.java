@@ -9,7 +9,6 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pom_elements.*;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class case_3 extends ExcelData {
     public void login()throws InterruptedException
     {
         one.login();
-        synchronized (one.driver) { one.driver.wait(4000); }
+        synchronized (one.driver) { one.driver.wait(8000); }
     }
 
     @Test(priority=1,enabled=true,groups="three")
@@ -143,16 +142,73 @@ public class case_3 extends ExcelData {
 
         synchronized (one.driver) {one.driver.wait(3000);}
 
-            //show selectors(incident,return,replacement,refund,service,callback)
+//show selectors(incident,return,replacement,refund,service,callback)
+
+        //click on show selector
+        synchronized (one.driver) {one.driver.wait(3000);}
+        selector_Order_non_0rder_related.show_selectors(one.wb, one.driver, 2, 85, 1).click();
+        synchronized (one.driver) {one.driver.wait(5000);}
 
 
+        //number of incidents
+        try {
+            boolean sel_incident=selector_Order_non_0rder_related.incidents(one.wb, one.driver, 2, 96, 1).isEnabled();
+            if(sel_incident==true)
+                System.out.println("incident count button is active"); }
+        catch (Exception e) { System.out.println(e + " incident count button isn't active"); }
 
-            //hide selectors
+        synchronized (one.driver) {one.driver.wait(1000);}
+
+        //number of returns
+        try {
+            boolean sel_returns=selector_Order_non_0rder_related.returns(one.wb, one.driver, 2, 97, 1).isEnabled();
+            if(sel_returns==true)
+                System.out.println("returns count button is active"); }
+        catch (Exception e) { System.out.println(e + " returns count button isn't active"); }
+
+        synchronized (one.driver) {one.driver.wait(1000);}
+
+        //number of replacement
+        try {
+            boolean sel_replacement=selector_Order_non_0rder_related.replacement(one.wb, one.driver, 2, 98, 1).isEnabled();
+            if(sel_replacement==true)
+                System.out.println("replacement count button is active"); }
+        catch (Exception e) { System.out.println(e + " replacement count button isn't active"); }
+
+        synchronized (one.driver) {one.driver.wait(1000);}
+
+        //number of refund
+        try {
+            boolean sel_refund=selector_Order_non_0rder_related.refund(one.wb, one.driver, 2, 99, 1).isEnabled();
+            if(sel_refund==true)
+                System.out.println("refund count button is active"); }
+        catch (Exception e) { System.out.println(e + " refund count button isn't active"); }
+
+        synchronized (one.driver) {one.driver.wait(1000);}
+
+        //number of services
+        try {
+            boolean sel_services=selector_Order_non_0rder_related.services(one.wb, one.driver, 2, 100, 1).isEnabled();
+            if(sel_services==true)
+                System.out.println("services count button is active"); }
+        catch (Exception e) { System.out.println(e + " services count button isn't active"); }
+
+        synchronized (one.driver) {one.driver.wait(1000);}
+
+        //number of callback
+        try {
+            boolean sel_callback=selector_Order_non_0rder_related.callback(one.wb, one.driver, 2, 101, 1).isEnabled();
+            if(sel_callback==true)
+                System.out.println("callback count button is active"); }
+        catch (Exception e) { System.out.println(e + " callback count button isn't active"); }
+        
+        //hide selectors
 
             //close session
-        synchronized (one.driver) {one.driver.wait(8000);}
+        synchronized (one.driver) {one.driver.wait(4000);}
         discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
     }
+
     @Test(priority=2,enabled=false,groups="three")
     public void  ndr()throws InterruptedException,IOException {
 
