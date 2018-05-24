@@ -39,7 +39,8 @@ public class case_2 {
         synchronized (one.driver) { one.driver.wait(6000); }
 
         WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
-        searchBox.sendKeys(discovery_and_authentication.order_id_1);
+
+        searchBox.sendKeys(discovery_and_authentication.Order_IDs(one.wb, 1, 1, 1));
         searchBox.sendKeys(Keys.RETURN);
 
         synchronized (one.driver) {one.driver.wait(10000);}

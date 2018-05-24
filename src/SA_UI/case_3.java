@@ -12,7 +12,6 @@ import pom_elements.*;
 import java.io.IOException;
 import java.util.List;
 
-
 public class case_3 extends ExcelData {
 
       public case_1 one = new case_1();
@@ -50,7 +49,6 @@ public class case_3 extends ExcelData {
 
             searchBox.sendKeys(discovery_and_authentication.Order_IDs(one.wb, 1, 3, 1));
 
-
             searchBox.sendKeys(Keys.RETURN);
             synchronized (one.driver) { one.driver.wait(8000); }
 
@@ -60,9 +58,8 @@ public class case_3 extends ExcelData {
             System.out.println(user_name);
             Assert.assertEquals("Ramki", user_name);
             }
-
             catch (Exception e)
-            {System.out.println(e+  "     User name didn't match for cash_back");}
+            {System.out.println(e+  "     User name didn't match for cash_back"); e.printStackTrace();}
 
             //phone
         try {
@@ -70,7 +67,7 @@ public class case_3 extends ExcelData {
             System.out.println(phone_no + "is the phone number");
             Assert.assertEquals("+919003276122", phone_no);
             }
-            catch (Exception e){System.out.println(e+    "  Phone number didn't match for cash_back");}
+            catch (Exception e){System.out.println(e+    "  Phone number didn't match for cash_back");e.printStackTrace();}
 
             //email
         try {
@@ -78,7 +75,7 @@ public class case_3 extends ExcelData {
             System.out.println(email_id + "is the email id");
             Assert.assertEquals(email_id, "ramki221994@gmail.com");
             }
-            catch (Exception e){System.out.println(e+"  email id didn't match for cash_back");}
+            catch (Exception e){System.out.println(e+"  email id didn't match for cash_back");e.printStackTrace();}
 
             //account id
         try {
@@ -86,7 +83,7 @@ public class case_3 extends ExcelData {
              System.out.println(account_id + "account id is verified");
              Assert.assertEquals(account_id, "ACC14074063501296331");
             }
-            catch (Exception e){System.out.println(e+  "  account id didn't match for cash_back");}
+            catch (Exception e){System.out.println(e+  "  account id didn't match for cash_back");e.printStackTrace();}
 
             //order details verification
 
@@ -97,7 +94,7 @@ public class case_3 extends ExcelData {
                 System.out.println(ordered_on + "    date is verified ");
                 Assert.assertEquals("13 Jun 17, 11:01 PM", ordered_on);
             }
-            catch (Exception e){System.out.println(e+  "  order date verification didn't match for cash_back ");}
+            catch (Exception e){System.out.println(e+  "  order date verification didn't match for cash_back ");e.printStackTrace();}
 
              //total price verification
             try
@@ -106,7 +103,7 @@ public class case_3 extends ExcelData {
                 System.out.println(tp + "  total price is verified");
                 Assert.assertEquals("699", tp);
             }
-            catch (Exception e){System.out.println(e   +" total price verification failed for cash_back");}
+            catch (Exception e){System.out.println(e   +" total price verification failed for cash_back");e.printStackTrace();}
 
              //channel name verification
             try
@@ -115,7 +112,7 @@ public class case_3 extends ExcelData {
                 System.out.println(cv + "  is the name of the channel");
                 Assert.assertEquals("AndroidApp", cv);
             }
-            catch (Exception e){System.out.println(e   +"channel name verification failed for cash_back");}
+            catch (Exception e){System.out.println(e   +"channel name verification failed for cash_back");e.printStackTrace();}
 
         /* Don't remove this wait */
         synchronized (one.driver) {one.driver.wait(5000); }
@@ -129,7 +126,7 @@ public class case_3 extends ExcelData {
             boolean ov_dt = dtActions.findDTActiveStatus(actions,one.driver,"Order Verification");
             Assert.assertEquals(ov_dt, false);
         }
-        catch (Exception e){System.out.println(e + " order verification failed for for cash_back ");}
+        catch (Exception e){System.out.println(e + " order verification failed for for cash_back ");e.printStackTrace();}
 
         //create incident dt verification enable check(email profile)
         try
@@ -137,7 +134,7 @@ public class case_3 extends ExcelData {
             boolean ci_dt =  dtActions.findDTActiveStatus(actions,one.driver,"Create Incident");
             Assert.assertEquals(ci_dt, false);
         }
-        catch (Exception e){System.out.println(e +" create incident DT verification failed ");}
+        catch (Exception e){System.out.println(e +" create incident DT verification failed ");e.printStackTrace();}
 
         //Price adjustment dt enable check(email profile)
         try
@@ -145,18 +142,25 @@ public class case_3 extends ExcelData {
             boolean pa_dt = dtActions.findDTActiveStatus(actions,one.driver,"Price Adjustment");
             Assert.assertEquals(pa_dt, false);
         }
-        catch (Exception e){System.out.println(e+  " price adjustment DT verification failed ");}
+        catch (Exception e){System.out.println(e+  " price adjustment DT verification failed ");e.printStackTrace();}
 
 
 //payment details tab verification
 
         //Click on payment details tab
-        synchronized (one.driver) {one.driver.wait(8000);}
-        payment_details.payment_details_tab(wb,one.driver).click();
+        try
+        {
+            synchronized (one.driver) {one.driver.wait(8000);}
+            payment_details.payment_details_tab(wb,one.driver).click();
+        }
+        catch (Exception e){System.out.println(e+  "  payment details verification failed");e.printStackTrace();}
 
         //Selling price verification
-        String s_price = payment_details.selling_price(wb, one.driver,3,1,9).getText();
-        Assert.assertEquals("699", s_price);
+        try {
+            String s_price = payment_details.selling_price(wb, one.driver, 3, 1, 9).getText();
+            Assert.assertEquals("699", s_price);
+        }
+        catch (Exception e){System.out.println(e+ "  selling price verification failed");e.printStackTrace();}
 
         /* Don't remove this wait */
         synchronized (one.driver) {one.driver.wait(8000);}
@@ -264,7 +268,7 @@ public class case_3 extends ExcelData {
         //search for order id
         WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
         synchronized (one.driver) { one.driver.wait(6000); }
-        searchBox.sendKeys(discovery_and_authentication.Order_IDs(one.wb, 1, 1, 2));
+        searchBox.sendKeys(discovery_and_authentication.Order_IDs(one.wb, 1, 1, 4));
 
         searchBox.sendKeys(Keys.RETURN);
         synchronized (one.driver) { one.driver.wait(8000); }

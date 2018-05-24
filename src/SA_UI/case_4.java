@@ -49,7 +49,7 @@ public class case_4
         synchronized (one.driver) { one.driver.wait(10000);}
 
         WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
-        searchBox.sendKeys(discovery_and_authentication.order_id_2);
+        searchBox.sendKeys(discovery_and_authentication.Order_IDs(one.wb, 1, 2, 1));
         searchBox.sendKeys(Keys.RETURN);
         synchronized (one.driver) { one.driver.wait(10000);}
         String ordered_on=order_details.ordered_on(wb, one.driver,2,70,1).getText();
