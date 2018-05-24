@@ -144,7 +144,7 @@ public class case_2 {
 
             synchronized (one.driver) { one.driver.wait(5000); }
 
-            boolean yes_on = discovery_and_authentication.break_dis(wb, one.driver).isEnabled();
+             boolean yes_on = discovery_and_authentication.break_dis(wb, one.driver).isEnabled();
             Assert.assertEquals(yes_on, true);
         }
         //click on assign to no from yes

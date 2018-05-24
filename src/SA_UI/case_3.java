@@ -38,6 +38,8 @@ public class case_3 extends ExcelData {
     @Test(priority=1,enabled=true,groups="three")
     public void  cash_back()  throws InterruptedException
     {
+        //OD109423037514652000
+
             //click on new session
             call_to_customer.new_session(one.wb,one.driver).click();
             synchronized (one.driver) { one.driver.wait(4000); }
@@ -45,8 +47,9 @@ public class case_3 extends ExcelData {
             //search for order id
             WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
             synchronized (one.driver) { one.driver.wait(6000); }
-            searchBox.sendKeys(discovery_and_authentication.order_id_3);
 
+            searchBox.sendKeys(discovery_and_authentication.Order_IDs(one.wb, 1, 1, 1));
+        
             searchBox.sendKeys(Keys.RETURN);
             synchronized (one.driver) { one.driver.wait(8000); }
 
@@ -201,8 +204,7 @@ public class case_3 extends ExcelData {
             if(sel_callback==true)
                 System.out.println("callback count button is active"); }
         catch (Exception e) { System.out.println(e + " callback count button isn't active"); }
-        
-        //hide selectors
+
 
             //close session
         synchronized (one.driver) {one.driver.wait(4000);}
@@ -213,18 +215,27 @@ public class case_3 extends ExcelData {
     public void  ndr()throws InterruptedException,IOException {
 
         //click on new session
+        call_to_customer.new_session(one.wb,one.driver).click();
+        synchronized (one.driver) { one.driver.wait(4000); }
 
-        /*
-        search
-        name,phone,email,account id
-        order details
-        payment details
-        address
-        payment history
-        dt verification
-        show selectors(incident,return,replacement,refund,service,callback)
-        hide selectors
-        */
+        //search for order id
+        WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
+        synchronized (one.driver) { one.driver.wait(6000); }
+        searchBox.sendKeys(discovery_and_authentication.Order_IDs(one.wb, 1, 1, 2));
+
+        searchBox.sendKeys(Keys.RETURN);
+        synchronized (one.driver) { one.driver.wait(8000); }
+
+        //name,phone,email,account id
+
+        //order details
+        //payment details
+        //address
+        //payment history
+        //dt verification
+        //show selectors(incident,return,replacement,refund,service,callback)
+        //hide selectors
+
     }
 
     @Test(priority=3,enabled=false,groups="three")
