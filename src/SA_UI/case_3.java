@@ -275,7 +275,10 @@ public class case_3 extends ExcelData {
         item_detail.cash_back_item_to_go_to_item_detail_tab(one.wb, one.driver, 2, 103, 1).click();
 
         // Logic for all the DT's under item details Tab.
-        String xpath="//*[@id=\"root\"]/div/div[4]/div[1]/div/div/div/div[2]/div[1]/div[3]/div[2]/div/div[2]/div/div/div[1]/div[2]/div";
+
+        sh= wb.getSheetAt(2);
+        String xpath=sh.getRow(109).getCell(1).getStringCellValue();
+
         WebElement element = one.driver.findElement(By.xpath(xpath));
         List<WebElement> elements = element.findElements(By.xpath(".//DIV"));
         synchronized (one.driver){ one.driver.wait(3000); }
@@ -283,10 +286,6 @@ public class case_3 extends ExcelData {
         System.out.println(notifySize + " DT's are available under item detail tab, shown in the UI");
 
 //Item details DT's enable and disable check (For email profile all the DT's should be disabled
-        //click on Logistics details tab
-        synchronized (one.driver) {one.driver.wait(5000);}
-        
-
 
         List<WebElement> actions_2 = item_detail.item_detail_all_DT(wb, one.driver);
 
@@ -320,6 +319,22 @@ public class case_3 extends ExcelData {
 
 
 //Logistic details
+
+        //click on Logistics details tab
+        synchronized (one.driver) {one.driver.wait(5000);}
+        logistics_detail.logistics_detail_tab(one.wb, one.driver, 2, 106, 1).click();
+
+        //DT's verification under logistics Tab
+        String xpath_1="//*[@id=\"root\"]/div/div[4]/div[1]/div/div/div/div[2]/div[1]/div[3]/div[2]/div/div[2]/div/div/div[1]/div[2]/div";
+        WebElement element_logistics = one.driver.findElement(By.xpath(xpath_1));
+        List<WebElement> elements_1 = element_logistics.findElements(By.xpath(".//DIV"));
+        synchronized (one.driver){ one.driver.wait(3000); }
+        int notifySize_1 = elements_1.size();
+        System.out.println(notifySize + " DT's are available under item detail tab, shown in the UI");
+
+
+
+
 
 
 
