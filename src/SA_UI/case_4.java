@@ -288,7 +288,7 @@ public class case_4
             }
         }
         catch (Exception e) {
-            System.out.println("SMS button is disabled from 9 PM to 9 AM ");
+            System.out.println(e+"   SMS button is disabled from 9 PM to 9 AM ");
         }
         }
 

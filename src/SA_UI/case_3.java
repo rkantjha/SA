@@ -2,6 +2,7 @@ package SA_UI;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -9,6 +10,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pom_elements.*;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -31,7 +33,7 @@ public class case_3 extends ExcelData {
     public void login()throws InterruptedException
     {
         one.login();
-        synchronized (one.driver) { one.driver.wait(8000); }
+        synchronized (one.driver) { one.driver.wait(12000); }
     }
 
     @Test(priority=1,enabled=true,groups="three")
@@ -40,8 +42,15 @@ public class case_3 extends ExcelData {
         //OD109423037514652000
 
             //click on new session
-            call_to_customer.new_session(one.wb,one.driver).click();
-            synchronized (one.driver) { one.driver.wait(4000); }
+
+           try
+           {
+               call_to_customer.new_session(one.wb,one.driver).click();
+               synchronized (one.driver) { one.driver.wait(4000); }
+           }
+           catch (Exception e){System.out.println(e+"  because of this issue new session button is not clickable");
+           }
+
 
             //search for order id
             WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
@@ -59,7 +68,7 @@ public class case_3 extends ExcelData {
             Assert.assertEquals("Ramki", user_name);
             }
             catch (Exception e)
-            {System.out.println(e+  "     User name didn't match for cash_back"); e.printStackTrace();}
+            {System.out.println(e+ "     User name didn't match for cash_back"); e.printStackTrace();}
 
             //phone
         try {
@@ -252,10 +261,77 @@ public class case_3 extends ExcelData {
                 System.out.println("callback count button is active"); }
         catch (Exception e) { System.out.println(e + " callback count button isn't active"); }
 
+        //hide selectors
+        synchronized (one.driver) {one.driver.wait(3000);}
+        selector_Order_non_0rder_related.hide_selectors(one.wb, one.driver, 2, 102, 1).click();
 
-            //close session
+
+        //click on Order details tab again  (Very important flow of the case)
         synchronized (one.driver) {one.driver.wait(4000);}
-        discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
+        order_details.order_detail_tab_click(one.wb, one.driver, 2, 104, 1).click();
+
+        // click on the item to go to item detail section
+        synchronized (one.driver) {one.driver.wait(3000);}
+        item_detail.cash_back_item_to_go_to_item_detail_tab(one.wb, one.driver, 2, 103, 1).click();
+
+        // Logic for all the DT's under item details Tab.
+        String xpath="//*[@id=\"root\"]/div/div[4]/div[1]/div/div/div/div[2]/div[1]/div[3]/div[2]/div/div[2]/div/div/div[1]/div[2]/div";
+        WebElement element = one.driver.findElement(By.xpath(xpath));
+        List<WebElement> elements = element.findElements(By.xpath(".//DIV"));
+        synchronized (one.driver){ one.driver.wait(3000); }
+        int notifySize = elements.size();
+        System.out.println(notifySize + " DT's are available under item detail tab, shown in the UI");
+
+//Item details DT's enable and disable check (For email profile all the DT's should be disabled
+        //click on Logistics details tab
+        synchronized (one.driver) {one.driver.wait(5000);}
+        
+
+
+        List<WebElement> actions_2 = item_detail.item_detail_all_DT(wb, one.driver);
+
+        //cancel DT enable/disable check
+        boolean cancel_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Cancel");
+        Assert.assertEquals(cancel_dt, false);
+        //Customer Return V1 enable/disable check
+        boolean Customer_Return_V1_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Customer Return V1");
+        Assert.assertEquals(Customer_Return_V1_dt, false);
+        //Customer Return enable/disable check
+        boolean Customer_Return_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Customer Return");
+        Assert.assertEquals(Customer_Return_dt, false);
+        //Delivery Related  DT's enable disable check
+        boolean Delivery_Related_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Delivery Related");
+        Assert.assertEquals(Delivery_Related_dt, false);
+        //Create Incident DT's enable disable check
+        boolean Create_Incident_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Create Incident");
+        Assert.assertEquals(Create_Incident_dt, false);
+        //Post Delivery Issues  DT's enable disable check
+        boolean Post_Delivery_Issues_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Post Delivery Issues");
+        Assert.assertEquals(Post_Delivery_Issues_dt, false);
+        //Schedule Delivery DT's enable disable check
+        boolean Schedule_Delivery_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Schedule Delivery");
+        Assert.assertEquals(Schedule_Delivery_dt, false);
+        //Subscribe DT's enable disable check
+        boolean Subscribe_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Subscribe");
+        Assert.assertEquals(Subscribe_dt, false);
+        //Unsubscribe DT's enable disable check
+        boolean Unsubscribe_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Unsubscribe");
+        Assert.assertEquals(Unsubscribe_dt, false);
+
+
+//Logistic details
+
+
+
+        //Seller details
+
+        //Offer details
+
+
+        //click on close session
+          synchronized (one.driver) {one.driver.wait(4000);}
+     //   discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
+
     }
 
     @Test(priority=2,enabled=false,groups="three")
@@ -282,6 +358,13 @@ public class case_3 extends ExcelData {
         //dt verification
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
+        //Item details
+
+        //Logistic details
+
+        //Seller details
+
+        //Offer details
 
     }
 
@@ -315,6 +398,13 @@ public class case_3 extends ExcelData {
         //dt verification
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
+        //Item details
+
+        //Logistic details
+
+        //Seller details
+
+        //Offer details
     }
     @Test(priority=5,enabled=false,groups="three")
     public void  e_code()throws InterruptedException
@@ -330,6 +420,13 @@ public class case_3 extends ExcelData {
         //dt verification
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
+        //Item details
+
+        //Logistic details
+
+        //Seller details
+
+        //Offer details
     }
     @Test(priority=6,enabled=false,groups="three")
     public void  a_DLD()throws InterruptedException
@@ -345,6 +442,13 @@ public class case_3 extends ExcelData {
         //dt verification
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
+        //Item details
+
+        //Logistic details
+
+        //Seller details
+
+        //Offer details
     }
     @Test(priority=7,enabled=false,groups="three")
     public void  EGV()throws InterruptedException
@@ -360,6 +464,13 @@ public class case_3 extends ExcelData {
         //dt verification
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
+        //Item details
+
+        //Logistic details
+
+        //Seller details
+
+        //Offer details
     }
     @Test(priority=8,enabled=false,groups="three")
     public void  BNPL()throws InterruptedException
@@ -375,6 +486,13 @@ public class case_3 extends ExcelData {
         //dt verification
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
+        //Item details
+
+        //Logistic details
+
+        //Seller details
+
+        //Offer details
     }
     @Test(priority=9,enabled=false,groups="three")
     public void  MPS()throws InterruptedException
@@ -390,6 +508,13 @@ public class case_3 extends ExcelData {
         //dt verification
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
+        //Item details
+
+        //Logistic details
+
+        //Seller details
+
+        //Offer details
     }
     @Test(priority=10,enabled=false,groups="three")
     public void  Replacement_back_from_return()throws InterruptedException
@@ -405,6 +530,13 @@ public class case_3 extends ExcelData {
         //dt verification
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
+        //Item details
+
+        //Logistic details
+
+        //Seller details
+
+        //Offer details
     }
     @Test(priority=11,enabled=false,groups="three")
     public void  Drop_ship()throws InterruptedException
@@ -420,6 +552,13 @@ public class case_3 extends ExcelData {
         //dt verification
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
+        //Item details
+
+        //Logistic details
+
+        //Seller details
+
+        //Offer details
     }
     @Test(priority=12,enabled=false,groups="three")
     public void  Large()throws InterruptedException
@@ -435,6 +574,13 @@ public class case_3 extends ExcelData {
         //dt verification
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
+        //Item details
+
+        //Logistic details
+
+        //Seller details
+
+        //Offer details
     }
 
     @AfterTest(enabled=false,groups="three")

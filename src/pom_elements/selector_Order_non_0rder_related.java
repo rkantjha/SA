@@ -12,8 +12,14 @@ public class selector_Order_non_0rder_related {
     public static XSSFSheet sh;
 
 
-
     public static WebElement show_selectors(XSSFWorkbook wb, WebDriver driver, int sheet, int row, int column)
+    {
+        sh= wb.getSheetAt(sheet);
+        element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));
+        return element;
+    }
+
+    public static WebElement hide_selectors(XSSFWorkbook wb, WebDriver driver, int sheet, int row, int column)
     {
         sh= wb.getSheetAt(sheet);
         element=driver.findElement(By.xpath(sh.getRow(row).getCell(column).getStringCellValue()));

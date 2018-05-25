@@ -57,7 +57,7 @@ public class case_1 {
        // String yoda_URL="http://10.85.52.152/flipkart/#/yoda";
        String yoda_URL="http://10.85.53.223/flipkart/#/yoda";
 
-       //String yoda_URL="http://10.85.52.152/flipkartEmail/#/yoda";       // prod      Flipkart email
+       //String yoda_URL="http://10.85.52.152/flipkartEmail/#/yoda";       // prod  Flipkart email
         //String yoda_URL = "http://10.85.53.223/flipkartEmail/#/yoda";      // pre-prod Flipkart email
 
         String c_url=driver.getCurrentUrl();
@@ -66,21 +66,14 @@ public class case_1 {
         {
             System.out.println(driver.getCurrentUrl() + "URL till here");
             synchronized (driver){ driver.wait(3000); }
-            String yoda_class="client-container-pages-Yoda-Notifications-Notifications_notifyList";
+//          String yoda_class="client-container-pages-Yoda-Notifications-Notifications_notifyList";
             String xpath="//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[2]";
             WebElement element = driver.findElement(By.xpath(xpath));
             List<WebElement> elements = element.findElements(By.xpath(".//DIV"));
                 synchronized (driver){ driver.wait(4000); }
                 int notifySize = elements.size();
 
-//                int number =notifySize;
-//                String numberAsString = new Integer(number).toString();
-//                int length_of_notifications= numberAsString.length();
-//                System.out.println(length_of_notifications);
-
                 System.out.println(notifySize+" notifications to be checked");
-
-              //  String child_xpath= "//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[2]/div[1]";
 
               for(int i=1;i<=notifySize;i++)
             {
@@ -96,10 +89,10 @@ public class case_1 {
                         }
                     }
                 } catch (Exception e){
-                    System.out.println("Notification checked succesfully");
+                    System.out.println("Notification " + i + "  checked succesfully");
                 }
             }
-    //            driver.wait(3000);
+                driver.wait(3000);
                 String proceed_to_sa="//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[2]/div[2]/div";
                 driver.findElement(By.xpath(proceed_to_sa)).click();
         }
