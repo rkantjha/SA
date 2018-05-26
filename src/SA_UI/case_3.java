@@ -271,7 +271,7 @@ public class case_3 extends ExcelData {
         order_details.order_detail_tab_click(one.wb, one.driver, 2, 104, 1).click();
 
         // click on the item to go to item detail section
-        synchronized (one.driver) {one.driver.wait(3000);}
+        synchronized (one.driver) {one.driver.wait(6000);}
         item_detail.cash_back_item_to_go_to_item_detail_tab(one.wb, one.driver, 2, 103, 1).click();
 
         // Logic for all the DT's under item details Tab.
@@ -325,18 +325,14 @@ public class case_3 extends ExcelData {
         logistics_detail.logistics_detail_tab(one.wb, one.driver, 2, 106, 1).click();
 
         //DT's verification under logistics Tab
-        String xpath_1="//*[@id=\"root\"]/div/div[4]/div[1]/div/div/div/div[2]/div[1]/div[3]/div[2]/div/div[2]/div/div/div[1]/div[2]/div";
+        sh= wb.getSheetAt(2);
+        String xpath_1=sh.getRow(110).getCell(1).getStringCellValue();
+
         WebElement element_logistics = one.driver.findElement(By.xpath(xpath_1));
         List<WebElement> elements_1 = element_logistics.findElements(By.xpath(".//DIV"));
         synchronized (one.driver){ one.driver.wait(3000); }
         int notifySize_1 = elements_1.size();
-        System.out.println(notifySize + " DT's are available under item detail tab, shown in the UI");
-
-
-
-
-
-
+        System.out.println(notifySize_1 + " DT's are available under logistics detail tab, shown in the UI");
 
         //Seller details
 
