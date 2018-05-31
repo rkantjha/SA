@@ -42,7 +42,6 @@ public class case_3 extends ExcelData {
         //OD109423037514652000
 
             //click on new session
-
            try
            {
                call_to_customer.new_session(one.wb,one.driver).click();
@@ -50,7 +49,6 @@ public class case_3 extends ExcelData {
            }
            catch (Exception e){System.out.println(e+"  because of this issue new session button is not clickable");
            }
-
 
             //search for order id
             WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
