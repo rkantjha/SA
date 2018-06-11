@@ -34,6 +34,7 @@ public class case_1 {
 
     @Test(priority=1,enabled=true,groups="one")
     public void login() throws InterruptedException {
+
         driver.get(login_page.sa_url);
 
         synchronized (driver){ driver.wait(6000); }
@@ -55,10 +56,10 @@ public class case_1 {
         synchronized (driver){ driver.wait(6000); }
 
         //String yoda_URL="http://10.85.52.152/flipkart/#/yoda";
-       //String yoda_URL="http://10.85.53.223/flipkart/#/yoda";
+       String yoda_URL="http://10.85.53.223/flipkart/#/yoda";
 
        //String yoda_URL="http://10.85.52.152/flipkartEmail/#/yoda";       // prod  Flipkart email
-        String yoda_URL = "http://10.85.53.223/flipkartEmail/#/yoda";      // pre-prod Flipkart email
+       // String yoda_URL = "http://10.85.53.223/flipkartEmail/#/yoda";      // pre-prod Flipkart email
 
         String c_url=driver.getCurrentUrl();
 
@@ -94,14 +95,17 @@ public class case_1 {
                     System.out.println("Notification " + i + "  checked succesfully");
                 }
             }
-                driver.wait(3000);
+               // driver.wait(2000);
                 String proceed_to_sa="//*[@id=\"root\"]/div/div[4]/div[1]/div[2]/div/div/div[2]/div[2]/div";
+//                driver.wait(3000);
                 driver.findElement(By.xpath(proceed_to_sa)).click();
+
+
         }
         else System.out.println("NO yoda checks required");
     }
     @Test(priority = 3,enabled=false,groups="one")//enable it true when running test with voice profile
-    public void call_to_customer()throws InterruptedException {
+    public void call_to_customer()throws InterruptedException{
         synchronized (driver){ driver.wait(5000); }
         call_to_customer.new_session(wb,driver).click();
         synchronized (driver){ driver.wait(5000); }
@@ -121,7 +125,6 @@ public class case_1 {
         call_to_customer.enter_phone_number(wb,driver).sendKeys(call_to_customer.phone_number);
         call_to_customer.click_on_dial(wb,driver).click();
     }
-
     @Test(priority=4,enabled=true,groups="one")
     public void logout()throws InterruptedException
     {

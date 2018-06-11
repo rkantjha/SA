@@ -219,11 +219,11 @@ public class case_4
         synchronized (one.driver) { one.driver.wait(6000);}
 
        // String exp_URL="http://10.85.52.152//flipkart/#/session/SES152360189149755199/nonOrder/IN1708021438531717419";
-      // String exp_URL="http://10.85.53.223//flipkart/#/session/SES152360189149755199/nonOrder/IN1708021438531717419";
+       String exp_URL="http://10.85.53.223//flipkart/#/session/SES152360189149755199/nonOrder/IN1708021438531717419";
 
 
         //String exp_URL="http://10.85.52.152/flipkartEmail/#/session/SES152360189149755199/nonOrder/IN1708021438531717419";  // prod      Flipkart email
-        String exp_URL = "http://10.85.53.223/flipkartEmail/#/session/SES152360189149755199/nonOrder/IN1708021438531717419";  // pre-prod Flipkart email
+        //String exp_URL = "http://10.85.53.223/flipkartEmail/#/session/SES152360189149755199/nonOrder/IN1708021438531717419";  // pre-prod Flipkart email
 
         synchronized (one.driver) { one.driver.wait(10000);}
 
