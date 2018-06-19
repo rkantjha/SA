@@ -336,9 +336,10 @@ public class case_3 extends ExcelData {
 
         //Offer details
 
-
         //click on close session
           synchronized (one.driver) {one.driver.wait(4000);}
+
+        //close the session after executing Priority 1
      //   discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
 
     }
