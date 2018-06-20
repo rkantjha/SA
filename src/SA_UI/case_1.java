@@ -55,11 +55,11 @@ public class case_1 {
 
         synchronized (driver){ driver.wait(6000); }
 
-        //String yoda_URL="http://10.85.52.152/flipkart/#/yoda";
-       String yoda_URL="http://10.85.53.223/flipkart/#/yoda";
+        String yoda_URL="http://10.85.52.152/flipkart/#/yoda";
+       // String yoda_URL="http://10.85.53.223/flipkart/#/yoda";
 
        //String yoda_URL="http://10.85.52.152/flipkartEmail/#/yoda";       // prod  Flipkart email
-       // String yoda_URL = "http://10.85.53.223/flipkartEmail/#/yoda";      // pre-prod Flipkart email
+        //String yoda_URL = "http://10.85.53.223/flipkartEmail/#/yoda";      // pre-prod Flipkart email
 
         String c_url=driver.getCurrentUrl();
 
@@ -72,9 +72,14 @@ public class case_1 {
             WebElement element = driver.findElement(By.xpath(xpath));
             List<WebElement> elements = element.findElements(By.xpath(".//DIV"));
                 synchronized (driver){ driver.wait(4000); }
+
+
                 int element_size=elements.size();
 
                 int notifySize = element_size;
+
+                //Remove this after testing
+                //int notifySize=elements.size();
 
                 System.out.println(notifySize+" notifications to be checked");
 

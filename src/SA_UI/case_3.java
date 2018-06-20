@@ -34,11 +34,15 @@ public class case_3 extends ExcelData {
     {
         one.login();
         synchronized (one.driver) { one.driver.wait(12000); }
+
+        // To handle yoda checks in between
+        one.notification_home_page();
     }
 
-    @Test(priority=1,enabled=true,groups="three")
+    @Test(priority=1,enabled=false,groups="three")
     public void  cash_back()  throws InterruptedException
     {
+        one.notification_home_page();
         //OD109423037514652000
 
             //click on new session
@@ -54,7 +58,7 @@ public class case_3 extends ExcelData {
             WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
             synchronized (one.driver) { one.driver.wait(6000); }
 
-            searchBox.sendKeys(discovery_and_authentication.Order_IDs(one.wb, 1, 3, 1));
+            searchBox.sendKeys(discovery_and_authentication.Order_IDs(one.wb, 3, 1, 1));
 
             searchBox.sendKeys(Keys.RETURN);
             synchronized (one.driver) { one.driver.wait(8000); }
@@ -340,26 +344,77 @@ public class case_3 extends ExcelData {
           synchronized (one.driver) {one.driver.wait(4000);}
 
         //close the session after executing Priority 1
-     //   discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
+       discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
 
+        // To handle yoda checks in between
+        one.notification_home_page();
     }
 
-    @Test(priority=2,enabled=false,groups="three")
+    @Test(priority=2,enabled=true,groups="three")
     public void  ndr()throws InterruptedException,IOException {
 
+        //OD109353007890253000  NDR Order
+
         //click on new session
+        synchronized (one.driver) { one.driver.wait(8000); }
+
         call_to_customer.new_session(one.wb,one.driver).click();
         synchronized (one.driver) { one.driver.wait(4000); }
 
         //search for order id
         WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
         synchronized (one.driver) { one.driver.wait(6000); }
-        searchBox.sendKeys(discovery_and_authentication.Order_IDs(one.wb, 1, 1, 4));
+        searchBox.sendKeys(discovery_and_authentication.Order_IDs(one.wb, 3, 2, 1));
 
         searchBox.sendKeys(Keys.RETURN);
         synchronized (one.driver) { one.driver.wait(8000); }
 
         //name,phone,email,account id
+
+        //name
+        try {
+            String user_name = discovery_and_authentication.name(one.wb, one.driver, 3, 2, 2).getText();
+            System.out.println(user_name);
+            Assert.assertEquals("Akif Ansari", user_name);
+        }
+        catch (Exception e)
+        {System.out.println(e+ "     User name didn't match for cash_back"); e.printStackTrace();}
+
+
+        //phone
+        try {
+            String phone_no = discovery_and_authentication.phone(one.wb, one.driver, 3, 2, 3).getText();
+            System.out.println(phone_no + "is the phone number");
+            Assert.assertEquals("++917266981795", phone_no);
+        }
+        catch (Exception e){System.out.println(e+    "  Phone number didn't match for cash_back");e.printStackTrace();}
+
+        //email
+        try {
+            String email_id = discovery_and_authentication.email(one.wb, one.driver, 3, 2, 4).getText();
+            System.out.println(email_id + "is the email id");
+            Assert.assertEquals(email_id, "akifansari503@gmail.com");
+        }
+        catch (Exception e){System.out.println(e+"  email id didn't match for cash_back");e.printStackTrace();}
+
+        //account id
+        try {
+            String account_id = discovery_and_authentication.account_id(one.wb, one.driver, 3, 2, 5).getText();
+            System.out.println(account_id + "account id is verified");
+            Assert.assertEquals(account_id, "ACC112EE3AFFEC8447A8DF5B69477598A6FG");
+        }
+        catch (Exception e){System.out.println(e+  "  account id didn't match for cash_back");e.printStackTrace();}
+
+
+        //order date verification
+        try
+        {
+            String ordered_on = order_details.ordered_on(wb, one.driver,3,2,6).getText();
+            System.out.println(ordered_on + "    date is verified ");
+            Assert.assertEquals("05 Jun 17, 08:29 PM", ordered_on);
+        }
+        catch (Exception e){System.out.println(e+  "  order date verification didn't match for cash_back ");e.printStackTrace();}
+
 
         //order details
         //payment details
