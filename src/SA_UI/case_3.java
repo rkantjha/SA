@@ -39,7 +39,7 @@ public class case_3 extends ExcelData {
         one.notification_home_page();
     }
 
-    @Test(priority=1,enabled=false,groups="three")
+    @Test(priority=1,enabled=true,groups="three")
     public void  cash_back()  throws InterruptedException
     {
         one.notification_home_page();
@@ -372,7 +372,8 @@ public class case_3 extends ExcelData {
         //name,phone,email,account id
 
         //name
-        try {
+        try
+        {
             String user_name = discovery_and_authentication.name(one.wb, one.driver, 3, 2, 2).getText();
             System.out.println(user_name);
             Assert.assertEquals("Akif Ansari", user_name);
@@ -380,12 +381,11 @@ public class case_3 extends ExcelData {
         catch (Exception e)
         {System.out.println(e+ "     User name didn't match for cash_back"); e.printStackTrace();}
 
-
         //phone
         try {
             String phone_no = discovery_and_authentication.phone(one.wb, one.driver, 3, 2, 3).getText();
             System.out.println(phone_no + "is the phone number");
-            Assert.assertEquals("++917266981795", phone_no);
+            Assert.assertEquals("+917266981795", phone_no);
         }
         catch (Exception e){System.out.println(e+    "  Phone number didn't match for cash_back");e.printStackTrace();}
 
@@ -405,7 +405,6 @@ public class case_3 extends ExcelData {
         }
         catch (Exception e){System.out.println(e+  "  account id didn't match for cash_back");e.printStackTrace();}
 
-
         //order date verification
         try
         {
@@ -415,21 +414,23 @@ public class case_3 extends ExcelData {
         }
         catch (Exception e){System.out.println(e+  "  order date verification didn't match for cash_back ");e.printStackTrace();}
 
+        //total price verification
+        try
+        {
+            String tp = order_details.total_price(wb, one.driver,3,2,7).getText();
+            System.out.println(tp + "  total price is verified");
+            Assert.assertEquals("0", tp);
+        }
+        catch (Exception e){System.out.println(e   +" total price verification failed for cash_back");e.printStackTrace();}
 
-        //order details
-        //payment details
-        //address
-        //payment history
-        //dt verification
-        //show selectors(incident,return,replacement,refund,service,callback)
-        //hide selectors
-        //Item details
-
-        //Logistic details
-
-        //Seller details
-
-        //Offer details
+        //channel name verification
+        try
+        {
+            String cv = order_details.channel(wb, one.driver,3,2,8).getText();
+            System.out.println(cv + "  is the name of the channel");
+            Assert.assertEquals("MobileSite", cv);
+        }
+        catch (Exception e){System.out.println(e   +"channel name verification failed for cash_back");e.printStackTrace();}
 
     }
 
@@ -647,6 +648,7 @@ public class case_3 extends ExcelData {
 
         //Offer details
     }
+
 
     @AfterTest(enabled=false,groups="three")
     public void close_and_quit()throws InterruptedException {
