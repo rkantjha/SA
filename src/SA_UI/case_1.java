@@ -78,8 +78,6 @@ public class case_1 {
 
                 int notifySize = element_size;
 
-                //Remove this after testing
-                //int notifySize=elements.size();
 
                 System.out.println(notifySize+" notifications to be checked");
 

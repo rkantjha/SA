@@ -43,7 +43,12 @@ public class case_4
     public void order_details()throws InterruptedException {
         one.login();
 
-        synchronized (one.driver) {one.driver.wait(10000);}
+        synchronized (one.driver) {one.driver.wait(8000);}
+
+        one.notification_home_page();
+
+
+        synchronized (one.driver) {one.driver.wait(8000);}
 
         call_to_customer.new_session(one.wb, one.driver).click();
         synchronized (one.driver) { one.driver.wait(10000);}
@@ -98,6 +103,7 @@ public class case_4
     }
     @Test(priority=2,enabled=true,groups="four")
     public void basket_items()throws InterruptedException {
+        one.notification_home_page();
 
         //All item , Active Item , cancelled item , returned item and undelivered item
         String all_item_count=grocery.basket_status_tab(one.wb,one.driver,2,79,1).getText();
@@ -122,6 +128,7 @@ public class case_4
     }
     @Test(priority=3,enabled=true,groups="four")
     public void payment_details()throws InterruptedException {
+        one.notification_home_page();
 
         /* click on payment detail */
         synchronized (one.driver) { one.driver.wait(10000); }
@@ -153,6 +160,8 @@ public class case_4
     //Address details test condition
     @Test(priority=4,enabled=true,groups="four")
     public void address_details()throws InterruptedException {
+        one.notification_home_page();
+
         synchronized (one.driver) { one.driver.wait(10000); }
         //click on address details tab
         address_detail.click_address_details_tab(wb,one.driver).click();
@@ -175,6 +184,8 @@ public class case_4
     }
     @Test(priority=5,enabled=true,groups="four")
     public void show_selector_grocery_basket()throws InterruptedException {
+        one.notification_home_page();
+
         boolean show_selector;
         if (selector_Order_non_0rder_related.show_selectors(one.wb, one.driver, 2, 85, 1).isEnabled()) show_selector=true;
         else{
@@ -186,7 +197,9 @@ public class case_4
     }
     @Test(priority=6,enabled=true,groups="four")
     public void email_widget()throws InterruptedException {
-       // click on home button
+        one.notification_home_page();
+
+        // click on home button
         discovery_and_authentication.home(one.wb,one.driver,2,29,1).click();
         synchronized (one.driver) {one.driver.wait(5000);}
 
@@ -241,6 +254,8 @@ public class case_4
     //If this test case fails between 9 pm to 9 am consider it as pass
     @Test(priority=7,enabled=true,groups="four") // This feature is only for email profile please disable it for all profile.
     public void send_sms() throws InterruptedException, ParseException {
+        one.notification_home_page();
+
         // Send SMS feature //
 
         Calendar C = new GregorianCalendar();
