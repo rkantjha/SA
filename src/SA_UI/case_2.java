@@ -20,6 +20,7 @@ public class case_2 {
     case_1 one = new case_1();
     XSSFWorkbook wb = ExcelData.bootstrap();
     DTActions dtActions = new DTActions();
+
     public case_2() throws IOException {
     }
 
@@ -28,9 +29,16 @@ public class case_2 {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
     }
 
+
+
     @Test(priority = 1, enabled = true,groups="two")
     public void UiDataVerify() throws InterruptedException {
         one.login();
+
+        synchronized (one.driver) { one.driver.wait(12000); }
+
+        // To handle yoda checks in between
+        one.notification_home_page();
 
         synchronized (one.driver) {one.driver.wait(10000);}
 
