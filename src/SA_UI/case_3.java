@@ -39,7 +39,7 @@ public class case_3 extends ExcelData {
         one.notification_home_page();
     }
 
-    @Test(priority=1,enabled=true,groups="three")
+    @Test(priority=1,enabled=false,groups="three")
     public void  cash_back()  throws InterruptedException
     {
         one.notification_home_page();
@@ -431,6 +431,241 @@ public class case_3 extends ExcelData {
             Assert.assertEquals("MobileSite", cv);
         }
         catch (Exception e){System.out.println(e   +"channel name verification failed for cash_back");e.printStackTrace();}
+
+
+        /* Don't remove this wait */
+        synchronized (one.driver) {one.driver.wait(5000); }
+
+
+        //Getting DT Actions
+        List<WebElement> actions = order_details.order_verification_dt(wb, one.driver);
+
+        //order verification dt enable check (email profile)
+        try
+        {
+            boolean ov_dt = dtActions.findDTActiveStatus(actions,one.driver,"Order Verification");
+            Assert.assertEquals(ov_dt, false);
+        }
+        catch (Exception e){System.out.println(e + " order verification failed for for cash_back ");e.printStackTrace();}
+
+        //create incident dt verification enable check(email profile)
+        try
+        {
+            boolean ci_dt =  dtActions.findDTActiveStatus(actions,one.driver,"Create Incident");
+            Assert.assertEquals(ci_dt, false);
+        }
+        catch (Exception e){System.out.println(e +" create incident DT verification failed ");e.printStackTrace();}
+
+        //Price adjustment dt enable check(email profile)
+        try
+        {
+            boolean pa_dt = dtActions.findDTActiveStatus(actions,one.driver,"Price Adjustment");
+            Assert.assertEquals(pa_dt, false);
+        }
+        catch (Exception e){System.out.println(e+  " price adjustment DT verification failed ");e.printStackTrace();}
+
+
+        //payment details tab verification
+
+        //Click on payment details tab
+        try
+        {
+            synchronized (one.driver) {one.driver.wait(8000);}
+            payment_details.payment_details_tab(wb,one.driver).click();
+        }
+        catch (Exception e){System.out.println(e+  "  payment details verification failed");e.printStackTrace();}
+
+
+        //Selling price verification
+        try {
+            String s_price = payment_details.selling_price(wb, one.driver, 3, 2, 9).getText();
+            Assert.assertEquals("0", s_price);
+        }
+        catch (Exception e){System.out.println(e+ "  selling price verification failed");e.printStackTrace();}
+
+        /* Don't remove this wait */
+        synchronized (one.driver) {one.driver.wait(8000);}
+
+        List<WebElement> actions_1 = payment_details.payments_details_all_DT(wb,one.driver);
+
+        boolean payments_and_refunds = dtActions.findDTActiveStatus(actions_1,one.driver,"Payments and Refunds");
+        Assert.assertEquals(payments_and_refunds, false);
+
+        boolean down_inv = dtActions.findDTActiveStatus(actions_1,one.driver,"Download Invoice");
+        Assert.assertEquals(down_inv, true);
+
+        boolean inv_req = dtActions.findDTActiveStatus(actions_1,one.driver,"Invoice Request");
+        Assert.assertEquals(inv_req, false);
+
+        boolean cre_inc = dtActions.findDTActiveStatus(actions_1,one.driver,"Create Incident");
+
+        Assert.assertEquals(cre_inc, false);
+
+
+        //address verification and validation
+
+        synchronized (one.driver) { one.driver.wait(4000); }
+
+        address_detail.click_address_details_tab(wb,one.driver).click();
+
+        synchronized (one.driver) { one.driver.wait(3000); }
+        String c_a=address_detail.current_address(wb,one.driver,3,2,10).getText();
+        System.out.println(c_a);
+        Assert.assertEquals(c_a,"Jalalpur, Kachhawa Mirzapur");
+
+        synchronized (one.driver) {one.driver.wait(3000);}
+
+
+/*testing ---------------------------------------------------------------------------testing*/
+
+
+
+//show selectors(incident,return,replacement,refund,service,callback)
+
+        //click on show selector
+        synchronized (one.driver) {one.driver.wait(3000);}
+        selector_Order_non_0rder_related.show_selectors(one.wb, one.driver, 2, 85, 1).click();
+        synchronized (one.driver) {one.driver.wait(5000);}
+
+
+        //number of incidents
+        try {
+            boolean sel_incident=selector_Order_non_0rder_related.incidents(one.wb, one.driver, 2, 96, 1).isEnabled();
+            if(sel_incident==true)
+                System.out.println("incident count button is active"); }
+        catch (Exception e) { System.out.println(e + " incident count button isn't active"); }
+
+        synchronized (one.driver) {one.driver.wait(1000);}
+
+        //number of returns
+        try {
+            boolean sel_returns=selector_Order_non_0rder_related.returns(one.wb, one.driver, 2, 97, 1).isEnabled();
+            if(sel_returns==true)
+                System.out.println("returns count button is active"); }
+        catch (Exception e) { System.out.println(e + " returns count button isn't active"); }
+
+        synchronized (one.driver) {one.driver.wait(1000);}
+
+        //number of replacement
+        try {
+            boolean sel_replacement=selector_Order_non_0rder_related.replacement(one.wb, one.driver, 2, 98, 1).isEnabled();
+            if(sel_replacement==true)
+                System.out.println("replacement count button is active"); }
+        catch (Exception e) { System.out.println(e + " replacement count button isn't active"); }
+
+        synchronized (one.driver) {one.driver.wait(1000);}
+
+        //number of refund
+        try {
+            boolean sel_refund=selector_Order_non_0rder_related.refund(one.wb, one.driver, 2, 99, 1).isEnabled();
+            if(sel_refund==true)
+                System.out.println("refund count button is active"); }
+        catch (Exception e) { System.out.println(e + " refund count button isn't active"); }
+
+        synchronized (one.driver) {one.driver.wait(1000);}
+
+        //number of services
+        try {
+            boolean sel_services=selector_Order_non_0rder_related.services(one.wb, one.driver, 2, 100, 1).isEnabled();
+            if(sel_services==true)
+                System.out.println("services count button is active"); }
+        catch (Exception e) { System.out.println(e + " services count button isn't active"); }
+
+        synchronized (one.driver) {one.driver.wait(1000);}
+
+        //number of callback
+        try {
+            boolean sel_callback=selector_Order_non_0rder_related.callback(one.wb, one.driver, 2, 101, 1).isEnabled();
+            if(sel_callback==true)
+                System.out.println("callback count button is active"); }
+        catch (Exception e) { System.out.println(e + " callback count button isn't active"); }
+
+        //hide selectors
+        synchronized (one.driver) {one.driver.wait(3000);}
+        selector_Order_non_0rder_related.hide_selectors(one.wb, one.driver, 2, 102, 1).click();
+
+
+        //click on Order details tab again  (Very important flow of the case)
+        synchronized (one.driver) {one.driver.wait(4000);}
+        order_details.order_detail_tab_click(one.wb, one.driver, 2, 104, 1).click();
+
+        // click on the item to go to item detail section
+        synchronized (one.driver) {one.driver.wait(6000);}
+        item_detail.cash_back_item_to_go_to_item_detail_tab(one.wb, one.driver, 2, 103, 1).click();
+
+        // Logic for all the DT's under item details Tab.
+
+        sh= wb.getSheetAt(2);
+        String xpath=sh.getRow(109).getCell(1).getStringCellValue();
+
+        WebElement element = one.driver.findElement(By.xpath(xpath));
+        List<WebElement> elements = element.findElements(By.xpath(".//DIV"));
+        synchronized (one.driver){ one.driver.wait(3000); }
+        int notifySize = elements.size();
+        System.out.println(notifySize + " DT's are available under item detail tab, shown in the UI");
+
+//Item details DT's enable and disable check (For email profile all the DT's should be disabled
+
+        List<WebElement> actions_2 = item_detail.item_detail_all_DT(wb, one.driver);
+
+        //cancel DT enable/disable check
+        boolean cancel_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Cancel");
+        Assert.assertEquals(cancel_dt, false);
+        //Customer Return V1 enable/disable check
+        boolean Customer_Return_V1_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Customer Return V1");
+        Assert.assertEquals(Customer_Return_V1_dt, false);
+        //Customer Return enable/disable check
+        boolean Customer_Return_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Customer Return");
+        Assert.assertEquals(Customer_Return_dt, false);
+        //Delivery Related  DT's enable disable check
+        boolean Delivery_Related_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Delivery Related");
+        Assert.assertEquals(Delivery_Related_dt, false);
+        //Create Incident DT's enable disable check
+        boolean Create_Incident_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Create Incident");
+        Assert.assertEquals(Create_Incident_dt, false);
+        //Post Delivery Issues  DT's enable disable check
+        boolean Post_Delivery_Issues_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Post Delivery Issues");
+        Assert.assertEquals(Post_Delivery_Issues_dt, false);
+        //Schedule Delivery DT's enable disable check
+        boolean Schedule_Delivery_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Schedule Delivery");
+        Assert.assertEquals(Schedule_Delivery_dt, false);
+        //Subscribe DT's enable disable check
+        boolean Subscribe_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Subscribe");
+        Assert.assertEquals(Subscribe_dt, false);
+        //Unsubscribe DT's enable disable check
+        boolean Unsubscribe_dt = dtActions.findDTActiveStatus(actions_2,one.driver,"Unsubscribe");
+        Assert.assertEquals(Unsubscribe_dt, false);
+
+// Logistic details
+
+        //click on Logistics details tab
+        synchronized (one.driver) {one.driver.wait(5000);}
+        logistics_detail.logistics_detail_tab(one.wb, one.driver, 2, 106, 1).click();
+
+        //DT's verification under logistics Tab
+        sh= wb.getSheetAt(2);
+        String xpath_1=sh.getRow(110).getCell(1).getStringCellValue();
+
+        WebElement element_logistics = one.driver.findElement(By.xpath(xpath_1));
+        List<WebElement> elements_1 = element_logistics.findElements(By.xpath(".//DIV"));
+        synchronized (one.driver){ one.driver.wait(3000); }
+        int notifySize_1 = elements_1.size();
+        System.out.println(notifySize_1 + " DT's are available under logistics detail tab, shown in the UI");
+
+        //Seller details
+
+        //Offer details
+
+        //click on close session
+        synchronized (one.driver) {one.driver.wait(4000);}
+
+        //close the session after executing Priority 1
+        discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
+
+        // To handle yoda checks in between
+        one.notification_home_page();
+
+        /*testing ---------------------------------------------------------------------------testing*/
 
     }
 

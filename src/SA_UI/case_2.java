@@ -250,7 +250,8 @@ public class case_2 {
         boolean cre_in = dtActions.findDTActiveStatus(actions_2,one.driver,"Create Incident");
         Assert.assertEquals(addr_chan, false);
     }
-    @AfterTest(enabled = false,groups="two")
+
+    @AfterTest(enabled = true, groups="two")
     public void close_and_quit()throws InterruptedException
     {
         synchronized (one.driver) {one.driver.wait(8000);}

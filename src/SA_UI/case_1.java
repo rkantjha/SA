@@ -59,7 +59,7 @@ public class case_1 {
         String yoda_URL="http://10.85.53.223/flipkart/#/yoda";
 
        //String yoda_URL="http://10.85.52.152/flipkartEmail/#/yoda";       // prod  Flipkart email
-        //String yoda_URL = "http://10.85.53.223/flipkartEmail/#/yoda";      // pre-prod Flipkart email
+       // String yoda_URL = "http://10.85.53.223/flipkartEmail/#/yoda";      // pre-prod Flipkart email
 
         String c_url=driver.getCurrentUrl();
 
