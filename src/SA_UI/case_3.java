@@ -39,7 +39,7 @@ public class case_3 extends ExcelData {
         one.notification_home_page();
     }
 
-    @Test(priority=1,enabled=false,groups="three")
+    @Test(priority=1,enabled=true,groups="three")
     public void  cash_back()  throws InterruptedException
     {
         one.notification_home_page();
