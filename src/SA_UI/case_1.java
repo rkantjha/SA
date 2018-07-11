@@ -46,7 +46,7 @@ public class case_1 {
         login_page.password(wb,driver).sendKeys(login_page.getPassword(wb));
         login_page.login_button(wb,driver).click();
 
-        synchronized (driver){ driver.wait(6000); }
+        synchronized (driver){ driver.wait(9000); }
         login_page.logout_previous(wb,driver).click();
         login_page.login_button(wb,driver).click();
     }
@@ -133,7 +133,7 @@ public class case_1 {
     {
         synchronized (driver){ driver.wait(10000); }
         login_page.profile_menu(wb,driver).click();
-        synchronized (driver){ driver.wait(10000); }
+        synchronized (driver){ driver.wait(15000); }
         login_page.click_on_logout(wb,driver).click();
         driver.close();
         driver.quit();

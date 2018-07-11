@@ -351,7 +351,7 @@ public class case_3 extends ExcelData {
     }
 
     @Test(priority=2,enabled=true,groups="three")
-    public void  ndr()throws InterruptedException,IOException {
+    public void  ndr()throws InterruptedException {
 
         //OD109353007890253000  NDR Order
 
@@ -476,10 +476,14 @@ public class case_3 extends ExcelData {
         catch (Exception e){System.out.println(e+  "  payment details verification failed");e.printStackTrace();}
 
 
+        synchronized (one.driver) {one.driver.wait(8000);}
+
         //Selling price verification
         try {
-            String s_price = payment_details.selling_price(wb, one.driver, 3, 2, 9).getText();
-            Assert.assertEquals("0", s_price);
+            String s_price = payment_details.selling_price(wb, one.driver, 3, 2, 10).getText();
+            System.out.println(s_price  + "  Selling price is verified");
+            Assert.assertEquals("Payments and Refunds\n" +
+                    "i", s_price);
         }
         catch (Exception e){System.out.println(e+ "  selling price verification failed");e.printStackTrace();}
 
@@ -501,25 +505,22 @@ public class case_3 extends ExcelData {
 
         Assert.assertEquals(cre_inc, false);
 
-
         //address verification and validation
 
-        synchronized (one.driver) { one.driver.wait(4000); }
+        synchronized (one.driver) { one.driver.wait(6000); }
 
         address_detail.click_address_details_tab(wb,one.driver).click();
 
         synchronized (one.driver) { one.driver.wait(3000); }
         String c_a=address_detail.current_address(wb,one.driver,3,2,10).getText();
         System.out.println(c_a);
+        one.driver.navigate().refresh();
+        synchronized (one.driver) { one.driver.wait(5000); }
+
         Assert.assertEquals(c_a,"Jalalpur, Kachhawa Mirzapur");
 
         synchronized (one.driver) {one.driver.wait(3000);}
-
-
-/*testing ---------------------------------------------------------------------------testing*/
-
-
-
+        
 //show selectors(incident,return,replacement,refund,service,callback)
 
         //click on show selector
@@ -586,7 +587,7 @@ public class case_3 extends ExcelData {
 
 
         //click on Order details tab again  (Very important flow of the case)
-        synchronized (one.driver) {one.driver.wait(4000);}
+        synchronized (one.driver) {one.driver.wait(8000);}
         order_details.order_detail_tab_click(one.wb, one.driver, 2, 104, 1).click();
 
         // click on the item to go to item detail section
@@ -664,9 +665,6 @@ public class case_3 extends ExcelData {
 
         // To handle yoda checks in between
         one.notification_home_page();
-
-        /*testing ---------------------------------------------------------------------------testing*/
-
     }
 
     @Test(priority=3,enabled=false,groups="three")
