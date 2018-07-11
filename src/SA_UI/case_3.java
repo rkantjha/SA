@@ -353,6 +353,9 @@ public class case_3 extends ExcelData {
     @Test(priority=2,enabled=true,groups="three")
     public void  ndr()throws InterruptedException {
 
+        one.notification_home_page();
+
+
         //OD109353007890253000  NDR Order
 
         //click on new session
@@ -520,7 +523,7 @@ public class case_3 extends ExcelData {
         Assert.assertEquals(c_a,"Jalalpur, Kachhawa Mirzapur");
 
         synchronized (one.driver) {one.driver.wait(3000);}
-        
+
 //show selectors(incident,return,replacement,refund,service,callback)
 
         //click on show selector
@@ -881,7 +884,6 @@ public class case_3 extends ExcelData {
 
         //Offer details
     }
-
 
     @AfterTest(enabled=false,groups="three")
     public void close_and_quit()throws InterruptedException {
