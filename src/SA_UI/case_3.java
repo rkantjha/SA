@@ -351,7 +351,8 @@ public class case_3 extends ExcelData {
     }
 
     @Test(priority=2,enabled=true,groups="three")
-    public void  ndr()throws InterruptedException {
+    public void  ndr()throws InterruptedException
+    {
 
         one.notification_home_page();
 
@@ -670,12 +671,27 @@ public class case_3 extends ExcelData {
         one.notification_home_page();
     }
 
-    @Test(priority=3,enabled=false,groups="three")
-    public void  r_efund()throws InterruptedException
+    @Test(priority=3,enabled=true,groups="three")
+    public void  refund()throws InterruptedException
     {
-        System.out.println("mps test passed ");
-        //new session
-        //search
+        // OD109155976663100000 Order ID for refund
+
+        one.notification_home_page();
+
+        //click on new session
+        synchronized (one.driver) { one.driver.wait(8000); }
+        call_to_customer.new_session(one.wb,one.driver).click();
+        synchronized (one.driver) { one.driver.wait(4000); }
+
+        //search for order id
+        WebElement searchBox = discovery_and_authentication.search_box(one.wb, one.driver);
+        synchronized (one.driver) { one.driver.wait(6000); }
+        searchBox.sendKeys(discovery_and_authentication.Order_IDs(one.wb, 3, 3, 1));
+
+        searchBox.sendKeys(Keys.RETURN);
+        synchronized (one.driver) { one.driver.wait(8000); }
+
+
         //name,phone,email,account id
         //order details
         //payment details
@@ -684,12 +700,20 @@ public class case_3 extends ExcelData {
         //dt verification
         //show selectors(incident,return,replacement,refund,service,callback)
         //hide selectors
+        //Item details
+
+        //Logistic details
+
+        //Seller details
+
+        //Offer details
+
+
 
     }
     @Test(priority=4,enabled=false,groups="three")
-    public void  a_BB()throws InterruptedException
+    public void  aBB()throws InterruptedException
     {
-        System.out.println("delivery_installation test passed ");
         //new session
         //search
         //name,phone,email,account id
@@ -709,7 +733,7 @@ public class case_3 extends ExcelData {
         //Offer details
     }
     @Test(priority=5,enabled=false,groups="three")
-    public void  e_code()throws InterruptedException
+    public void  eCode()throws InterruptedException
     {
         System.out.println("blacklisted test passed ");
         //new session
@@ -731,7 +755,7 @@ public class case_3 extends ExcelData {
         //Offer details
     }
     @Test(priority=6,enabled=false,groups="three")
-    public void  a_DLD()throws InterruptedException
+    public void  aDLD()throws InterruptedException
     {
         System.out.println("abb test passed ");
         //new session
@@ -753,7 +777,7 @@ public class case_3 extends ExcelData {
         //Offer details
     }
     @Test(priority=7,enabled=false,groups="three")
-    public void  EGV()throws InterruptedException
+    public void  eGV()throws InterruptedException
     {
         System.out.println("ecode test passed ");
         //new session
@@ -775,7 +799,7 @@ public class case_3 extends ExcelData {
         //Offer details
     }
     @Test(priority=8,enabled=false,groups="three")
-    public void  BNPL()throws InterruptedException
+    public void  bNPL()throws InterruptedException
     {
         System.out.println("adld test passed ");
         //new session
@@ -797,7 +821,7 @@ public class case_3 extends ExcelData {
         //Offer details
     }
     @Test(priority=9,enabled=false,groups="three")
-    public void  MPS()throws InterruptedException
+    public void  mPS()throws InterruptedException
     {
         System.out.println("egv test passed ");
         //new session
@@ -819,7 +843,7 @@ public class case_3 extends ExcelData {
         //Offer details
     }
     @Test(priority=10,enabled=false,groups="three")
-    public void  Replacement_back_from_return()throws InterruptedException
+    public void  replacement_back_from_return()throws InterruptedException
     {
         System.out.println("associate test passed ");
         //new session
@@ -841,7 +865,7 @@ public class case_3 extends ExcelData {
         //Offer details
     }
     @Test(priority=11,enabled=false,groups="three")
-    public void  Drop_ship()throws InterruptedException
+    public void  drop_ship()throws InterruptedException
     {
         System.out.println("priority test passed ");
         //new session
@@ -863,7 +887,7 @@ public class case_3 extends ExcelData {
         //Offer details
     }
     @Test(priority=12,enabled=false,groups="three")
-    public void  Large()throws InterruptedException
+    public void  largeOrders()throws InterruptedException
     {
         System.out.println("f_first test passed ");
         //new session
