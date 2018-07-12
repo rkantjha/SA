@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -24,7 +25,6 @@ public class case_5 {
     public static XSSFSheet sh;
     SoftAssert softAssert = new SoftAssert();
 
-
     WebDriverWait wait = new WebDriverWait(one.driver, 10);
     Alert alert;
 
@@ -41,12 +41,14 @@ public class case_5 {
     @Test(priority=1,enabled=true,groups="five")
     public void test_1()throws InterruptedException
         {
-            /*  OD112574278527125000  Fwd: Mismatch in Service timeline attributes on Smart Assist 2.0     */
+            /*  OD112574278527125000         Fwd: Mismatch in Service timeline attributes on Smart Assist 2.0     */
 
             one.login();
             synchronized (one.driver) {one.driver.wait(6000);}
+
             one.notification_home_page();
             synchronized (one.driver) {one.driver.wait(6000);}
+
             call_to_customer.new_session(one.wb, one.driver).click();
             synchronized (one.driver) { one.driver.wait(10000);}
 
@@ -67,7 +69,7 @@ public class case_5 {
             synchronized (one.driver) {one.driver.wait(2000);}
             one.driver.findElement(By.xpath(incident_xp)).click();
 
-            // Match Created Date with Created Date on Timeline
+            // To verify Created Date UI with Created Date on Timeline
 
             sh= wb.getSheetAt(4);
             String created_ui=sh.getRow(5).getCell(0).getStringCellValue();
@@ -77,16 +79,38 @@ public class case_5 {
             String created_timeline=sh.getRow(7).getCell(0).getStringCellValue();
             String created_time_timeline= one.driver.findElement(By.xpath(created_timeline)).getText();
 
-            softAssert.assertEquals(created_time_ui,created_time_timeline,"Created time in the UI and Timeline not matched");
+            try {
+             Assert.assertEquals(created_time_ui,created_time_timeline,"Created time in the UI and Timeline not matched");}
+             catch (AssertionError e){
+             System.out.println("\033[1;31m" + e.getMessage());
+             }
 
-            softAssert.assertAll();
+            // To verify Created Activation Date UI with Activation Date on Timeline
+            sh= wb.getSheetAt(4);
+            String activation_ui=sh.getRow(5).getCell(0).getStringCellValue();
+            String activation_time_ui= one.driver.findElement(By.xpath(created_ui)).getText();
+
+            sh= wb.getSheetAt(4);
+            String activation_timeline=sh.getRow(7).getCell(0).getStringCellValue();
+            String activation_time_timeline= one.driver.findElement(By.xpath(created_timeline)).getText();
+
+            try {
+                Assert.assertEquals(activation_time_ui,activation_time_timeline,"Activation time in the UI and Timeline not matched");}
+            catch (AssertionError e){
+                System.out.println("\033[1;31m" + e.getMessage());
+            }
+
+            //
+
+
+
             //closing the session
             discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
+
         }
 
     @AfterTest(enabled=false,groups="five")
     public void close_and_quit()throws InterruptedException {
-
         one.driver.close();
         one.driver.quit();
     }
