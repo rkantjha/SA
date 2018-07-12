@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pom_elements.*;
 
 import java.io.IOException;
@@ -21,6 +22,7 @@ public class case_5 {
     DTActions dtActions = new DTActions();
     email_widget ew=new email_widget();
     public static XSSFSheet sh;
+    SoftAssert softAssert = new SoftAssert();
 
 
     WebDriverWait wait = new WebDriverWait(one.driver, 10);
@@ -61,17 +63,26 @@ public class case_5 {
             selector_Order_non_0rder_related.services(one.wb, one.driver, 2, 100, 1).click();
             //Click on Incident for which the bug got reported
             sh= wb.getSheetAt(4);
-            String xpath=sh.getRow(3).getCell(0).getStringCellValue();
+            String incident_xp=sh.getRow(3).getCell(0).getStringCellValue();
             synchronized (one.driver) {one.driver.wait(2000);}
-            one.driver.findElement(By.xpath(xpath)).click();
+            one.driver.findElement(By.xpath(incident_xp)).click();
 
-            // Match Created on Date
-            
+            // Match Created Date with Created Date on Timeline
 
+            sh= wb.getSheetAt(4);
+            String created_ui=sh.getRow(5).getCell(0).getStringCellValue();
+            String created_time_ui= one.driver.findElement(By.xpath(created_ui)).getText();
 
+            sh= wb.getSheetAt(4);
+            String created_timeline=sh.getRow(7).getCell(0).getStringCellValue();
+            String created_time_timeline= one.driver.findElement(By.xpath(created_timeline)).getText();
 
+            softAssert.assertEquals(created_time_ui,created_time_timeline,"Created time in the UI and Timeline not matched");
+
+            softAssert.assertAll();
+            //closing the session
+            discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
         }
-
 
     @AfterTest(enabled=false,groups="five")
     public void close_and_quit()throws InterruptedException {
