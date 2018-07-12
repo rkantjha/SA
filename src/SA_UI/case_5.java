@@ -37,7 +37,6 @@ public class case_5 {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
     }
 
-
     @Test(priority=1,enabled=true,groups="five")
     public void test_1()throws InterruptedException
         {
@@ -87,12 +86,12 @@ public class case_5 {
 
             // To verify Created Activation Date UI with Activation Date on Timeline
             sh= wb.getSheetAt(4);
-            String activation_ui=sh.getRow(5).getCell(0).getStringCellValue();
-            String activation_time_ui= one.driver.findElement(By.xpath(created_ui)).getText();
+            String activation_ui=sh.getRow(9).getCell(0).getStringCellValue();
+            String activation_time_ui= one.driver.findElement(By.xpath(activation_ui)).getText();
 
             sh= wb.getSheetAt(4);
-            String activation_timeline=sh.getRow(7).getCell(0).getStringCellValue();
-            String activation_time_timeline= one.driver.findElement(By.xpath(created_timeline)).getText();
+            String activation_timeline=sh.getRow(11).getCell(0).getStringCellValue();
+            String activation_time_timeline= one.driver.findElement(By.xpath(activation_timeline)).getText();
 
             try {
                 Assert.assertEquals(activation_time_ui,activation_time_timeline,"Activation time in the UI and Timeline not matched");}
@@ -100,14 +99,32 @@ public class case_5 {
                 System.out.println("\033[1;31m" + e.getMessage());
             }
 
-            //
+            // To verify In progress  Date UI with In progress Date on Timeline
 
+            sh= wb.getSheetAt(4);
+            String inprogress_ui=sh.getRow(13).getCell(0).getStringCellValue();
+            String inprogress_time_ui= one.driver.findElement(By.xpath(inprogress_ui)).getText();
 
+            sh= wb.getSheetAt(4);
+            String inprogress_timeline=sh.getRow(15).getCell(0).getStringCellValue();
+            String inprogress_time_timeline= one.driver.findElement(By.xpath(inprogress_timeline)).getText();
 
+            try {
+                Assert.assertEquals(inprogress_time_ui,inprogress_time_timeline,"In progress time in the UI and Timeline not matched");}
+            catch (AssertionError e){
+                System.out.println("\033[1;31m" + e.getMessage());
+            }
             //closing the session
             discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
-
         }
+
+    @Test(priority=2,enabled=true,groups="five")
+    public void test_2()throws InterruptedException
+    {
+        /* */
+
+    }
+
 
     @AfterTest(enabled=false,groups="five")
     public void close_and_quit()throws InterruptedException {
