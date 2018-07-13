@@ -40,7 +40,7 @@ public class case_5 {
     @Test(priority=1,enabled=true,groups="five")
     public void test_1()throws InterruptedException
         {
-            /*  OD112574278527125000         Fwd: Mismatch in Service timeline attributes on Smart Assist 2.0     */
+            /*  OD112574278527125000  Fwd: Mismatch in Service timeline attributes on Smart Assist 2.0     */
 
             one.login();
             synchronized (one.driver) {one.driver.wait(6000);}
@@ -121,7 +121,7 @@ public class case_5 {
     @Test(priority=2,enabled=true,groups="five")
     public void test_2()throws InterruptedException
     {
-        /* */
+        /*     */
 
     }
 
