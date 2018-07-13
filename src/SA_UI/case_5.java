@@ -259,12 +259,17 @@ public class case_5 {
         one.driver.switchTo().window((String) tabs.get(0));
 
 
-        // close the session to search for new order id
+        // close the session
         synchronized (one.driver) {one.driver.wait(10000);}
         discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
+    }
 
+    @Test(priority=3,enabled=true,groups="five")
+    public void test_3()throws InterruptedException
+    {
 
     }
+
 
     @AfterTest(enabled=false,groups="five")
     public void close_and_quit()throws InterruptedException {
