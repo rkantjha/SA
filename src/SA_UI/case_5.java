@@ -38,7 +38,7 @@ public class case_5 {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
     }
 
-    @Test(priority=1,enabled=true,groups="five")
+    @Test(priority=1,enabled=false,groups="five")
     public void test_1()throws InterruptedException
         {
             /*  OD112574278527125000  Fwd: Mismatch in Service timeline attributes on Smart Assist 2.0     */
@@ -119,7 +119,7 @@ public class case_5 {
             discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
         }
 
-    @Test(priority=2,enabled=true,groups="five")
+    @Test(priority=2,enabled=false,groups="five")
     public void test_2()throws InterruptedException
     {
         /* Issue type : OD112685840786973000 : Tracking details are not updated */
@@ -267,9 +267,61 @@ public class case_5 {
     @Test(priority=3,enabled=true,groups="five")
     public void test_3()throws InterruptedException
     {
+      /*Order ID : OD112807288735538000 */
 
+      /*  Test case for  : Refund details not available */
+
+        // Temporary to be removed after completing test_3
+        one.login();
+        synchronized (one.driver) {one.driver.wait(6000);}
+
+        // New session
+        call_to_customer.new_session(one.wb, one.driver).click();
+        synchronized (one.driver) { one.driver.wait(10000);}
+        // Search for Order
+        WebElement searchBox_3 = discovery_and_authentication.search_box(one.wb, one.driver);
+        searchBox_3.sendKeys(discovery_and_authentication.Order_IDs(one.wb, 4, 1, 2));
+        searchBox_3.sendKeys(Keys.RETURN);
+        synchronized (one.driver) { one.driver.wait(10000);}
+
+        // Click on show selector
+        synchronized (one.driver) {one.driver.wait(3000);}
+        selector_Order_non_0rder_related.show_selectors(one.wb, one.driver, 2, 85, 1).click();
+
+        //click on Refund Tab
+        sh= wb.getSheetAt(4);
+        String refund_tab_1=sh.getRow(3).getCell(2).getStringCellValue();
+        synchronized (one.driver) {one.driver.wait(6000);}
+        one.driver.findElement(By.xpath(refund_tab_1)).click();
+
+        //click on refund card to view the refund details
+        sh=wb.getSheetAt(4);
+        String refund_card_1=sh.getRow(5).getCell(2).getStringCellValue();
+
+        synchronized (one.driver) {one.driver.wait(3000);}
+        one.driver.findElement(By.xpath(refund_card_1)).click();
+        synchronized (one.driver) {one.driver.wait(4000);}
+
+        // Validating refund details from the refund section
+        sh= wb.getSheetAt(4);
+        String refund_details=sh.getRow(7).getCell(2).getStringCellValue();
+
+        String refund_text=  one.driver.findElement(By.xpath(refund_details)).getText();
+        System.out.println(refund_text);
+
+        try
+        {
+            Assert.assertEquals(refund_text,"Refund id - 132236707Completed", "Refund details matched");
+        }
+        catch(AssertionError error){
+            System.out.println("\033[1;31m" + error.getMessage());
     }
 
+    //
+
+
+
+    }
 
     @AfterTest(enabled=false,groups="five")
     public void close_and_quit()throws InterruptedException {
