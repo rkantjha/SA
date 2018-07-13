@@ -38,7 +38,7 @@ public class case_5 {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
     }
 
-    @Test(priority=1,enabled=false,groups="five")
+    @Test(priority=1,enabled=true,groups="five")
     public void test_1()throws InterruptedException
         {
             /*  OD112574278527125000  Fwd: Mismatch in Service timeline attributes on Smart Assist 2.0     */
@@ -119,7 +119,7 @@ public class case_5 {
             discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
         }
 
-    @Test(priority=2,enabled=false,groups="five")
+    @Test(priority=2,enabled=true,groups="five")
     public void test_2()throws InterruptedException
     {
         /* Issue type : OD112685840786973000 : Tracking details are not updated */
@@ -270,11 +270,7 @@ public class case_5 {
       /*Order ID : OD112807288735538000 */
 
       /*  Test case for  : Refund details not available */
-
-        // Temporary to be removed after completing test_3
-        one.login();
-        synchronized (one.driver) {one.driver.wait(6000);}
-
+        
         // New session
         call_to_customer.new_session(one.wb, one.driver).click();
         synchronized (one.driver) { one.driver.wait(10000);}
