@@ -317,7 +317,89 @@ public class case_5 {
             System.out.println("\033[1;31m" + error.getMessage());
     }
 
-    //
+    //payment reference check
+        sh= wb.getSheetAt(4);
+        String payment_reference_check=sh.getRow(9).getCell(2).getStringCellValue();
+        synchronized (one.driver) {one.driver.wait(6000);}
+        String payment_ref= one.driver.findElement(By.xpath(payment_reference_check)).getText();
+        System.out.println(payment_ref);
+
+        try{
+            Assert.assertEquals(payment_ref,"PZT1807101543K6S1502","payment reference verified");
+        }
+        catch (AssertionError error)
+        {
+            System.out.println("\033[1;31m" + error.getMessage());
+        }
+
+   //payment type check
+
+        sh= wb.getSheetAt(4);
+        String payment_type_check=sh.getRow(11).getCell(2).getStringCellValue();
+        synchronized (one.driver) {one.driver.wait(6000);}
+
+        String payment_type= one.driver.findElement(By.xpath(payment_type_check)).getText();
+        System.out.println(payment_type);
+
+        try{
+            Assert.assertEquals(payment_type,"Refund","payment type verified");
+        }
+        catch (AssertionError error)
+        {
+            System.out.println("\033[1;31m" + error.getMessage());
+        }
+
+   //payment mode check
+
+        sh= wb.getSheetAt(4);
+        String payment_mode_check=sh.getRow(13).getCell(2).getStringCellValue();
+        synchronized (one.driver) {one.driver.wait(6000);}
+
+        String payment_mode= one.driver.findElement(By.xpath(payment_mode_check)).getText();
+        System.out.println(payment_mode);
+
+        try{
+            Assert.assertEquals(payment_mode,"Flipkart Credit","payment mode verified");
+        }
+        catch (AssertionError error)
+        {
+            System.out.println("\033[1;31m" + error.getMessage());
+        }
+
+        //SLA for payment refund
+
+        sh= wb.getSheetAt(4);
+        String payment_sla_check=sh.getRow(15).getCell(2).getStringCellValue();
+        synchronized (one.driver) {one.driver.wait(6000);}
+
+        String payment_sla= one.driver.findElement(By.xpath(payment_sla_check)).getText();
+        System.out.println(payment_sla);
+
+        try{
+            Assert.assertEquals(payment_sla,"10-07-2018, 03:44 PM","payment sla verified");
+        }
+        catch (AssertionError error)
+        {
+            System.out.println("\033[1;31m" + error.getMessage());
+        }
+
+
+        //Refund reason
+
+        sh= wb.getSheetAt(4);
+        String payment_cancellation_check=sh.getRow(17).getCell(2).getStringCellValue();
+        synchronized (one.driver) {one.driver.wait(6000);}
+
+        String payment_cancellation= one.driver.findElement(By.xpath(payment_cancellation_check)).getText();
+        System.out.println(payment_cancellation);
+
+        try{
+            Assert.assertEquals(payment_cancellation,"Cancellation Requested","payment mode verified");
+        }
+        catch (AssertionError error)
+        {
+            System.out.println("\033[1;31m" + error.getMessage());
+        }
 
 
 
