@@ -197,6 +197,7 @@ public class case_4
     }
     @Test(priority=6,enabled=true,groups="four")
     public void email_widget()throws InterruptedException {
+
         one.notification_home_page();
 
         // click on home button
@@ -204,12 +205,21 @@ public class case_4
         synchronized (one.driver) {one.driver.wait(5000);}
 
         //click on open details
-        email_widget.click_on_openDetails(one.wb,one.driver,2,88,1).click();
-        synchronized (one.driver) {one.driver.wait(5000);}
+
+        Boolean open_details_btn;
+        if (email_widget.click_on_openDetails(one.wb,one.driver,2,88,1).isEnabled()==true) {
+            email_widget.click_on_openDetails(one.wb, one.driver, 2, 88, 1).click();
+            synchronized (one.driver) {
+                one.driver.wait(5000);
+            }
+        }
+        else{
+            System.out.println("\033[1;31m" +"No assigned email incidents present");
+        }
 
         Boolean email_btn;
        if (pom_elements.email_widget.email_button(one.wb, one.driver, 2,86,1).isEnabled() ) email_btn =true;
-       else System.out.println("Email button is not enabled for this profile");
+       else System.out.println("\033[1;31m" +"Email button is not enabled for this profile");
 
        //click on email button
         synchronized (one.driver) {one.driver.wait(10000);}
@@ -219,7 +229,7 @@ public class case_4
         boolean email_rply;
         synchronized (one.driver) {one.driver.wait(5000);}
         if (email_widget.email_reply(one.wb, one.driver, 2,87,1).isEnabled()) email_rply=true;
-        else System.out.println("email reply button is not working");
+        else System.out.println("\033[1;31m" +"email reply button is not working");
 
         // enable disable check for update incident button
       boolean Update_incident =  email_widget.update_incident_button(one.wb, one.driver, 2,90,1).isEnabled();
