@@ -186,24 +186,82 @@ public class case_5 {
         //close the new tracking tab
         one.driver.close();
 
+        // switch to current window
+        synchronized (one.driver) {one.driver.wait(5000);}
+        one.driver.switchTo().window((String) tabs.get(0));
+
+
         // close the session to search for new order id
-        synchronized (one.driver) {one.driver.wait(2000);}
+        synchronized (one.driver) {one.driver.wait(10000);}
         discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
 
         //open new session
         call_to_customer.new_session(one.wb, one.driver).click();
-        synchronized (one.driver) {one.driver.wait(4000);}
+        synchronized (one.driver) {one.driver.wait(10000);}
 
         //search for new order id  OD112809564412835000
-        searchBox.sendKeys(discovery_and_authentication.Order_IDs(one.wb, 4, 9, 1));
-        searchBox.sendKeys(Keys.RETURN);
+        WebElement searchBox_1 = discovery_and_authentication.search_box(one.wb, one.driver);
+        searchBox_1.sendKeys(discovery_and_authentication.Order_IDs(one.wb, 4, 9, 1));
+        searchBox_1.sendKeys(Keys.RETURN);
         synchronized (one.driver) { one.driver.wait(8000);}
 
-        //click on item from order detail tab
-        
+        //Click on Item group from Under Order Detail tab
+        sh= wb.getSheetAt(4);
+        String Item_group_from_Under_Order_Detail_tab_1 =sh.getRow(11).getCell(1).getStringCellValue();
+        one.driver.findElement(By.xpath(Item_group_from_Under_Order_Detail_tab_1)).click();
+
+        //click on Logistics details tab
+        synchronized (one.driver) {one.driver.wait(5000);}
+        logistics_detail.logistics_detail_tab(one.wb, one.driver, 2, 106, 1).click();
+
+        //link enable check
+        sh= wb.getSheetAt(4);
+        String link_enable_2=sh.getRow(13).getCell(1).getStringCellValue();
 
 
+        if(one.driver.findElement(By.xpath(link_enable_2)).isEnabled()==true) System.out.println("Order tracking link is enabled and working");
 
+        else{
+            System.out.println("\033[1;31m"+ " Order tracking link is disabled");
+        }
+
+        // To verify new tab after opening the link
+        synchronized (one.driver) {one.driver.wait(5000);}
+        one.driver.findElement(By.xpath(link_enable_2)).click();
+
+        String windowHandle_1 = one.driver.getWindowHandle();
+        one.driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");
+
+        ArrayList tabs_1 = new ArrayList (one.driver.getWindowHandles());
+        System.out.println(tabs_1.size());
+        one.driver.switchTo().window((String) tabs_1.get(1));
+
+        String new_tab_url_verify_1=one.driver.getCurrentUrl();
+        System.out.println(new_tab_url_verify_1);
+
+        try{
+            sh= wb.getSheetAt(4);
+            String url_of_new_tab_after_clicking_on_tracking_link_2=sh.getRow(15).getCell(1).getStringCellValue();
+
+            Assert.assertEquals(new_tab_url_verify_1,url_of_new_tab_after_clicking_on_tracking_link_2);
+        }
+
+        catch (AssertionError error)
+        {
+            System.out.println("\033[1;31m" + error.getMessage());
+        }
+
+        //close the new tracking tab
+        one.driver.close();
+
+        // switch to current window
+        synchronized (one.driver) {one.driver.wait(5000);}
+        one.driver.switchTo().window((String) tabs.get(0));
+
+
+        // close the session to search for new order id
+        synchronized (one.driver) {one.driver.wait(10000);}
+        discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
 
 
     }
