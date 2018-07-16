@@ -13,7 +13,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pom_elements.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -32,7 +31,6 @@ public class case_5 {
     //method to handle exception
     public case_5() throws IOException {
     }
-
     @BeforeTest
     public static void BeforeClass() {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
@@ -41,7 +39,7 @@ public class case_5 {
     @Test(priority=1,enabled=true,groups="five")
     public void test_1()throws InterruptedException
         {
-            /*  OD112574278527125000  Fwd: Mismatch in Service timeline attributes on Smart Assist 2.0     */
+            /*  OD112574278527125000  Fwd: Mismatch in Service timeline attributes on Smart Assist 2.0  */
 
             one.login();
             synchronized (one.driver) {one.driver.wait(6000);}
@@ -144,7 +142,6 @@ public class case_5 {
         String Item_group_from_Under_Order_Detail_tab =sh.getRow(3).getCell(1).getStringCellValue();
         one.driver.findElement(By.xpath(Item_group_from_Under_Order_Detail_tab)).click();
 
-
         //click on Logistics details tab
         synchronized (one.driver) {one.driver.wait(5000);}
         logistics_detail.logistics_detail_tab(one.wb, one.driver, 2, 106, 1).click();
@@ -190,7 +187,6 @@ public class case_5 {
         synchronized (one.driver) {one.driver.wait(5000);}
         one.driver.switchTo().window((String) tabs.get(0));
 
-
         // close the session to search for new order id
         synchronized (one.driver) {one.driver.wait(10000);}
         discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
@@ -217,7 +213,6 @@ public class case_5 {
         //link enable check
         sh= wb.getSheetAt(4);
         String link_enable_2=sh.getRow(13).getCell(1).getStringCellValue();
-
 
         if(one.driver.findElement(By.xpath(link_enable_2)).isEnabled()==true) System.out.println("Order tracking link is enabled and working");
 
@@ -258,7 +253,6 @@ public class case_5 {
         synchronized (one.driver) {one.driver.wait(5000);}
         one.driver.switchTo().window((String) tabs.get(0));
 
-
         // close the session
         synchronized (one.driver) {one.driver.wait(10000);}
         discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
@@ -267,13 +261,14 @@ public class case_5 {
     @Test(priority=3,enabled=true,groups="five")
     public void test_3()throws InterruptedException
     {
-      /*Order ID : OD112807288735538000 */
+      /* Order ID : OD112807288735538000 */
 
-      /*  Test case for  : Refund details not available */
+      /* Test case for : Refund details not available */
 
         // New session
         call_to_customer.new_session(one.wb, one.driver).click();
         synchronized (one.driver) { one.driver.wait(10000);}
+
         // Search for Order
         WebElement searchBox_3 = discovery_and_authentication.search_box(one.wb, one.driver);
         searchBox_3.sendKeys(discovery_and_authentication.Order_IDs(one.wb, 4, 1, 2));
@@ -310,10 +305,9 @@ public class case_5 {
             Assert.assertEquals(refund_text,"Refund id - 132236707Completed", "Refund details matched");
         }
         catch(AssertionError error){
-            System.out.println("\033[1;31m" + error.getMessage());
+        System.out.println("\033[1;31m" + error.getMessage());
     }
-
-    //payment reference check
+        //payment reference check
         sh= wb.getSheetAt(4);
         String payment_reference_check=sh.getRow(9).getCell(2).getStringCellValue();
         synchronized (one.driver) {one.driver.wait(6000);}
@@ -327,9 +321,7 @@ public class case_5 {
         {
             System.out.println("\033[1;31m" + error.getMessage());
         }
-
-   //payment type check
-
+        //payment type check
         sh= wb.getSheetAt(4);
         String payment_type_check=sh.getRow(11).getCell(2).getStringCellValue();
         synchronized (one.driver) {one.driver.wait(6000);}
@@ -345,8 +337,7 @@ public class case_5 {
             System.out.println("\033[1;31m" + error.getMessage());
         }
 
-   //payment mode check
-
+        //payment mode check
         sh= wb.getSheetAt(4);
         String payment_mode_check=sh.getRow(13).getCell(2).getStringCellValue();
         synchronized (one.driver) {one.driver.wait(6000);}
@@ -361,9 +352,7 @@ public class case_5 {
         {
             System.out.println("\033[1;31m" + error.getMessage());
         }
-
         //SLA for payment refund
-
         sh= wb.getSheetAt(4);
         String payment_sla_check=sh.getRow(15).getCell(2).getStringCellValue();
         synchronized (one.driver) {one.driver.wait(6000);}
@@ -379,9 +368,7 @@ public class case_5 {
             System.out.println("\033[1;31m" + error.getMessage());
         }
 
-
         //Refund reason
-
         sh= wb.getSheetAt(4);
         String payment_cancellation_check=sh.getRow(17).getCell(2).getStringCellValue();
         synchronized (one.driver) {one.driver.wait(6000);}
@@ -396,14 +383,12 @@ public class case_5 {
         {
             System.out.println("\033[1;31m" + error.getMessage());
         }
-
         // close the session
         synchronized (one.driver) {one.driver.wait(10000);}
         discovery_and_authentication.close_session(one.wb, one.driver, 2, 67, 1).click();
-
     }
 
-    @AfterTest(enabled=false,groups="five")
+    @AfterTest(enabled=true,groups="five")
     public void close_and_quit()throws InterruptedException {
         one.driver.close();
         one.driver.quit();
